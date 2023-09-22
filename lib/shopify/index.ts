@@ -50,10 +50,11 @@ import {
   ShopifyUpdateCartOperation
 } from './types';
 
-const domain = process.env.SHOPIFY_STORE_DOMAIN
-  ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, 'https://')
-  : '';
+const domain = process.env.SHOPIFY_STORE_DOMAIN ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, 'https://'): '';
 const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
+console.log('domain', domain);
+console.log('endpoint', endpoint);
+
 const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
@@ -88,7 +89,7 @@ export async function shopifyFetch<T>({
     });
 
     const body = await result.json();
-
+    
     if (body.errors) {
       throw body.errors[0];
     }
@@ -344,7 +345,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
       handle
     }
   });
-
+   
   return (
     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
       title: item.title,
@@ -352,6 +353,8 @@ export async function getMenu(handle: string): Promise<Menu[]> {
     })) || []
   );
 }
+
+
 
 export async function getPage(handle: string): Promise<Page> {
   const res = await shopifyFetch<ShopifyPageOperation>({

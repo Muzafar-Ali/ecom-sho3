@@ -11,20 +11,23 @@ import { getProduct, getProductRecommendations } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
 import Link from 'next/link';
 
+// Set runtime environment to 'edge'
 export const runtime = 'edge';
 
-export async function generateMetadata({
-  params
-}: {
-  params: { handle: string };
-}): Promise<Metadata> {
+// Exported function to generate metadata for the page
+export async function generateMetadata({ params }: { params: { handle: string } }): Promise<Metadata> {
   const product = await getProduct(params.handle);
 
   if (!product) return notFound();
 
+  // Extract information for metadata
   const { url, width, height, altText: alt } = product.featuredImage || {};
+  // Determine if the product should be indexed for search engines
+  // based on the presence of a specific tag.
   const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
+ 
 
+  // Create and return metadata object
   return {
     title: product.seo.title || product.title,
     description: product.seo.description || product.description,
@@ -56,6 +59,7 @@ export default async function ProductPage({ params }: { params: { handle: string
 
   if (!product) return notFound();
 
+  // Generate JSON-LD structured data for SEO
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -75,6 +79,7 @@ export default async function ProductPage({ params }: { params: { handle: string
 
   return (
     <>
+      {/* Inject JSON-LD structured data into the page */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -93,14 +98,17 @@ export default async function ProductPage({ params }: { params: { handle: string
           </div>
 
           <div className="basis-full lg:basis-2/6">
+          {/* Display product description  */}
             <ProductDescription product={product} />
           </div>
         </div>
         <Suspense>
+          {/* Display related products (lazy-loaded) */}
           <RelatedProducts id={product.id} />
         </Suspense>
       </div>
       <Suspense>
+         {/* Display footer (lazy-loaded) */}
         <Footer />
       </Suspense>
     </>
@@ -108,8 +116,10 @@ export default async function ProductPage({ params }: { params: { handle: string
 }
 
 async function RelatedProducts({ id }: { id: string }) {
+  // Fetch related products based on the product ID
   const relatedProducts = await getProductRecommendations(id);
 
+  // If no related products are found, return null
   if (!relatedProducts.length) return null;
 
   return (
@@ -122,6 +132,7 @@ async function RelatedProducts({ id }: { id: string }) {
             className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
           >
             <Link className="relative h-full w-full" href={`/product/${product.handle}`}>
+            {/* Display grid tile images for related products  */}
               <GridTileImage
                 alt={product.title}
                 label={{
