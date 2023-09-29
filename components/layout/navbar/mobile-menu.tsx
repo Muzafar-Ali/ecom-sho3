@@ -52,6 +52,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
           >
             <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
           </Transition.Child>
+          
           <Transition.Child
             as={Fragment}
             enter="transition-all ease-in-out duration-300"

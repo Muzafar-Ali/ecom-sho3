@@ -1,6 +1,6 @@
 import Navbar from 'components/layout/navbar';
 import { ensureStartsWith } from 'lib/utils';
-import { Inter } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 import { ReactNode, Suspense } from 'react';
 import './globals.css';
 
@@ -31,15 +31,15 @@ export const metadata = {
     })
 };
 
-const inter = Inter({
+const open_Sans = Open_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter'
+  variable: '--font-open_Sans'
 });
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={open_Sans.variable}>
       <body className="bg-neutral-100 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
         <Navbar />
         <Suspense>
