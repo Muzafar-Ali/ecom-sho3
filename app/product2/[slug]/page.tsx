@@ -2,6 +2,7 @@
 import Wrapper from "components/Wrapper"
 import BranchStock from "components/products/BranchStock"
 import { useState } from "react"
+import { GrFormAdd, GrFormSubtract} from 'react-icons/gr'
 
 const ProductDetails = () => {
   
@@ -29,22 +30,21 @@ const ProductDetails = () => {
       </div>
 
       {/* product images and detail page start*/}
-      <div className='mt-8px flex gap-[24px] px-[20px] laptop:px-[108px] relative max-laptop:flex-col'>
+      <div className='mt-[8px] flex gap-[24px] px-[20px] laptop:px-[108px] relative max-laptop:flex-col'>
         {/* product small images  */}
-        <div className='flex flex-col gap-[24px] max-laptop:flex-row'>
-          <img className="w-20 h-[78px]" src="https://via.placeholder.com/80x78" />
-          <img className="w-20 h-[78px]" src="https://via.placeholder.com/80x78" />
-          <img className="w-20 h-[78px]" src="https://via.placeholder.com/80x78" />
-          <img className="w-20 h-[78px]" src="https://via.placeholder.com/80x78" />
-          <img className="w-20 h-[78px]" src="https://via.placeholder.com/80x78" />
-          <img className="w-20 h-[78px]" src="https://via.placeholder.com/80x78" />
+        <div className='flex flex-col gap-[12px] tablet:gap-[24px] max-laptop:flex-row max-laptop:absolute max-tablet:top-[330px] tablet:top-[620px]'>
+          <img className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" src="https://via.placeholder.com/80x78" />
+          <img className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" src="https://via.placeholder.com/80x78" />
+          <img className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" src="https://via.placeholder.com/80x78" />
+          <img className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" src="https://via.placeholder.com/80x78" />
+          <img className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" src="https://via.placeholder.com/80x78" />
         </div>
         {/* product large image */}
         <div>
-          <img className="w-[704px] h-[605px]" src="https://via.placeholder.com/704x605" />
+          <img className="w-80 h-80 tablet:w-[704px] tablet:h-[605px]" src="https://via.placeholder.com/704x605" />
         </div>
         {/* product details */}
-        <div className="w-[392px] h-[282px] flex-col justify-start items-start gap-4 inline-flex">
+        <div className="w-[392px] h-[282px] flex-col justify-start items-start gap-4 inline-flex max-tablet:mt-[60px] tablet:mt-[100px] laptop:mt-0">
           <div className="self-stretch text-pink-800 text-2xl tablet:text-[32px] font-bold capitalize leading-[33.60px] 
             tablet:leading-[44.80px] max-tablet:w-80">
             beautya prestige lA micro-huile de rose advanced serum
@@ -202,17 +202,17 @@ const ProductDetails = () => {
       <div className="w-80 h-[450px] flex-col justify-start items-start inline-flex mt-[250px] px-[20px] tablet:hidden">
         <div className="w-80 px-2 py-4 bg-white border-t border-stone-300 justify-start items-center gap-1 inline-flex">
           <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">product detailes</div>
-          <svg width="16"height="16"viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
+            <div >
+              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            </div>
 
         </div>
         <div className="h-[226px] px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex">
           <div className="self-stretch justify-start items-center gap-2 inline-flex">
             <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">How To Apply</div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 11H18V13H6V11Z" fill="#A10550"/>
-            </svg>
+            <div >
+              <GrFormSubtract className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            </div>
           </div>
           <div className="self-stretch px-2 justify-start items-start gap-2 inline-flex">
             <div className="grow shrink basis-0">
@@ -227,25 +227,22 @@ const ProductDetails = () => {
           </div>
         </div>
         <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Ingredient</div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
-
+          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Ingredient</div>
+          <div >
+            <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+          </div>
         </div>
         <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">What Makes It Advance</div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
-
+          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">What Makes It Advance</div>
+          <div >
+            <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+          </div>
         </div>
         <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Product Specification</div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
-
+          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Product Specification</div>
+          <div >
+            <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+          </div>
         </div>
       </div>
       {/* product details and information Mobile end*/}
@@ -253,10 +250,10 @@ const ProductDetails = () => {
       {/* promotion 4 images of 288 x 288  Desktop start*/}
       <div className="w-[1440px] h-[488px] px-[108px] py-10 bg-pink-950 flex-col justify-center items-center gap-6 tablet:inline-flex hidden">
         <div className="self-stretch justify-start items-start gap-6 inline-flex">
-            <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
-            <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
-            <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
-            <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
+          <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
+          <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
+          <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
+          <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
         </div>
         <div className="text-center">
           <span className="text-white text-xl font-bold leading-7">In just 1 week:</span>
@@ -301,25 +298,33 @@ const ProductDetails = () => {
       </div>
       {/* promotion 4 images of 288 x 288  Mobile end*/}
       
-      {/* Frequently Asked Questions start */}
+      {/* Frequently Asked Questions FAQ start */}
       <div className="px-[20px] tablet:px-[108px] mt-[56px]">
-        <div className="text-neutral-950 text-xl tablet:text-2xl font-bold font-['Open Sans'] capitalize leading-7 tablet:leading-[33.60px] text-center max-tablet:w-80 py-[32px]">Prestige lA micro-huile serum frequently asked questions</div>
+        <div className="text-neutral-950 text-xl tablet:text-2xl font-bold font-['Open Sans'] capitalize leading-7 tablet:leading-[33.60px] text-center max-tablet:w-80 py-[32px]">
+          Prestige lA micro-huile serum frequently asked questions
+        </div>
         <div className="w-80 tablet:w-[1224px] h-[778px] tablet:h-[812px] flex-col justify-start items-start inline-flex">
 
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
             <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">What is the best way to use this product?</div>
-            <div className="w-6 h-6 relative"></div>
+            <div >
+              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            </div>
           </div>
 
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
             <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used on all skin types?</div>
-            <div className="w-6 h-6 relative"></div>
+            <div >
+              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            </div>
           </div>
           
           <div className="self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex">
             <div className="self-stretch justify-start items-center gap-2 inline-flex">
               <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used on all skin types?</div>
-              <div className="w-6 h-6 relative"></div>
+              <div className="" >
+                <GrFormSubtract className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+              </div>
             </div>
             <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
               <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
@@ -333,34 +338,46 @@ const ProductDetails = () => {
           </div>
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
             <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How often should I use this product?</div>
-            <div className="w-6 h-6 relative"></div>
+            <div >
+              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            </div>
           </div>
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
             <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used during pregnancy?</div>
-            <div className="w-6 h-6 relative"></div>
+            <div >
+              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            </div>
           </div>
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
             <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How often should I use this product?</div>
-            <div className="w-6 h-6 relative"></div>
+            <div >
+              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            </div>
           </div>
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
             <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How should I store this product?</div>
-            <div className="w-6 h-6 relative"></div>
+            <div >
+              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            </div>
           </div>
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
             <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How long will it take to see results from using this product?</div>
-            <div className="w-6 h-6 relative"></div>
+            <div >
+              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            </div>
           </div>
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
             <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used in conjunction with other skincare products?</div>
-            <div className="w-6 h-6 relative"></div>
+            <div >
+              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            </div>
           </div>
         </div>
       </div>
       {/* Frequently Asked Questions end */}
 
-      {/* Recommended skincare routine start */}
-      <div className="px-[108px] pt-[56px]">
+      {/* Recommended skincare routine DESKTOP start */}
+      <div className="px-[108px] pt-[56px] max-tablet:hidden">
         <h2 className="text-neutral-950 text-2xl font-bold capitalize leading-[33.60px] mb-[32px] text-center">recommended skincare routine</h2>
         <div className="w-[1224px] h-[560px] justify-center items-center gap-6 inline-flex">
           <div className="w-10 h-10 p-1 bg-white border border-stone-300 justify-center items-center flex">
@@ -407,23 +424,48 @@ const ProductDetails = () => {
               <path d="M12.6663 22.6667L19.333 16.0001L12.6663 9.33342L12.6663 22.6667Z" fill="#0C0C0C"/>
             </svg>
           </div>
+        </div>
       </div>
-      {/* recommended skincare routine end */}
+        {/* recommended skincare routine DESKTOP end */}
+
+      {/* recommended skincare routine MOBILE end */}
+      <div className="tablet:hidden px-[20px] pt-[32px]">
+        <div className="w-80 h-[55px] text-center text-neutral-950 text-xl font-bold font-['Open Sans'] leading-7 mb-[16px]">Recommended Skincare Routine</div>
+        <div className="w-80 h-[345px] justify-start items-start gap-4 inline-flex">
+          <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
+            <img className="self-stretch h-[202px]" src="https://via.placeholder.com/152x202" />
+            <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
+              <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">Beautya Prestige la Mousse Micellaire</div>
+              <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">Anti-Aging Face Serum, with Purifying French Water Lily</div>
+              <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$76.00</div>
+            </div>
+          </div>
+          <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
+            <img className="self-stretch h-[202px]" src="https://via.placeholder.com/152x202" />
+            <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
+              <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">Beautya Prestige la Mousse Micellaire</div>
+              <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">Anti-Aging Face Serum, with Purifying French Water Lily</div>
+              <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$76.00</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      {/* recommended skincare routine MOBILE end */}
 
       {/* video of product start */}
-      <div className="w-[1223.11px] h-[688px] relative my-[56px]">
-        <div className="w-[1223.11px] h-[688px] left-0 top-0 absolute bg-black bg-opacity-25 backdrop-blur-[60px]"></div>
-        <div className="w-[120px] h-[120px] left-[552px] top-[284px] absolute">
-          <div className="w-[120px] h-[120px] left-0 top-0 absolute rounded-full border-8 border-neutral-200"></div>
+      <div className="px-[20px] tablet:px-[108px]">
+        <div className="w-[360px] tablet:w-[1223.11px] h-[202px] tablet:h-[688px] relative my-[32px] tablet:my-[56px]">
+          <div className="w-[359.81px] tablet:w-[1223.11px] h-[202.39] tablet:h-[688px] left-0 top-0 absolute bg-black bg-opacity-25 backdrop-blur-[60px]"></div>
+          <div className="w-10 tablet:w-[120px] h-10 tablet:h-[120px] left-[159.81px] tablet:left-[552px] top-[81px] tablet:top-[284px] absolute">
+            <div className="w-10 h-10 tablet:w-[120px] tablet:h-[120px] left-0 top-0 absolute rounded-full border-2 tablet:border-8 border-neutral-200"></div>
+          </div>
         </div>
       </div>
       {/* video of product end */}
 
-      
-
-      </div>
-      {/* you may also like start */}
-      <div className="w-[1440px] h-[704px] pt-[38px] pb-14 bg-red-50 flex-col justify-start items-center gap-4 inline-flex">
+      {/* you may also like DESKTOP start*/}
+      <div className="w-[1440px] h-[704px] pt-[38px] pb-14 bg-red-50 flex-col justify-start items-center gap-4 inline-flex max-tablet:hidden">
         <div className="px-[108px]">
           <h2 className="text-neutral-950 text-2xl font-bold font-['Open Sans'] capitalize leading-[33.60px] text-center mb-[16px]">you may also like</h2>
           <div className="self-stretch justify-center items-center gap-6 inline-flex">
@@ -474,7 +516,41 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      {/* you may also like end */}
+      {/* you may also like DESKTOP end*/}
+
+      <div className="w-[360px] h-[445px] relative bg-red-50">
+        <div className="left-[20px] top-[60px] absolute justify-start items-start gap-4 inline-flex">
+          <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
+            <img className="self-stretch h-[202px]" src="https://via.placeholder.com/152x202" />
+            <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
+              <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">Beautya Prestige la Mousse Micellaire</div>
+              <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">Anti-Aging Face Serum, with Purifying French Water Lily</div>
+              <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$76.00</div>
+            </div>
+          </div>
+          <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
+            <img className="self-stretch h-[202px]" src="https://via.placeholder.com/152x202" />
+            <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
+              <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">Beautya Prestige la Mousse Micellaire</div>
+              <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">Anti-Aging Face Serum, with Purifying French Water Lily</div>
+              <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$76.00</div>
+            </div>
+          </div>
+        </div>
+        <div className="left-[94px] top-[16px] absolute text-neutral-950 text-xl font-bold font-['Open Sans'] leading-7">You May Also Like</div>
+        <div className="left-[126px] top-[417px] absolute justify-center items-center gap-1 inline-flex">
+          <div className="w-6 h-1 relative">
+            <div className="w-6 h-1 left-0 top-0 absolute bg-pink-800 border border-pink-500"></div>
+          </div>
+          <div className="w-6 h-1 relative">
+            <div className="w-6 h-1 left-0 top-0 absolute bg-stone-300"></div>
+          </div>
+          <div className="w-6 h-1 relative">
+            <div className="w-6 h-1 left-0 top-0 absolute bg-stone-300"></div>
+          </div>
+          <div className="w-6 h-1 bg-stone-300"></div>
+        </div>
+      </div>
     </Wrapper>
   )
 }
