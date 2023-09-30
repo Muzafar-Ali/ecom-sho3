@@ -121,8 +121,8 @@ const ProductDetails = () => {
       </div>
       {/* product images and detail page end*/}
 
-      {/* product details and information */}
-      <div className='flex flex-col px-[108px]'>
+      {/* product details and information Desktop start*/}
+      <div className='flex flex-col px-[108px] max-tablet:hidden'>
         <div className="w-[1224px] h-11 border-b border-zinc-600 justify-between items-start inline-flex mt-[32px]">
           <div className="w-[154px] py-2 border-b-2 border-pink-800 justify-start items-center gap-2 flex">
             <div className="text-pink-800 text-xl font-bold leading-7">Product Details</div>
@@ -196,9 +196,62 @@ const ProductDetails = () => {
           </div>          
         </div>
       </div>
+      {/* product details and information Desktop end*/}
 
-      {/* promotion */}
-      <div className="w-[1440px] h-[488px] px-[108px] py-10 bg-pink-950 flex-col justify-center items-center gap-6 inline-flex">
+      {/* product details and information Mobile start*/}
+      <div className="w-80 h-[450px] flex-col justify-start items-start inline-flex mt-[250px] px-[20px] tablet:hidden">
+        <div className="w-80 px-2 py-4 bg-white border-t border-stone-300 justify-start items-center gap-1 inline-flex">
+          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">product detailes</div>
+          <svg width="16"height="16"viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
+            </svg>
+
+        </div>
+        <div className="h-[226px] px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex">
+          <div className="self-stretch justify-start items-center gap-2 inline-flex">
+            <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">How To Apply</div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 11H18V13H6V11Z" fill="#A10550"/>
+            </svg>
+          </div>
+          <div className="self-stretch px-2 justify-start items-start gap-2 inline-flex">
+            <div className="grow shrink basis-0">
+              <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 1:</span>
+              <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
+              <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 3:</span>
+              <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                Finally, to enhance contours, hold the chin between the index and middle fingers and move up the jawline.
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Ingredient</div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
+            </svg>
+
+        </div>
+        <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">What Makes It Advance</div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
+            </svg>
+
+        </div>
+        <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Product Specification</div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
+            </svg>
+
+        </div>
+      </div>
+      {/* product details and information Mobile end*/}
+
+      {/* promotion 4 images of 288 x 288  Desktop start*/}
+      <div className="w-[1440px] h-[488px] px-[108px] py-10 bg-pink-950 flex-col justify-center items-center gap-6 tablet:inline-flex hidden">
         <div className="self-stretch justify-start items-start gap-6 inline-flex">
             <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
             <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
@@ -217,6 +270,36 @@ const ProductDetails = () => {
             <span className="text-white text-lg font-normal capitalize leading-loose"> The skin looks denser +56% </span>
         </div>
       </div>
+      {/* promotion 4 images of 288 x 288  Desktop end*/}
+
+      {/* promotion 4 images of 288 x 288  Mobile start*/}
+      <div className="w-[360px] h-[487px] relative bg-pink-950 tablet:hidden">
+        <img className="w-80 h-80 left-[20px] top-[24px] absolute" src="https://via.placeholder.com/320x320" />
+        <div className="w-[321px] left-[19px] top-[376px] absolute">
+          <span className="text-white text-xs font-semibold font-['Open Sans'] tracking-tight">In just 1 week:</span>
+          <span className="text-white text-[10.84px] font-normal font-['Open Sans'] capitalize leading-tight"> </span>
+          <span className="text-white text-xs font-normal font-['Open Sans'] leading-none">it appears firmer, stronger and smoother.<br/></span>
+          <span className="text-white text-xs font-semibold font-['Open Sans'] tracking-tight">In 3 weeks:</span>
+          <span className="text-white text-xs font-normal font-['Open Sans'] leading-none"> 2x improvement in the look or feel of skin elasticity<br/></span>
+          <span className="text-white text-xs font-semibold font-['Open Sans'] tracking-tight">After 1 month: </span>
+          <span className="text-white text-xs font-normal font-['Open Sans'] leading-none">The skin looks firmer+60% | The skin looks denser +56% </span>
+        </div>
+        <div className="left-[126px] top-[356px] absolute justify-center items-center gap-1 inline-flex">
+          <div className="w-6 h-1 relative">
+              <div className="w-6 h-1 left-0 top-0 absolute bg-pink-800 border border-pink-500"></div>
+          </div>
+          <div className="w-6 h-1 relative">
+              <div className="w-6 h-1 left-0 top-0 absolute bg-stone-300"></div>
+          </div>
+          <div className="w-6 h-1 relative">
+              <div className="w-6 h-1 left-0 top-0 absolute bg-stone-300"></div>
+          </div>
+          <div className="w-6 h-1 relative">
+              <div className="w-6 h-1 left-0 top-0 absolute bg-stone-300"></div>
+          </div>
+        </div>
+      </div>
+      {/* promotion 4 images of 288 x 288  Mobile end*/}
      
       {/* Frequently Asked Questions start */}
       <div className="px-[108px] mt-[56px]">
