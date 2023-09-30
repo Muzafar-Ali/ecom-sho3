@@ -10,7 +10,7 @@ const ProductDetails = () => {
   return (
     <Wrapper className="h-[3855px] overflow-y-auto pb-[52px] max-mobile-l:max-w-[360px] max-laptop:h-[5109px] overflow-hidden">
 
-      <div className="justify-start items-center inline-flex px-[108px] py-5">
+      <div className="justify-start items-center inline-flex px-[20px] laptop:px-[108px] py-5">
         <div className="w-[46px] py-2 justify-start items-center gap-2 flex">
           <div className="text-zinc-600 text-xs tablet:text-base font-normal capitalize tablet:leading-none leading-7">Home</div>
         </div>
@@ -29,7 +29,7 @@ const ProductDetails = () => {
       </div>
 
       {/* product images and detail page start*/}
-      <div className='mt-8px flex gap-[24px] px-[108px] relative max-laptop:flex-col'>
+      <div className='mt-8px flex gap-[24px] px-[20px] laptop:px-[108px] relative max-laptop:flex-col'>
         {/* product small images  */}
         <div className='flex flex-col gap-[24px] max-laptop:flex-row'>
           <img className="w-20 h-[78px]" src="https://via.placeholder.com/80x78" />
@@ -44,74 +44,79 @@ const ProductDetails = () => {
           <img className="w-[704px] h-[605px]" src="https://via.placeholder.com/704x605" />
         </div>
         {/* product details */}
-        <div className="w-[392px] h-[282px] tablet:flex-col justify-start items-start gap-4 inline-flex">
-          <div className="self-stretch text-pink-800 text-2xl tablet:text-[32px] font-bold capitalize leading-[33.60px] tablet:leading-[44.80px]">beautya prestige lA micro-huile de rose advanced serum</div>
+        <div className="w-[392px] h-[282px] flex-col justify-start items-start gap-4 inline-flex">
+          <div className="self-stretch text-pink-800 text-2xl tablet:text-[32px] font-bold capitalize leading-[33.60px] 
+            tablet:leading-[44.80px] max-tablet:w-80">
+            beautya prestige lA micro-huile de rose advanced serum
+          </div>
           <div className="self-stretch grow shrink basis-0 flex-col justify-start items-start gap-2 flex">
             <div className="self-stretch h-[51px] flex-col justify-start items-start gap-1 flex">
-              <div className="self-stretch text-neutral-950 text-base font-bold capitalize leading-snug">Anti-aging face serum</div>
-              <div className="self-stretch pr-2 justify-start items-center gap-2 inline-flex relative">
-                <div className="text-zinc-600 text-sm font-normal capitalize leading-[25.20px]">all types of skin</div>
+              <div className="self-stretch text-neutral-950 text-sm tablet:text-base font-semibold tablet:font-bold capitalize leading-tight tablet:leading-snug">Anti-aging face serum</div>
+              <div className="self-stretch pr-2 justify-start items-center gap-2 inline-flex relative max-tablet:w-80 tablet:h-[17px]">
+                <div className="text-zinc-600 text-xs tablet:text-sm font-normal capitalize leading-none tablet:leading-[25.20px]">all types of skin</div>
                 <div className="opacity-[0.6]">|</div>
-                <div className="text-zinc-600 text-sm font-normal capitalize leading-[25.20px]">am or pm</div>
+                <div className="text-zinc-600 text-xs tablet:text-sm font-normal capitalize leading-none tablet:leading-[25.20px]">am or pm</div>
                 <div className=" opacity-[0.6]">|</div>
-                <div className="text-zinc-600 text-sm font-normal capitalize leading-[25.20px]">brightening</div>
+                <div className="text-zinc-600 text-xs tablet:text-sm font-normal capitalize leading-none tablet:leading-[25.20px]">brightening</div>
               </div>
             </div>
-            <div className="self-stretch text-zinc-500 text-base font-bold capitalize leading-snug">Formulated with 92% natural-origin ingredients</div>
+            <div className="self-stretch text-zinc-500 text-sm tablet:text-base font-semibold tablet:font-bold capitalize leading-tight tablet:leading-snug max-mobile-l:w-80">Formulated with 92% natural-origin ingredients</div>
           </div>
-          <div className="self-stretch text-neutral-950 text-2xl font-bold capitalize leading-[33.60px]">$520.00</div>
+
+          <div className="self-stretch text-neutral-950 text-xl tablet:text-2xl font-semibold tablet:font-bold capitalize leading-7 tablet:leading-[33.60px]">$520.00</div>
           
-          <div className="w-[392px] h-14 px-4 py-2 justify-between items-center inline-flex border-b border-zinc-600">
-            <div className="text-zinc-600 text-xl font-normal capitalize leading-9">30 mL</div>
-            <div className="w-[263px] text-right text-zinc-600 text-xl font-normal capitalize leading-9">$520.00</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7 9.5L12 14.5L17 9.5H7Z" fill="#606060"/>
-            </svg>
-           </div>
-          
-            {/* check in branch stock button */}
-            <button 
-              onClick={() => setBranchStockIsOPen((prev) => !prev)}
-              className="w-[392px] h-[45px] px-4 py-2 bg-pink-800 justify-center items-center gap-2 inline-flex"
-            >
-              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2.5C8.13 2.5 5 5.63 5 9.5C5 14.75 12 22.5 12 22.5C12 22.5 19 14.75 19 9.5C19 5.63 15.87 2.5 12 2.5ZM7 9.5C7 6.74 9.24 4.5 12 4.5C14.76 4.5 17 6.74 17 9.5C17 12.38 14.12 16.69 12 19.38C9.92 16.71 7 12.35 7 9.5Z" fill="white"/>
-                <path d="M12 12C13.3807 12 14.5 10.8807 14.5 9.5C14.5 8.11929 13.3807 7 12 7C10.6193 7 9.5 8.11929 9.5 9.5C9.5 10.8807 10.6193 12 12 12Z" fill="white"/>
+          <div className="w-64 tablet:w-[392px] h-[25px] tablet:h-14 px-4 py-2 justify-between items-center inline-flex border-b border-zinc-600">
+            <div className="text-zinc-600 text-sm tablet:text-xl font-normal capitalize leading-[25.20px] tablet:leading-9 w-full">30 mL</div>
+            <div className="w-[263px] text-right text-zinc-600 text-sm tablet:text-xl font-normal capitalize leading-[25.20px] tablet:leading-9">$520.00</div>
+            <button className="w-6 h-6 max-mobile-l:pl-2">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 9.5L12 14.5L17 9.5H7Z" fill="#606060"/>
               </svg>
-              <h2 className="text-white text-base font-normal capitalize leading-7">check in branches stock</h2>
-               { branchStockIsOPen && <BranchStock setBranchStockIsOPen={setBranchStockIsOPen} branchStockIsOPen={branchStockIsOPen}/>}               
             </button>
+          </div>
+          
+          {/* check in branch stock button */}
+          <button 
+            onClick={() => setBranchStockIsOPen((prev) => !prev)}
+            className="w-[330px] tablet:w-[392px] h-[45px] px-4 py-2 bg-pink-800 justify-center items-center gap-2 tablet:gap-2 inline-flex"
+          >
+            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2.5C8.13 2.5 5 5.63 5 9.5C5 14.75 12 22.5 12 22.5C12 22.5 19 14.75 19 9.5C19 5.63 15.87 2.5 12 2.5ZM7 9.5C7 6.74 9.24 4.5 12 4.5C14.76 4.5 17 6.74 17 9.5C17 12.38 14.12 16.69 12 19.38C9.92 16.71 7 12.35 7 9.5Z" fill="white"/>
+              <path d="M12 12C13.3807 12 14.5 10.8807 14.5 9.5C14.5 8.11929 13.3807 7 12 7C10.6193 7 9.5 8.11929 9.5 9.5C9.5 10.8807 10.6193 12 12 12Z" fill="white"/>
+            </svg>
+            <h2 className="text-white text-xs tablet:text-base font-normal capitalize leading-normal tablet:leading-7">check in branches stock</h2>
+              { branchStockIsOPen && <BranchStock setBranchStockIsOPen={setBranchStockIsOPen} branchStockIsOPen={branchStockIsOPen}/>}               
+          </button>
 
-            {/* offers */}
-            <div className="w-[392px] h-[178px] p-4 bg-red-50 flex-col justify-start items-start gap-4 inline-flex">
+          {/* offers */}
+          <div className="w-80 tablet:w-[392px] h-[120px] tablet:h-[178px] p-4 bg-red-50 flex-col justify-center tablet:justify-start items-start gap-2 tablet:gap-4 inline-flex">
 
-                <div className="self-stretch justify-start items-start gap-4 flex">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 6.5H17.82C17.93 6.19 18 5.85 18 5.5C18 3.84 16.66 2.5 15 2.5C13.95 2.5 13.04 3.04 12.5 3.85L12 4.52L11.5 3.84C10.96 3.04 10.05 2.5 9 2.5C7.34 2.5 6 3.84 6 5.5C6 5.85 6.07 6.19 6.18 6.5H4C2.89 6.5 2.01 7.39 2.01 8.5L2 19.5C2 20.61 2.89 21.5 4 21.5H20C21.11 21.5 22 20.61 22 19.5V8.5C22 7.39 21.11 6.5 20 6.5ZM15 4.5C15.55 4.5 16 4.95 16 5.5C16 6.05 15.55 6.5 15 6.5C14.45 6.5 14 6.05 14 5.5C14 4.95 14.45 4.5 15 4.5ZM9 4.5C9.55 4.5 10 4.95 10 5.5C10 6.05 9.55 6.5 9 6.5C8.45 6.5 8 6.05 8 5.5C8 4.95 8.45 4.5 9 4.5ZM20 19.5H4V17.5H20V19.5ZM20 14.5H4V8.5H9.08L7 11.33L8.62 12.5L12 7.9L15.38 12.5L17 11.33L14.92 8.5H20V14.5Z" fill="#A10550"/>
-                  </svg>
-                  <div className="text-rose-900 text-sm font-normal capitalize leading-[25.20px] w-full">receive 2 free samples when you spend $100</div>
-                </div>
-
-                
-              <div className="self-stretch justify-start items-start gap-4 inline-flex">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.7871 21.5024L2.99707 11.7124V13.7124C2.99707 14.2424 3.20707 14.7524 3.58707 15.1224L11.3771 22.9124C12.1571 23.6924 13.4271 23.6924 14.2071 22.9124L20.4171 16.7024C21.1971 15.9224 21.1971 14.6524 20.4171 13.8724L12.7871 21.5024Z" fill="#A10550"/>
-                  <path d="M11.3771 17.9124C11.7671 18.3024 12.2771 18.5024 12.7871 18.5024C13.2971 18.5024 13.8071 18.3024 14.1971 17.9124L20.4071 11.7024C21.1871 10.9224 21.1871 9.65244 20.4071 8.87244L12.6171 1.08244C12.2471 0.712441 11.7371 0.502441 11.2071 0.502441H4.99707C3.89707 0.502441 2.99707 1.40244 2.99707 2.50244V8.71244C2.99707 9.24244 3.20707 9.75244 3.58707 10.1224L11.3771 17.9124ZM4.99707 2.50244H11.2071L18.9971 10.2924L12.7871 16.5024L4.99707 8.71244V2.50244Z" fill="#A10550"/>
-                  <path d="M7.24707 6.00244C7.93743 6.00244 8.49707 5.4428 8.49707 4.75244C8.49707 4.06209 7.93743 3.50244 7.24707 3.50244C6.55671 3.50244 5.99707 4.06209 5.99707 4.75244C5.99707 5.4428 6.55671 6.00244 7.24707 6.00244Z" fill="#A10550"/>
-                </svg>
-                <div className="grow shrink basis-0 text-rose-900 text-sm font-normal capitalize leading-[25.20px]">receive $2 when you return 5 empty containers</div>
-              </div>
-
-              <div className="self-stretch justify-start items-start gap-4 inline-flex">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 4V11H5.17L4 12.17V4H15ZM16 2H3C2.45 2 2 2.45 2 3V17L6 13H16C16.55 13 17 12.55 17 12V3C17 2.45 16.55 2 16 2ZM21 6H19V15H6V17C6 17.55 6.45 18 7 18H18L22 22V7C22 6.45 21.55 6 21 6Z" fill="#A10550"/>
-                </svg>
-                <div className="w-[317px] self-stretch justify-start items-center gap-2 flex">
-                  <div className="text-rose-900 text-sm font-normal capitalize leading-[25.20px]">receive free 1-2-1 expert advice in branches</div>
-                </div>
-              </div>
-
+            <div className="self-stretch justify-start items-start gap-4 flex">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6.5H17.82C17.93 6.19 18 5.85 18 5.5C18 3.84 16.66 2.5 15 2.5C13.95 2.5 13.04 3.04 12.5 3.85L12 4.52L11.5 3.84C10.96 3.04 10.05 2.5 9 2.5C7.34 2.5 6 3.84 6 5.5C6 5.85 6.07 6.19 6.18 6.5H4C2.89 6.5 2.01 7.39 2.01 8.5L2 19.5C2 20.61 2.89 21.5 4 21.5H20C21.11 21.5 22 20.61 22 19.5V8.5C22 7.39 21.11 6.5 20 6.5ZM15 4.5C15.55 4.5 16 4.95 16 5.5C16 6.05 15.55 6.5 15 6.5C14.45 6.5 14 6.05 14 5.5C14 4.95 14.45 4.5 15 4.5ZM9 4.5C9.55 4.5 10 4.95 10 5.5C10 6.05 9.55 6.5 9 6.5C8.45 6.5 8 6.05 8 5.5C8 4.95 8.45 4.5 9 4.5ZM20 19.5H4V17.5H20V19.5ZM20 14.5H4V8.5H9.08L7 11.33L8.62 12.5L12 7.9L15.38 12.5L17 11.33L14.92 8.5H20V14.5Z" fill="#A10550"/>
+              </svg>
+              <div className="grow shrink basis-0 text-rose-900 text-xs tablet:text-sm font-normal capitalize leading-none tablet:leading-[25.20px] w-full">receive 2 free samples when you spend $100</div>
             </div>
+              
+            <div className="self-stretch justify-start items-start gap-4 inline-flex">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.7871 21.5024L2.99707 11.7124V13.7124C2.99707 14.2424 3.20707 14.7524 3.58707 15.1224L11.3771 22.9124C12.1571 23.6924 13.4271 23.6924 14.2071 22.9124L20.4171 16.7024C21.1971 15.9224 21.1971 14.6524 20.4171 13.8724L12.7871 21.5024Z" fill="#A10550"/>
+                <path d="M11.3771 17.9124C11.7671 18.3024 12.2771 18.5024 12.7871 18.5024C13.2971 18.5024 13.8071 18.3024 14.1971 17.9124L20.4071 11.7024C21.1871 10.9224 21.1871 9.65244 20.4071 8.87244L12.6171 1.08244C12.2471 0.712441 11.7371 0.502441 11.2071 0.502441H4.99707C3.89707 0.502441 2.99707 1.40244 2.99707 2.50244V8.71244C2.99707 9.24244 3.20707 9.75244 3.58707 10.1224L11.3771 17.9124ZM4.99707 2.50244H11.2071L18.9971 10.2924L12.7871 16.5024L4.99707 8.71244V2.50244Z" fill="#A10550"/>
+                <path d="M7.24707 6.00244C7.93743 6.00244 8.49707 5.4428 8.49707 4.75244C8.49707 4.06209 7.93743 3.50244 7.24707 3.50244C6.55671 3.50244 5.99707 4.06209 5.99707 4.75244C5.99707 5.4428 6.55671 6.00244 7.24707 6.00244Z" fill="#A10550"/>
+              </svg>
+              <div className="grow shrink basis-0 text-rose-900 text-xs tablet:text-sm font-normal capitalize leading-none tablet:leading-[25.20px] w-full">receive $2 when you return 5 empty containers</div>
+            </div>
+
+            <div className="self-stretch justify-start items-start gap-4 inline-flex">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 4V11H5.17L4 12.17V4H15ZM16 2H3C2.45 2 2 2.45 2 3V17L6 13H16C16.55 13 17 12.55 17 12V3C17 2.45 16.55 2 16 2ZM21 6H19V15H6V17C6 17.55 6.45 18 7 18H18L22 22V7C22 6.45 21.55 6 21 6Z" fill="#A10550"/>
+              </svg>
+              <div className="w-[317px] self-stretch justify-start items-center gap-2 flex">
+              <div className="grow shrink basis-0 text-rose-900 text-xs tablet:text-sm font-normal capitalize leading-none tablet:leading-[25.20px] w-full">receive free 1-2-1 expert advice in branches</div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
       {/* product images and detail page end*/}
