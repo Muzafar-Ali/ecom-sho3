@@ -8,29 +8,30 @@ const ProductDetails = () => {
   const [branchStockIsOPen, setBranchStockIsOPen] = useState<boolean>(false)
   
   return (
-    <Wrapper className="h-[3855px] overflow-y-auto pb-[52px]">
-      <div className="justify-start items-center inline-flex px-[108px]">
+    <Wrapper className="h-[3855px] overflow-y-auto pb-[52px] max-mobile-l:max-w-[360px] max-laptop:h-[5109px] overflow-hidden">
+
+      <div className="justify-start items-center inline-flex px-[108px] py-5">
         <div className="w-[46px] py-2 justify-start items-center gap-2 flex">
-          <div className="text-zinc-600 text-base font-normal capitalize leading-7">Home</div>
+          <div className="text-zinc-600 text-xs tablet:text-base font-normal capitalize tablet:leading-none leading-7">Home</div>
         </div>
         <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4.07617 13.9866L5.25617 15.1666L11.9228 8.49992L5.25617 1.83325L4.07617 3.01325L9.56284 8.49992L4.07617 13.9866Z" fill="#868686"/>
         </svg>
         <div className="w-[134px] py-2 justify-start items-center gap-2 flex flex-row">
-          <div className="text-neutral-950 text-base font-bold capitalize leading-snug">women skincare</div>
+          <div className="text-neutral-950 text-xs laptop:text-base font-bold capitalize tablet:leading-snug">women skincare</div>
         </div>
         <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4.07617 13.9866L5.25617 15.1666L11.9228 8.49992L5.25617 1.83325L4.07617 3.01325L9.56284 8.49992L4.07617 13.9866Z" fill="#868686"/>
         </svg>
         <div className="w-[234px] py-2 justify-start items-center gap-2 flex">
-          <div className="text-neutral-950 text-base font-bold capitalize leading-snug">Breadcrumbs elements</div>
+          <div className="text-neutral-950 text-xs tablet:text-base font-semibold tablet:font-bold capitalize max-tablet:tracking-tight leading-snug">De Rose Advanced Serum</div>
         </div>
       </div>
 
       {/* product images and detail page start*/}
-      <div className='mt-8px flex gap-[24px] px-[108px] relative'>
+      <div className='mt-8px flex gap-[24px] px-[108px] relative max-laptop:flex-col'>
         {/* product small images  */}
-        <div className='flex flex-col gap-[24px]'>
+        <div className='flex flex-col gap-[24px] max-laptop:flex-row'>
           <img className="w-20 h-[78px]" src="https://via.placeholder.com/80x78" />
           <img className="w-20 h-[78px]" src="https://via.placeholder.com/80x78" />
           <img className="w-20 h-[78px]" src="https://via.placeholder.com/80x78" />
@@ -43,8 +44,8 @@ const ProductDetails = () => {
           <img className="w-[704px] h-[605px]" src="https://via.placeholder.com/704x605" />
         </div>
         {/* product details */}
-        <div className="w-[392px] h-[282px] flex-col justify-start items-start gap-4 inline-flex">
-          <div className="self-stretch text-pink-800 text-[32px] font-bold capitalize leading-[44.80px]">beautya prestige lA micro-huile de rose advanced serum</div>
+        <div className="w-[392px] h-[282px] tablet:flex-col justify-start items-start gap-4 inline-flex">
+          <div className="self-stretch text-pink-800 text-2xl tablet:text-[32px] font-bold capitalize leading-[33.60px] tablet:leading-[44.80px]">beautya prestige lA micro-huile de rose advanced serum</div>
           <div className="self-stretch grow shrink basis-0 flex-col justify-start items-start gap-2 flex">
             <div className="self-stretch h-[51px] flex-col justify-start items-start gap-1 flex">
               <div className="self-stretch text-neutral-950 text-base font-bold capitalize leading-snug">Anti-aging face serum</div>

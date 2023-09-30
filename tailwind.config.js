@@ -8,6 +8,15 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-open_Sans)']
       },
+      screens: {
+        'mobile-s':  '320px',
+        'mobile-m':  '375px',
+        'mobile-l':  '425px',
+        'tablet':    '768px',
+        'laptop':    '1024px',
+        'laptop-lg': '1440px',
+        '4k':        '2560px',
+      },
       keyframes: {
         fadeIn: {
           from: { opacity: 0 },

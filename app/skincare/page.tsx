@@ -23,8 +23,9 @@ const Products = () => {
         </div>
         {/* header tags end*/}
 
+
         {/* sort filter on right side start */}
-        <div className="w-72 left-[1094px] top-[124px] absolute bg-white border border-neutral-200 justify-start items-start inline-flex">
+        <div className="w-72 left-[1094px] top-[124px] absolute bg-white border border-neutral-200 justify-start items-start inline-flex max-laptop:hidden">
           <div className="grow shrink basis-0 h-10 px-4 py-2 justify-start items-center gap-2 flex">
             <div className="w-56 h-[25px] justify-center items-center flex">
               <div className="grow shrink basis-0">
@@ -38,19 +39,45 @@ const Products = () => {
               />
           </div>
         </div>
-        {/* sort filter on right side end */}
         
         <div className="left-[20px] md:left-[108px] top-[53px] absolute justify-start items-baseline gap-1 md:gap-2 inline-flex w-[238px] md:w-[330px] h-[34px]">
           <div className="text-neutral-950 md:text-[32px] font-semibold md:font-bold capitalize leading-[33.60px] md:leading-[44.80px]">Women skincare </div>
           <div className="text-zinc-600 text-sm md:text-xl font-semibold md:font-bold leading-tight md:leading-7">(216)</div>
         </div>
       </div>
+      {/* sort filter on right side end */}
+
+      {/* sort and filter small screen start */}
+      <div className="w-80 h-10 justify-start items-start gap-4 inline-flex absolute top-20 left-[20px] laptop:hidden">
+        <div className="w-[152px] h-10 px-4 py-2 bg-white border border-neutral-200 justify-center items-center gap-2 flex">
+        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.5 11.3333V12.6667H6.5V11.3333H2.5ZM2.5 3.33333V4.66667H9.16667V3.33333H2.5ZM9.16667 14V12.6667H14.5V11.3333H9.16667V10H7.83333V14H9.16667ZM5.16667 6V7.33333H2.5V8.66667H5.16667V10H6.5V6H5.16667ZM14.5 8.66667V7.33333H7.83333V8.66667H14.5ZM10.5 6H11.8333V4.66667H14.5V3.33333H11.8333V2H10.5V6Z" fill="#0C0C0C"/>
+        </svg>
+          <div className="text-neutral-950 text-xs font-semibold font-['Open Sans'] tracking-tight">Filter</div>
+        </div>
+        <div className="h-10 bg-white border border-neutral-200 justify-start items-start flex">
+          <div className="grow shrink basis-0 h-10 p-2 justify-start items-center gap-2 flex">
+            <div className="w-[104px] h-[25px] justify-center items-center flex">
+              <div className="grow shrink basis-0">
+                <span className="text-neutral-950 text-xs font-semibold font-['Open Sans'] tracking-tight">sort</span>
+                <span className="text-neutral-950 text-sm font-normal font-['Open Sans'] capitalize leading-[25.20px]">: </span>
+                <span className="text-neutral-700 text-[10px] font-semibold font-['Open Sans'] leading-[14px]">recommended</span>
+              </div>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 9.5L12 14.5L17 9.5H7Z" fill="#606060"/>
+            </svg>
+
+          </div>
+        </div>
+      </div>
+      {/* sort and filter small screen start */}
 
       {/* left side filter options starts */}
       <div className="left-[108px] top-[122px] absolute flex-col justify-start items-start gap-4 inline-flex">
-        <div className="text-neutral-950 text-2xl font-bold capitalize leading-[33.60px]">filter</div>
+        <div className="text-neutral-950 text-2xl font-bold capitalize leading-[33.60px] max-laptop:hidden">filter</div>
         {/* applied filters div start */}
-        <div className="w-72 h-[190px] px-4 pt-4 pb-2 bg-white border-t border-neutral-200 flex-col justify-center items-start gap-4 inline-flex">
+        <div className="w-72 h-[190px] px-4 pt-4 pb-2 bg-white border-t border-neutral-200 flex-col justify-center items-start gap-4 inline-flex max-laptop:hidden">
           <div className="w-[161px] text-neutral-950 text-base font-bold capitalize leading-snug">Applied filters</div>
           <div className="flex-col justify-start items-start gap-2 flex">
             <div className="h-8 pl-3 pr-2 py-1 border border-neutral-200 justify-start items-center gap-2 inline-flex">
@@ -69,7 +96,7 @@ const Products = () => {
         {/* applied filters div end */}
 
         {/* left side filter selection div start */}
-        <div className="flex-col justify-start items-start flex">
+        <div className="flex-col justify-start items-start flex max-laptop:hidden">
           {/* out of stock button start */}
           <div className="w-72 h-14 p-4 bg-white border-t border-neutral-200 justify-start items-center gap-2 inline-flex">
             <div className="grow shrink basis-0 text-neutral-950 text-base font-bold capitalize leading-snug">out of stock items</div>
