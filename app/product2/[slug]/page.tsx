@@ -300,69 +300,60 @@ const ProductDetails = () => {
         </div>
       </div>
       {/* promotion 4 images of 288 x 288  Mobile end*/}
-     
+      
       {/* Frequently Asked Questions start */}
-      <div className="px-[108px] mt-[56px]">
-        <h2 className="text-neutral-950 text-2xl font-bold capitalize leading-[33.60px] mb-[32px] text-center">Prestige lA micro-huile serum frequently asked questions</h2>
-        <div className="w-[1224px] h-[812px] flex-col justify-start items-start inline-flex">
-          <div className="self-stretch px-4 py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-xl font-bold leading-7">What is the best way to use this product?</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
+      <div className="px-[20px] tablet:px-[108px] mt-[56px]">
+        <div className="text-neutral-950 text-xl tablet:text-2xl font-bold font-['Open Sans'] capitalize leading-7 tablet:leading-[33.60px] text-center max-tablet:w-80 py-[32px]">Prestige lA micro-huile serum frequently asked questions</div>
+        <div className="w-80 tablet:w-[1224px] h-[778px] tablet:h-[812px] flex-col justify-start items-start inline-flex">
+
+          <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">What is the best way to use this product?</div>
+            <div className="w-6 h-6 relative"></div>
           </div>
-          <div className="self-stretch px-4 py-[22px] bg-white border-b border-stone-300 justify-start items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-xl font-bold leading-7">Can this product be used on all skin types?</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
+
+          <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used on all skin types?</div>
+            <div className="w-6 h-6 relative"></div>
           </div>
-          <div className="self-stretch h-[236px] px-4 py-6 bg-white border-t border-b border-stone-300 flex-col justify-center items-start gap-4 flex">
+          
+          <div className="self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex">
             <div className="self-stretch justify-start items-center gap-2 inline-flex">
-              <div className="grow shrink basis-0 text-pink-800 text-xl font-bold leading-7">Can this product be used on all skin types?</div>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 11H18V13H6V11Z" fill="#A10550"/>
-              </svg>
+              <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used on all skin types?</div>
+              <div className="w-6 h-6 relative"></div>
             </div>
-            <div className="self-stretch px-4 py-2 justify-start items-start gap-2 inline-flex">
-              <div className="grow shrink basis-0 text-neutral-950 text-lg font-normal capitalize leading-loose"> Our product is suitable for most skin types, including normal, oily, dry, and combination skin. However, if you have sensitive skin or a skin condition, we recommend performing a patch test before using the product all over your face. Apply a small amount of the product to the inside of your elbow and wait 24 hours to make sure you do not have an allergic reaction or irritation. If you experience any discomfort, discontinue use of the product immediately.</div>
+            <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
+              <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                Our product is suitable for most skin types, including normal, oily, dry, and combination skin. However, 
+                if you have sensitive skin or a skin condition, we recommend performing a patch test before using the product
+                all over your face. Apply a small amount of the product to the inside of your elbow and wait 24 hours to make 
+                sure you do not have an allergic reaction or irritation. If you experience any discomfort, discontinue use of 
+                the product immediately.
+                </div>
             </div>
           </div>
-          <div className="self-stretch px-4 py-[22px] bg-white border-b border-stone-300 justify-start items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-xl font-bold leading-7">How often should I use this product?</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
+          <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How often should I use this product?</div>
+            <div className="w-6 h-6 relative"></div>
           </div>
-          <div className="self-stretch px-4 py-[22px] bg-white border-b border-stone-300 justify-start items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-xl font-bold leading-7">Can this product be used during pregnancy?</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
+          <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used during pregnancy?</div>
+            <div className="w-6 h-6 relative"></div>
           </div>
-          <div className="self-stretch px-4 py-[22px] bg-white border-b border-stone-300 justify-start items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-xl font-bold leading-7">How often should I use this product?</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
+          <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How often should I use this product?</div>
+            <div className="w-6 h-6 relative"></div>
           </div>
-          <div className="self-stretch px-4 py-[22px] bg-white border-b border-stone-300 justify-start items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-xl font-bold leading-7">How should I store this product?</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
+          <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How should I store this product?</div>
+            <div className="w-6 h-6 relative"></div>
           </div>
-          <div className="self-stretch px-4 py-[22px] bg-white border-b border-stone-300 justify-start items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-xl font-bold leading-7">How long will it take to see results from using this product?</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
+          <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How long will it take to see results from using this product?</div>
+            <div className="w-6 h-6 relative"></div>
           </div>
-          <div className="self-stretch px-4 py-[22px] bg-white border-b border-stone-300 justify-start items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-xl font-bold leading-7">Can this product be used in conjunction with other skincare products?</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#0C0C0C"/>
-            </svg>
+          <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used in conjunction with other skincare products?</div>
+            <div className="w-6 h-6 relative"></div>
           </div>
         </div>
       </div>
