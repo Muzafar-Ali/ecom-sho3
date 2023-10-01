@@ -338,7 +338,7 @@ const Products = () => {
             id={product.id}
             title={product.title}
             smallDescription={product.smallDescription}
-            image={product.image}
+            image={product.thumbnail}
             price={product.price}
             />
             ))
@@ -367,7 +367,7 @@ const Products = () => {
             id={product.id}
             title={product.title}
             smallDescription={product.smallDescription}
-            image={product.image}
+            image={product.thumbnail}
             price={product.price}
             />
             ))
@@ -393,7 +393,7 @@ const Products = () => {
                   id={product.id}
                   title={product.title}
                   smallDescription={product.smallDescription}
-                  image={product.image}
+                  image={product.thumbnail}
                   price={product.price}
                 />
               ))
@@ -409,7 +409,7 @@ const Products = () => {
                 id={product.id}
                 title={product.title}
                 smallDescription={product.smallDescription}
-                image={product.image}
+                image={product.thumbnail}
                 price={product.price}
               />
               ))
@@ -419,13 +419,13 @@ const Products = () => {
 
           {/* fifth div promotion and two product display start */}
           <div className="justify-start items-start gap-6 inline-flex">
-            { products.slice(6, 8) .map((product) => (
+            { products.slice(6, 8).map((product) => (
                 <ProductCard
                   key={product.id}
                   id={product.id}
                   title={product.title}
                   smallDescription={product.smallDescription}
-                  image={product.image}
+                  image={product.thumbnail}
                   price={product.price}
                 />
               ))
@@ -460,7 +460,7 @@ const Products = () => {
                 id={product.id}
                 title={product.title}
                 smallDescription={product.smallDescription}
-                image={product.image}
+                image={product.thumbnail}
                 price={product.price}
               />
               ))

@@ -1,12 +1,18 @@
 "use client"
 import Wrapper from "components/Wrapper"
 import BranchStock from "components/products/BranchStock"
+import { products } from "lib/productData/productdata"
+import Image from "next/image"
 import { useState } from "react"
-import { GrFormAdd, GrFormSubtract} from 'react-icons/gr'
+import { GrFormAdd, GrFormSubtract } from 'react-icons/gr'
+
+// import Carousel from "react-multi-carousel";
+// import "react-multi-carousel/lib/styles.css";
 
 const ProductDetails = () => {
   
   const [branchStockIsOPen, setBranchStockIsOPen] = useState<boolean>(false)
+  const [largeImage, setLargeImage] = useState<string>()
   
   return (
     <Wrapper className="h-[3855px] overflow-y-auto pb-[52px] max-mobile-l:max-w-[360px] max-laptop:h-[5109px] overflow-hidden">
@@ -32,22 +38,37 @@ const ProductDetails = () => {
       {/* product images and detail page start*/}
       <div className='mt-[8px] flex gap-[24px] px-[20px] laptop:px-[108px] relative max-laptop:flex-col'>
         {/* product small images  */}
-        <div className='flex flex-col gap-[12px] tablet:gap-[24px] max-laptop:flex-row max-laptop:absolute max-tablet:top-[330px] tablet:top-[620px]'>
-          <img className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" src="https://via.placeholder.com/80x78" />
-          <img className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" src="https://via.placeholder.com/80x78" />
-          <img className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" src="https://via.placeholder.com/80x78" />
-          <img className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" src="https://via.placeholder.com/80x78" />
-          <img className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" src="https://via.placeholder.com/80x78" />
+        <div className='flex flex-col gap-[12px] tablet:gap-[24px] max-laptop:flex-row max-laptop:absolute max-tablet:top-[330px] tablet:top-[620px] cursor-pointer'>
+          { products[0]?.images.map((image) => (
+ 
+              <div onMouseEnter={() => setLargeImage(image)}>
+                <Image 
+                    src={image}
+                    width={68}
+                    height={68}
+                    alt={''} 
+                    className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" 
+                    />
+              </div>
+    
+            ))
+          }
         </div>
         {/* product large image */}
         <div>
-          <img className="w-80 h-80 tablet:w-[704px] tablet:h-[605px]" src="https://via.placeholder.com/704x605" />
+          <Image
+            src={largeImage ? largeImage : '/productpage/p1.png'}
+            width={704}
+            height={605}
+            alt={''}
+            className="w-80 h-80 tablet:w-[704px] tablet:h-[605px]"
+          />
         </div>
         {/* product details */}
         <div className="w-[392px] h-[282px] flex-col justify-start items-start gap-4 inline-flex max-tablet:mt-[60px] tablet:mt-[100px] laptop:mt-0">
           <div className="self-stretch text-pink-800 text-2xl tablet:text-[32px] font-bold capitalize leading-[33.60px] 
             tablet:leading-[44.80px] max-tablet:w-80">
-            beautya prestige lA micro-huile de rose advanced serum
+            { products[0]?.title }
           </div>
           <div className="self-stretch grow shrink basis-0 flex-col justify-start items-start gap-2 flex">
             <div className="self-stretch h-[51px] flex-col justify-start items-start gap-1 flex">
@@ -63,7 +84,9 @@ const ProductDetails = () => {
             <div className="self-stretch text-zinc-500 text-sm tablet:text-base font-semibold tablet:font-bold capitalize leading-tight tablet:leading-snug max-mobile-l:w-80">Formulated with 92% natural-origin ingredients</div>
           </div>
 
-          <div className="self-stretch text-neutral-950 text-xl tablet:text-2xl font-semibold tablet:font-bold capitalize leading-7 tablet:leading-[33.60px]">$520.00</div>
+          <div className="self-stretch text-neutral-950 text-xl tablet:text-2xl font-semibold tablet:font-bold capitalize leading-7 tablet:leading-[33.60px]">
+            $<span>{ products[0]?.price }</span>
+          </div>
           
           <div className="w-64 tablet:w-[392px] h-[25px] tablet:h-14 px-4 py-2 justify-between items-center inline-flex border-b border-zinc-600">
             <div className="text-zinc-600 text-sm tablet:text-xl font-normal capitalize leading-[25.20px] tablet:leading-9 w-full">30 mL</div>
@@ -301,7 +324,7 @@ const ProductDetails = () => {
       {/* Frequently Asked Questions FAQ start */}
       <div className="px-[20px] tablet:px-[108px] mt-[56px]">
         <div className="text-neutral-950 text-xl tablet:text-2xl font-bold font-['Open Sans'] capitalize leading-7 tablet:leading-[33.60px] text-center max-tablet:w-80 py-[32px]">
-          Prestige lA micro-huile serum frequently asked questions
+          <span>{products[0]?.title}</span> frequently asked questions
         </div>
         <div className="w-80 tablet:w-[1224px] h-[778px] tablet:h-[812px] flex-col justify-start items-start inline-flex">
 
@@ -386,38 +409,24 @@ const ProductDetails = () => {
               <path d="M19.333 9.33329L12.6663 16L19.333 22.6666L19.333 9.33329Z" fill="#0C0C0C"/>
             </svg>
           </div>
-          <div className="grow shrink basis-0 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
-            <img className="self-stretch h-96" src="https://via.placeholder.com/288x384" />
-            <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-              <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">Beautya Capture Total Dreamskin Care & Perfect</div>
-              <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">Plumping Gloss - Instant and Long-Term Volume Effect - 24h Hydration</div>
-              <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$76.00</div>
-            </div>
-          </div>
-          <div className="grow shrink basis-0 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
-            <img className="self-stretch h-96" src="https://via.placeholder.com/288x384" />
-            <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-              <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">Beautya Capture Total Dreamskin Care & Perfect</div>
-              <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">Plumping Gloss - Instant and Long-Term Volume Effect - 24h Hydration</div>
-              <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$76.00</div>
-            </div>
-          </div>
-          <div className="grow shrink basis-0 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
-            <img className="self-stretch h-96" src="https://via.placeholder.com/288x384" />
-            <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-              <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">Beautya Capture Total Dreamskin Care & Perfect</div>
-              <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">Plumping Gloss - Instant and Long-Term Volume Effect - 24h Hydration</div>
-              <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$76.00</div>
-            </div>
-          </div>
-          <div className="grow shrink basis-0 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
-            <img className="self-stretch h-96" src="https://via.placeholder.com/288x384" />
-            <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-              <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">Beautya Capture Total Dreamskin Care & Perfect</div>
-              <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">Plumping Gloss - Instant and Long-Term Volume Effect - 24h Hydration</div>
-              <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$76.00</div>
-            </div>
-          </div>
+
+          { products.slice(0,4).map((item) => (
+              <div className="grow shrink basis-0 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
+                <Image
+                  src={item.thumbnail}
+                  alt={item.title}
+                  width={288}
+                  height={384}
+                  className="self-stretch w-[288px] h-[384px]"
+                />
+                <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
+                  <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">Beautya Capture Total Dreamskin Care & Perfect</div>
+                  <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">Plumping Gloss - Instant and Long-Term Volume Effect - 24h Hydration</div>
+                  <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$76.00</div>
+                </div>
+              </div>
+            ))
+          }
           <div className="w-10 h-10 p-1 bg-white border border-stone-300 justify-center items-center flex">
             {/* Arrow Right */}
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -429,43 +438,46 @@ const ProductDetails = () => {
         {/* recommended skincare routine DESKTOP end */}
 
       {/* recommended skincare routine MOBILE end */}
-      <div className="tablet:hidden px-[20px] pt-[32px]">
-        <div className="w-80 h-[55px] text-center text-neutral-950 text-xl font-bold font-['Open Sans'] leading-7 mb-[16px]">Recommended Skincare Routine</div>
-        <div className="w-80 h-[345px] justify-start items-start gap-4 inline-flex">
-          <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
-            <img className="self-stretch h-[202px]" src="https://via.placeholder.com/152x202" />
-            <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
-              <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">Beautya Prestige la Mousse Micellaire</div>
-              <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">Anti-Aging Face Serum, with Purifying French Water Lily</div>
-              <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$76.00</div>
-            </div>
-          </div>
-          <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
-            <img className="self-stretch h-[202px]" src="https://via.placeholder.com/152x202" />
-            <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
-              <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">Beautya Prestige la Mousse Micellaire</div>
-              <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">Anti-Aging Face Serum, with Purifying French Water Lily</div>
-              <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$76.00</div>
-            </div>
-          </div>
-        </div>
 
-      </div>
-      {/* recommended skincare routine MOBILE end */}
+      <div className="tablet:hidden w-80 mx-auto h-[55px] text-center text-neutral-950 text-xl font-bold font-['Open Sans'] leading-7 mb-[16px] mt-[32px] mx-auto">Recommended Skincare Routine</div>
+        <div className="w-80 mx-auto h-[345px] justify-start items-start gap-4 inline-flex tablet:hidden">
+          { products.slice(0,2).map((item) => (
+            <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
+              <Image 
+                src={item.thumbnail}
+                width={152}
+                height={202}
+                alt={item.title} 
+                className="self-stretch h-[202px]" 
+              />
+              <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
+                <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{ item.title }</div>
+                  <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">{ item.smallDescription }</div>
+                  <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$<span>{ item.price }</span></div>
+                </div>
+              </div>
+
+            ))
+          }
+        </div>
+        {/* recommended skincare routine MOBILE end */}
 
       {/* video of product start */}
-      <div className="px-[20px] tablet:px-[108px]">
-        <div className="w-[360px] tablet:w-[1223.11px] h-[202px] tablet:h-[688px] relative my-[32px] tablet:my-[56px]">
-          <div className="w-[359.81px] tablet:w-[1223.11px] h-[202.39] tablet:h-[688px] left-0 top-0 absolute bg-black bg-opacity-25 backdrop-blur-[60px]"></div>
-          <div className="w-10 tablet:w-[120px] h-10 tablet:h-[120px] left-[159.81px] tablet:left-[552px] top-[81px] tablet:top-[284px] absolute">
-            <div className="w-10 h-10 tablet:w-[120px] tablet:h-[120px] left-0 top-0 absolute rounded-full border-2 tablet:border-8 border-neutral-200"></div>
+
+        <div className="w-[320px] mx-auto tablet:w-[1223.11px] h-[202px] tablet:h-[688px] relative mt-[32px]">
+          <img
+            src="/productpage/video.png" 
+            className="w-[359.81px] tablet:w-[1223.11px] h-[202.39px] tablet:h-[688px] left-0 top-0 absolute bg-black bg-opacity-25 backdrop-blur-[17px] tablet:backdrop-blur-[60px]"
+          />
+          <div className="w-[120px] h-[120px] left-[552px] top-[284px] absolute">
+              <div className="w-[120px] h-[120px] left-0 top-0 absolute rounded-full border-8 border-neutral-200"></div>
           </div>
         </div>
-      </div>
-      {/* video of product end */}
 
+      {/* video of product end */}
+      
       {/* you may also like DESKTOP start*/}
-      <div className="w-[1440px] h-[704px] pt-[38px] pb-14 bg-red-50 flex-col justify-start items-center gap-4 inline-flex max-tablet:hidden">
+      <div className="w-[1440px] h-[704px] pt-[38px] pb-14 mt-[32px] bg-red-50 flex-col justify-start items-center gap-4 inline-flex max-tablet:hidden">
         <div className="px-[108px]">
           <h2 className="text-neutral-950 text-2xl font-bold font-['Open Sans'] capitalize leading-[33.60px] text-center mb-[16px]">you may also like</h2>
           <div className="self-stretch justify-center items-center gap-6 inline-flex">
@@ -475,38 +487,24 @@ const ProductDetails = () => {
                 <path d="M19.333 9.33329L12.6663 16L19.333 22.6666L19.333 9.33329Z" fill="#0C0C0C"/>
               </svg>
             </div>
-            <div className="w-72 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
-              <img className="self-stretch h-96" src="https://via.placeholder.com/288x384" />
-              <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-                <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">Beautya Capture Total Dreamskin Care & Perfect</div>
-                <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">Plumping Gloss - Instant and Long-Term Volume Effect - 24h Hydration</div>
-                <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$76.00</div>
-              </div>
-            </div>
-            <div className="w-72 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
-              <img className="self-stretch h-96" src="https://via.placeholder.com/288x384" />
-              <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-                <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">Beautya Capture Total Dreamskin Care & Perfect</div>
-                <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">Plumping Gloss - Instant and Long-Term Volume Effect - 24h Hydration</div>
-                <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$76.00</div>
-              </div>
-            </div>
-            <div className="w-72 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
-              <img className="self-stretch h-96" src="https://via.placeholder.com/288x384" />
-              <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-                <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">Beautya Capture Total Dreamskin Care & Perfect</div>
-                <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">Plumping Gloss - Instant and Long-Term Volume Effect - 24h Hydration</div>
-                <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$76.00</div>
-              </div>
-            </div>
-            <div className="w-72 h-[560px] pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
-              <img className="self-stretch h-96" src="https://via.placeholder.com/288x384" />
-              <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-                <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">Beautya Capture Total Dreamskin Care & Perfect</div>
-                <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">Plumping Gloss - Instant and Long-Term Volume Effect - 24h Hydration</div>
-                <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$76.00</div>
-              </div>
-            </div>
+            { products.slice(4,8).map((item) => (
+                <div className="w-72 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
+                  <Image
+                    src={item.thumbnail}
+                    alt={item.title}
+                    width={288}
+                    height={384}
+                    className="self-stretch w-[288px] h-[384px]"
+                  />
+                  <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
+                    <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">{item.title}</div>
+                    <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">{item.smallDescription}</div>
+                    <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$<span>{item.price}</span></div>
+                  </div>
+                </div>
+              ))
+            }
+  
             <div className="w-10 h-10 p-1 bg-white border border-stone-300 justify-center items-center flex">
               {/* Arrow Right */}
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -518,26 +516,28 @@ const ProductDetails = () => {
       </div>
       {/* you may also like DESKTOP end*/}
 
-      <div className="w-[360px] h-[445px] relative bg-red-50">
-        <div className="left-[20px] top-[60px] absolute justify-start items-start gap-4 inline-flex">
-          <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
-            <img className="self-stretch h-[202px]" src="https://via.placeholder.com/152x202" />
-            <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
-              <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">Beautya Prestige la Mousse Micellaire</div>
-              <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">Anti-Aging Face Serum, with Purifying French Water Lily</div>
-              <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$76.00</div>
-            </div>
-          </div>
-          <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
-            <img className="self-stretch h-[202px]" src="https://via.placeholder.com/152x202" />
-            <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
-              <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">Beautya Prestige la Mousse Micellaire</div>
-              <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">Anti-Aging Face Serum, with Purifying French Water Lily</div>
-              <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$76.00</div>
-            </div>
-          </div>
-        </div>
+      {/* you may also like MOBILE start*/}
+      <div className="w-[360px] h-[445px] relative bg-red-50 mt-[32px] tablet:hidden">
         <div className="left-[94px] top-[16px] absolute text-neutral-950 text-xl font-bold font-['Open Sans'] leading-7">You May Also Like</div>
+        <div className="left-[20px] top-[60px] absolute justify-start items-start gap-4 inline-flex">
+          { products.slice(2,4).map((item) => (
+            <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
+              <Image
+                src={item.thumbnail}
+                alt={item.title}
+                width={152}
+                height={202}
+                className="self-stretch w-[152px] h-[202px]" 
+              />
+              <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
+                <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{item.title}</div>
+                <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">{item.smallDescription}</div>
+                <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$<span>{item.price}</span></div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* Background pink color */}
         <div className="left-[126px] top-[417px] absolute justify-center items-center gap-1 inline-flex">
           <div className="w-6 h-1 relative">
             <div className="w-6 h-1 left-0 top-0 absolute bg-pink-800 border border-pink-500"></div>
@@ -550,7 +550,9 @@ const ProductDetails = () => {
           </div>
           <div className="w-6 h-1 bg-stone-300"></div>
         </div>
+        {/* you may also like MOBILE end*/}
       </div>
+
     </Wrapper>
   )
 }
