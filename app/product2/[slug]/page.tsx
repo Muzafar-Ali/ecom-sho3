@@ -1,8 +1,11 @@
 "use client"
 import Wrapper from "components/Wrapper"
 import BranchStock from "components/products/BranchStock"
-import { products } from "lib/productData/productdata"
+import { log } from "console"
+import { details } from "lib/productData/detailsData"
+import { products} from "lib/productData/productdata"
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 import { GrFormAdd, GrFormSubtract } from 'react-icons/gr'
 
@@ -11,8 +14,13 @@ import { GrFormAdd, GrFormSubtract } from 'react-icons/gr'
 
 const ProductDetails = () => {
   
-  const [branchStockIsOPen, setBranchStockIsOPen] = useState<boolean>(false)
-  const [largeImage, setLargeImage] = useState<string>()
+  const [branchStockIsOPen, setBranchStockIsOPen] = useState<boolean>(false);
+  const [largeImage, setLargeImage] = useState<string>();
+  const [detailsLabel, setDetailsLabel] = useState<string>('Product Details');
+  const [showLess, setShowLess] = useState(true)
+  
+  const matchedDetails = details.filter((data) => data?.label.toLowerCase() === detailsLabel?.toLowerCase());
+  console.log('matchedDetails', matchedDetails)
   
   return (
     <Wrapper className="h-[3855px] overflow-y-auto pb-[52px] max-mobile-l:max-w-[360px] max-laptop:h-[5109px] overflow-hidden">
@@ -43,11 +51,11 @@ const ProductDetails = () => {
  
               <div onMouseEnter={() => setLargeImage(image)}>
                 <Image 
-                    src={image}
-                    width={68}
-                    height={68}
-                    alt={''} 
-                    className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" 
+                  src={image}
+                  width={68}
+                  height={68}
+                  alt={''} 
+                  className="w-[68px] tablet:w-20 h-[68px] tablet:h-[78px]" 
                     />
               </div>
     
@@ -147,126 +155,251 @@ const ProductDetails = () => {
       {/* product details and information Desktop start*/}
       <div className='flex flex-col px-[108px] max-tablet:hidden'>
         <div className="w-[1224px] h-11 border-b border-zinc-600 justify-between items-start inline-flex mt-[32px]">
-          <div className="w-[154px] py-2 border-b-2 border-pink-800 justify-start items-center gap-2 flex">
-            <div className="text-pink-800 text-xl font-bold leading-7">Product Details</div>
+          
+          <div className={`${detailsLabel === 'Product Details' ? 'border-b-2 border-pink-800' : '' } w-[154px] py-2 justify-start items-center gap-2 flex`}>
+            <button 
+              className="text-pink-800 text-xl font-bold leading-7 cursor-pointer" 
+              onClick={() => setDetailsLabel('Product Details')}
+            >
+              Product Details
+            </button>
           </div>
-          <div className="w-[136px] py-2 justify-start items-center gap-2 flex">
-            <div className="text-zinc-600 text-xl font-bold leading-7">How To Apply</div>
+          
+          <div className={`${ detailsLabel === 'How To Apply' ? 'border-b-2 border-pink-800' : '' } w-[136px] py-2 justify-start items-center gap-2 flex`}>
+            <button 
+              className={`${ detailsLabel === 'How To Apply' ? 'text-pink-800' : 'text-zinc-600'} text-xl font-bold leading-7 cursor-pointer`}
+              onClick={() => setDetailsLabel('How To Apply')}
+            >
+              How To Apply
+            </button>
           </div>
-          <div className="w-[105px] py-2 justify-start items-center gap-2 flex">
-            <div className="text-zinc-600 text-xl font-bold leading-7">Ingredient</div>
+          
+          <div className={`${ detailsLabel === 'Ingredient' ? 'border-b-2 border-pink-800' : ''} w-[105px] py-2 justify-start items-center gap-2 flex`}>
+            <div 
+              className={`${ detailsLabel === 'Ingredient' ? 'text-pink-800' : 'text-zinc-600'} text-xl font-bold leading-7 cursor-pointer`}
+              onClick={() => setDetailsLabel('Ingredient')}
+            >
+              Ingredient
+            </div>
           </div>
-          <div className="w-[235px] py-2 justify-start items-center gap-2 flex">
-            <div className="text-zinc-600 text-xl font-bold leading-7">What Makes It Advance</div>
-          </div>
-          <div className="w-[213px] py-2 justify-start items-center gap-2 flex">
-            <div className="text-zinc-600 text-xl font-bold leading-7">Product Specification</div>
-          </div>
-        </div>
 
-        <div className='flec flex-col gap-0 p-[24px]'>
-          <h2 className="w-[1192px] text-pink-800 text-xl font-bold leading-7 mb-[16px]">Product Details</h2>
-          <p className="w-[1192px] text-neutral-950 text-lg font-normal capitalize leading-loose mb-2">Beautya's 1st revitalizing serum that concentrates the double power of the Rose de Granville from the stem to the flower to revitalize the skin twice as fast (1) and visibly rejuvenate.<br/>Created after 20 years of research, the 10,000 (2) micro-pearls rich in revitalizing rose micro-nutrients are now completed by the power of the Rose sap. The next-generation, 92% natural-origin (3) formula of La Micro-Huile de Rose Advanced Serum is twice as concentrated,(4) combining the nourishing richness of an oil with the deep penetration of a serum.<br/><br/>From the first application of the serum, the skin appears plumped. In 3 weeks, 2x improvement in the look or feel of skin elasticity.(5) With regular use, skin looks and feels transformed.<br/><br/>As if replenished from within, the skin seems denser and firmer, and wrinkles appear noticeably reduced. As if lifted, facial contours appear enhanced.<br/><br/>Reveal your extraordinary beauty with Beautya Prestige.<br/><br/>(1) Instrumental test, 32 panelists, after 30 min.<br/>(2) In a 30 ml bottle.<br/>(3) Amount calculated based on the ISO 16128-1 and ISO 16128-2 standard. Water percentage included. The remaining 8% of ingredients contribute to the formula’s performance, sensory appeal and stability.<br/>(4) In Rose de Granville micro-nutrients compared to the previous formula.<br/>(5) Clinical assessment by a dermatologist on the evolution of the product’s performance on the skin elasticity, comparison between the effect after 7 days and 28 days on 34 women.</p>
-          <div className="w-[150px] h-12 px-4 py-2 justify-center items-center gap-2 inline-flex">
-            <div className="text-pink-800 text-base font-normal capitalize leading-7">Read Less</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.8852 3.77L16.1152 2L6.11523 12L16.1152 22L17.8852 20.23L9.65523 12L17.8852 3.77Z" fill="#A10550"/>
-            </svg>
-          </div>          
-        </div>
+          <div className={`${ detailsLabel === 'What Makes It Advance' ? 'border-b-2 border-pink-800' : ''} w-[235px] py-2 justify-start items-center gap-2 flex`} >
+            <div 
+              className={`${ detailsLabel === 'What Makes It Advance' ? 'text-pink-800' : 'text-zinc-600'} text-xl font-bold leading-7 cursor-pointer`} 
+              onClick={() => setDetailsLabel('What Makes It Advance')}
+            >
+              What Makes It Advance
+            </div>
+          </div>
 
-        <div className='flec flex-col gap-0 p-[24px]'>
-          <h2 className="w-[1192px] text-pink-800 text-xl font-bold leading-7 mb-[16px]">How To Apply</h2>
-          <p className="w-[1192px] text-neutral-950 text-lg font-normal capitalize leading-loose mb-2">step 1: Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.step 2: Use gentle pressure to make the serum penetrate deeply..</p>
-          <div className="w-[150px] h-12 px-4 py-2 justify-center items-center gap-2 inline-flex">
-            <div className="text-pink-800 text-base font-normal capitalize leading-7">Read Less</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.11523 20.23L7.88523 22L17.8852 12L7.88523 2L6.11523 3.77L14.3452 12L6.11523 20.23Z" fill="#A10550"/>
-            </svg>
-          </div>          
+          <div className={`${detailsLabel === 'Product Specification' ? 'border-b-2 border-pink-800' : ''} w-[235px] py-2 justify-start items-center gap-2 flex`}>
+            <div 
+              className={`${detailsLabel === 'Product Specification' ? 'text-pink-800' : 'text-zinc-600'} text-xl font-bold leading-7 cursor-pointer`}
+              onClick={() => setDetailsLabel('Product Specification')}
+            >
+              Product Specification
+            </div>
+          </div>
+ 
         </div>
-        
-        <div className='flec flex-col gap-0 p-[24px]'>
-          <h2 className="w-[1192px] text-pink-800 text-xl font-bold leading-7 mb-[16px]">Ingredient</h2>
-          <p className="w-[1192px] text-neutral-950 text-lg font-normal capitalize leading-loose mb-2">AQUA/WATER/EAU, C12-15 ALKYL BENZOATE, GLYCERYL STEARATE SE, BUTYLENE GLYCOL, GLYCERIN, OLUS OIL/VEGETABLE OIL/HUILE VÉGÉTALE, ISONONYL ISONONANOATE, CETYL ALCOHOL, ETHYLHEXYL PALMITATE, CYCLOPENTASILOXANE, DIMETHICONE, POLYESTER-7, PHENOXYETHANOL, NEOPENTYL GLYCOL DIHEPTANOATE, BUTYROSPERMUM PARKII (SHEA) BUTTER, STEARETH-21, AVENA SATIVA (OAT)... </p>
-          <div className="w-[150px] h-12 px-4 py-2 justify-center items-center gap-2 inline-flex">
-            <div className="text-pink-800 text-base font-normal capitalize leading-7">Read Less</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.11523 20.23L7.88523 22L17.8852 12L7.88523 2L6.11523 3.77L14.3452 12L6.11523 20.23Z" fill="#A10550"/>
-            </svg>
-          </div>          
-        </div>
-        
-        <div className='flec flex-col gap-0 p-[24px]'>
-          <h2 className="w-[1192px] text-pink-800 text-xl font-bold leading-7 mb-[16px]">What Makes It Advance</h2>
-          <p className="w-[1192px] text-neutral-950 text-lg font-normal capitalize leading-loose mb-2">OVER 11 AWARDS WON! BIONYMPH PEPTIDE: peptide blend that helps to condition for smoother, plumper looking skin VITAMINS C & E: work in harmony to BRIGHTEN the look of your complexion and EVEN the appearance of the skin tone...</p>
-          <div className="w-[150px] h-12 px-4 py-2 justify-center items-center gap-2 inline-flex">
-            <div className="text-pink-800 text-base font-normal capitalize leading-7">Read Less</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.11523 20.23L7.88523 22L17.8852 12L7.88523 2L6.11523 3.77L14.3452 12L6.11523 20.23Z" fill="#A10550"/>
-            </svg>
-          </div>          
-        </div>
+        { matchedDetails.map((item) => (
+            <div className='flec flex-col gap-0 p-[24px]'>
+              <h2 className="w-[1192px] text-pink-800 text-xl font-bold leading-7 mb-[16px]">{item.label}</h2>
+              { showLess ?  (
+                  <p className="w-[1192px] text-neutral-950 text-lg font-normal capitalize leading-loose mb-2">{item.short}</p>
+                ):(  
+                  <p className="w-[1192px] text-neutral-950 text-lg font-normal capitalize leading-loose mb-2">{item.long}</p>
+                )
+              }
+              
+              { !showLess && (
+                  <button 
+                    className="w-[150px] h-12 px-4 py-2 justify-center items-center gap-2 inline-flex cursor-pointer"
+                    onClick={() => setShowLess(!showLess)}
+                  >
+                  <div className="text-pink-800 text-base font-normal capitalize leading-7">Read Less</div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17.8852 3.77L16.1152 2L6.11523 12L16.1152 22L17.8852 20.23L9.65523 12L17.8852 3.77Z" fill="#A10550"/>
+                    </svg>
+                  </button>  
+                )
+              }
+              
+              { showLess && (
+                <button 
+                  className="w-[150px] h-12 px-4 py-2 justify-center items-center gap-2 inline-flex cursor-pointer"
+                  onClick={() => setShowLess(!showLess)}
+                >
+                  <div className="text-pink-800 text-base font-normal capitalize leading-7">Read More</div>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.11523 20.23L7.88523 22L17.8852 12L7.88523 2L6.11523 3.77L14.3452 12L6.11523 20.23Z" fill="#A10550"/>
+                  </svg>
+                </button>  
+                )
+              }
 
-        <div className='flec flex-col gap-0 p-[24px]'>
-          <h2 className="w-[1192px] text-pink-800 text-xl font-bold leading-7 mb-[16px]">Product Specification</h2>
-          <p className="w-[1192px] text-neutral-950 text-lg font-normal capitalize leading-loose mb-2">Product Code-46000701 Key Ingredients-Hyaluronic Acid, Vitamin C Beauty Effect-Brightening...</p>
-          <div className="w-[150px] h-12 px-4 py-2 justify-center items-center gap-2 inline-flex">
-            <div className="text-pink-800 text-base font-normal capitalize leading-7">Read Less</div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6.11523 20.23L7.88523 22L17.8852 12L7.88523 2L6.11523 3.77L14.3452 12L6.11523 20.23Z" fill="#A10550"/>
-            </svg>
-          </div>          
-        </div>
+            </div>
+          ))
+        }
+
       </div>
       {/* product details and information Desktop end*/}
 
       {/* product details and information Mobile start*/}
-      <div className="w-80 h-[450px] flex-col justify-start items-start inline-flex mt-[250px] px-[20px] tablet:hidden">
-        <div className="w-80 px-2 py-4 bg-white border-t border-stone-300 justify-start items-center gap-1 inline-flex">
-          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">product detailes</div>
+      <div className="w-80 h-[450px] flex-col justify-start items-start inline-flex mt-[250px] px-[20px] mb-[32px] tablet:hidden">
+        <div className="w-80 px-2 py-4 bg-white border-t border-b border-stone-300 justify-start items-center gap-1 inline-flex ">
+          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Product Details</div>
             <div >
-              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+              <GrFormAdd 
+                className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                onClick={() => setDetailsLabel('Product Details')}
+              />
             </div>
-
         </div>
-        <div className="h-[226px] px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex">
-          <div className="self-stretch justify-start items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">How To Apply</div>
-            <div >
-              <GrFormSubtract className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
-            </div>
-          </div>
-          <div className="self-stretch px-2 justify-start items-start gap-2 inline-flex">
-            <div className="grow shrink basis-0">
-              <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 1:</span>
-              <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
-                Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
-              <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 3:</span>
-              <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
-                Finally, to enhance contours, hold the chin between the index and middle fingers and move up the jawline.
-              </span>
-            </div>
-          </div>
-        </div>
+        { matchedDetails.map((item) => (
+            <div className={`${detailsLabel === 'Product Details' ? 'visible':'hidden'} w-80  h-full px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex`}>
+              <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{item.label}</div>
+                <div >
+                  <GrFormSubtract 
+                    className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                    onClick={() => setDetailsLabel('')}
+                  />
+                </div>
+              </div>
+              
+              <div className={`self-stretch px-2 justify-start items-start gap-2 inline-flex`}>
+                <div className="grow shrink basis-0">
+                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 1:</span>
+                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
+                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 3:</span>
+                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                    Finally, to enhance contours, hold the chin between the index and middle fingers and move up the jawline.
+                  </span>
+                </div>
+              </div>
+              
+            </div>  
+          ))
+        }
+        
         <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
           <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Ingredient</div>
           <div >
-            <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
-          </div>
+              <GrFormAdd 
+                className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                onClick={() => setDetailsLabel('Ingredient')}
+              />
+            </div>
         </div>
+        { matchedDetails.map((item) => (
+            <div className={`${detailsLabel === 'Ingredient' ? 'visible':'hidden'} w-80  h-full px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex`}>
+              <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{item.label}</div>
+                <div >
+                  <GrFormSubtract 
+                    className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                    onClick={() => setDetailsLabel('')}
+                  />
+                </div>
+              </div>
+              
+              <div className={`self-stretch px-2 justify-start items-start gap-2 inline-flex`}>
+                <div className="grow shrink basis-0">
+                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 1:</span>
+                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
+                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 3:</span>
+                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                    Finally, to enhance contours, hold the chin between the index and middle fingers and move up the jawline.
+                  </span>
+                </div>
+              </div>
+              
+            </div>  
+
+          ))
+        }
+
+
+
         <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
           <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">What Makes It Advance</div>
           <div >
-            <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            <GrFormAdd 
+              className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+              onClick={() => setDetailsLabel('What Makes It Advance')}
+            />
           </div>
         </div>
+        { matchedDetails.map((item) => (
+            <div className={`${detailsLabel === 'What Makes It Advance' ? 'visible':'hidden'} w-80  h-full px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex`}>
+              <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{item.label}</div>
+                <div >
+                  <GrFormSubtract 
+                    className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                    onClick={() => setDetailsLabel('')}
+                  />
+                </div>
+              </div>
+              
+              <div className={`self-stretch px-2 justify-start items-start gap-2 inline-flex`}>
+                <div className="grow shrink basis-0">
+                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 1:</span>
+                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
+                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 3:</span>
+                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                    Finally, to enhance contours, hold the chin between the index and middle fingers and move up the jawline.
+                  </span>
+                </div>
+              </div>
+              
+            </div>  
+
+          ))
+        }
+
         <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
           <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Product Specification</div>
           <div >
-            <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            <GrFormAdd 
+              className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+              onClick={() => setDetailsLabel('Product Specification')}
+            />
           </div>
         </div>
+        { matchedDetails.map((item) => (
+            <div className={`${detailsLabel === 'Product Specification' ? 'visible':'hidden'} w-80  h-full px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex`}>
+              <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{item.label}</div>
+                <div >
+                  <GrFormSubtract 
+                    className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                    onClick={() => setDetailsLabel('')}
+                  />
+                </div>
+              </div>
+              
+              <div className={`self-stretch px-2 justify-start items-start gap-2 inline-flex`}>
+                <div className="grow shrink basis-0">
+                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 1:</span>
+                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
+                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 3:</span>
+                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                    Finally, to enhance contours, hold the chin between the index and middle fingers and move up the jawline.
+                  </span>
+                </div>
+              </div>
+              
+            </div>  
+
+          ))
+        }
+
       </div>
       {/* product details and information Mobile end*/}
 
