@@ -2,11 +2,12 @@ import { StaticImageData } from "next/image";
 
 
 export const products = [
+
     {
         id:1,
-        title: 'Beautya  La Mousse Off/On Foaming Cleaner',
+        title: 'Beautya La Mousse Off/On Foaming Cleaner',
         smallDescription: 'Anti-Pollution Foaming Cleanser with Purifying French Water Lily',
-        thumbnail: '/productpage/p1.png' as string | StaticImageData,
+        thumbnail: '/productpage/p1.png',
         images: [
             '/productpage/p1.png',
             '/productpage/p2.png',
@@ -424,3 +425,9 @@ export const products = [
     },
 ]
 
+export const promo = [
+    '/productpage/promo1.png',
+    '/productpage/promo2.png',
+    '/productpage/promo3.png',
+    '/productpage/promo4.png',
+]

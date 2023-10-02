@@ -1,26 +1,42 @@
 "use client"
 import Wrapper from "components/Wrapper"
 import BranchStock from "components/products/BranchStock"
-import { log } from "console"
 import { details } from "lib/productData/detailsData"
-import { products} from "lib/productData/productdata"
+import { faq } from "lib/productData/faq"
+import { products, promo } from "lib/productData/productdata"
 import Image from "next/image"
-import Link from "next/link"
 import { useState } from "react"
 import { GrFormAdd, GrFormSubtract } from 'react-icons/gr'
 
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const ProductDetails = () => {
   
   const [branchStockIsOPen, setBranchStockIsOPen] = useState<boolean>(false);
   const [largeImage, setLargeImage] = useState<string>();
   const [detailsLabel, setDetailsLabel] = useState<string>('Product Details');
+  const [productFAQ, setProductFAQ] = useState<string>('Can this product be used on all skin types?')
   const [showLess, setShowLess] = useState(true)
   
   const matchedDetails = details.filter((data) => data?.label.toLowerCase() === detailsLabel?.toLowerCase());
-  console.log('matchedDetails', matchedDetails)
+  const matchedFAQ = faq.filter((faq) => faq?.question.toLowerCase() === productFAQ?.toLowerCase());
+      // Define responsive settings for the Carousel component
+  const responsive = {
+
+    mobile: {
+      breakpoint: { max: 767, min: 0 },
+      items: 2,
+    },
+    tablet: {
+      breakpoint: { max: 1023, min: 464 },
+      items: 2,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+  };
   
   return (
     <Wrapper className="h-[3855px] overflow-y-auto pb-[52px] max-mobile-l:max-w-[360px] max-laptop:h-[5109px] overflow-hidden">
@@ -47,9 +63,12 @@ const ProductDetails = () => {
       <div className='mt-[8px] flex gap-[24px] px-[20px] laptop:px-[108px] relative max-laptop:flex-col'>
         {/* product small images  */}
         <div className='flex flex-col gap-[12px] tablet:gap-[24px] max-laptop:flex-row max-laptop:absolute max-tablet:top-[330px] tablet:top-[620px] cursor-pointer'>
-          { products[0]?.images.map((image) => (
+          { products[0]?.images.map((image, index) => (
  
-              <div onMouseEnter={() => setLargeImage(image)}>
+              <div
+                key={index} 
+                onMouseEnter={() => setLargeImage(image)}
+              >
                 <Image 
                   src={image}
                   width={68}
@@ -202,8 +221,11 @@ const ProductDetails = () => {
           </div>
  
         </div>
-        { matchedDetails.map((item) => (
-            <div className='flec flex-col gap-0 p-[24px]'>
+        { matchedDetails.map((item, index) => (
+            <div
+              key={index} 
+              className='flec flex-col gap-0 p-[24px]'
+            >
               <h2 className="w-[1192px] text-pink-800 text-xl font-bold leading-7 mb-[16px]">{item.label}</h2>
               { showLess ?  (
                   <p className="w-[1192px] text-neutral-950 text-lg font-normal capitalize leading-loose mb-2">{item.short}</p>
@@ -403,14 +425,22 @@ const ProductDetails = () => {
       </div>
       {/* product details and information Mobile end*/}
 
-      {/* promotion 4 images of 288 x 288  Desktop start*/}
+      {/* promo 4 images of 288 x 288  Desktop start*/}
       <div className="w-[1440px] h-[488px] px-[108px] py-10 bg-pink-950 flex-col justify-center items-center gap-6 tablet:inline-flex hidden">
+        
         <div className="self-stretch justify-start items-start gap-6 inline-flex">
-          <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
-          <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
-          <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
-          <img className="w-72 h-72 relative" src="https://via.placeholder.com/288x288" />
+          { promo.map((image, index) => (
+              <Image
+                src={image}
+                alt=""
+                width={288}
+                height={288}
+                className="w-72 h-72 relative"
+              />
+            ))
+          }
         </div>
+        
         <div className="text-center">
           <span className="text-white text-xl font-bold leading-7">In just 1 week:</span>
           <span className="text-white text-lg font-normal capitalize leading-loose">
@@ -423,10 +453,10 @@ const ProductDetails = () => {
             <span className="text-white text-lg font-normal capitalize leading-loose"> The skin looks denser +56% </span>
         </div>
       </div>
-      {/* promotion 4 images of 288 x 288  Desktop end*/}
+      {/* promo 4 images of 288 x 288  Desktop end*/}
 
-      {/* promotion 4 images of 288 x 288  Mobile start*/}
-      <div className="w-[360px] h-[487px] relative bg-pink-950 tablet:hidden">
+      {/* promo 4 images of 288 x 288  Mobile start*/}
+      <div className="w-[360px] h-[487px] relative bg-pink-950 mt-[32px] tablet:hidden">
         <img className="w-80 h-80 left-[20px] top-[24px] absolute" src="https://via.placeholder.com/320x320" />
         <div className="w-[321px] left-[19px] top-[376px] absolute">
           <span className="text-white text-xs font-semibold font-['Open Sans'] tracking-tight">In just 1 week:</span>
@@ -452,7 +482,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      {/* promotion 4 images of 288 x 288  Mobile end*/}
+      {/* promo 4 images of 288 x 288  Mobile end*/}
       
       {/* Frequently Asked Questions FAQ start */}
       <div className="px-[20px] tablet:px-[108px] mt-[56px]">
@@ -460,74 +490,242 @@ const ProductDetails = () => {
           <span>{products[0]?.title}</span> frequently asked questions
         </div>
         <div className="w-80 tablet:w-[1224px] h-[778px] tablet:h-[812px] flex-col justify-start items-start inline-flex">
-
-          <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">What is the best way to use this product?</div>
-            <div >
-              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+        <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+              What is the best way to use this product?
             </div>
+            <button className="cursor-pointer" >
+              <GrFormAdd
+                onClick={() => setProductFAQ('What is the best way to use this product?')} 
+                className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+              />
+            </button>
           </div>
-
-          <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used on all skin types?</div>
-            <div >
-              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
-            </div>
-          </div>
-          
-          <div className="self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex">
-            <div className="self-stretch justify-start items-center gap-2 inline-flex">
-              <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used on all skin types?</div>
-              <div className="" >
-                <GrFormSubtract className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
-              </div>
-            </div>
-            <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-              <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
-                Our product is suitable for most skin types, including normal, oily, dry, and combination skin. However, 
-                if you have sensitive skin or a skin condition, we recommend performing a patch test before using the product
-                all over your face. Apply a small amount of the product to the inside of your elbow and wait 24 hours to make 
-                sure you do not have an allergic reaction or irritation. If you experience any discomfort, discontinue use of 
-                the product immediately.
+          { matchedFAQ.map((faq) => (
+              <div className={`${productFAQ === 'What is the best way to use this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
+                <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                  <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                    {productFAQ}
+                  </div>
+                  <div className="cursor-pointer" >
+                    <GrFormSubtract 
+                      onClick={() => setProductFAQ('')} 
+                      className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                    />
+                  </div>
                 </div>
-            </div>
-          </div>
+                
+                <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
+                  <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                    {faq.answer}  
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How often should I use this product?</div>
-            <div >
-              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+              Can this product be used on all skin types?
             </div>
+            <button className="cursor-pointer" >
+              <GrFormAdd
+                onClick={() => setProductFAQ('Can this product be used on all skin types?')} 
+                className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+              />
+            </button>
           </div>
+          { matchedFAQ.map((faq) => (
+              <div className={`${productFAQ === 'Can this product be used on all skin types?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
+                <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                  <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                    {productFAQ}
+                  </div>
+                  <div className="cursor-pointer" >
+                    <GrFormSubtract 
+                      onClick={() => setProductFAQ('')} 
+                      className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                    />
+                  </div>
+                </div>
+                
+                <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
+                  <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                    {faq.answer}  
+                  </div>
+                </div>
+              </div>
+            ))
+          }
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used during pregnancy?</div>
-            <div >
-              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+              How often should I use this product?
             </div>
+            <button className="cursor-pointer" >
+              <GrFormAdd
+                onClick={() => setProductFAQ('How often should I use this product?')} 
+                className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+              />
+            </button>
           </div>
+          { matchedFAQ.map((faq) => (
+                <div className={`${productFAQ === 'How often should I use this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
+                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                      {productFAQ}
+                    </div>
+                    <div className="cursor-pointer" >
+                      <GrFormSubtract 
+                        onClick={() => setProductFAQ('')} 
+                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
+                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                      {faq.answer}  
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How often should I use this product?</div>
-            <div >
-              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+              Can this product be used during pregnancy?
             </div>
+            <button className="cursor-pointer" >
+              <GrFormAdd
+                onClick={() => setProductFAQ('Can this product be used during pregnancy?')} 
+                className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+              />
+            </button>
           </div>
+          { matchedFAQ.map((faq) => (
+                <div className={`${productFAQ === 'Can this product be used during pregnancy?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
+                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                      {productFAQ}
+                    </div>
+                    <div className="cursor-pointer" >
+                      <GrFormSubtract 
+                        onClick={() => setProductFAQ('')} 
+                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
+                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                      {faq.answer}  
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How should I store this product?</div>
-            <div >
-              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+            How should I store this product?
             </div>
+            <button className="cursor-pointer" >
+              <GrFormAdd
+                onClick={() => setProductFAQ('How should I store this product?')} 
+                className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+              />
+            </button>
           </div>
+          { matchedFAQ.map((faq) => (
+                <div className={`${productFAQ === 'How should I store this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
+                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                      {productFAQ}
+                    </div>
+                    <div className="cursor-pointer" >
+                      <GrFormSubtract 
+                        onClick={() => setProductFAQ('')} 
+                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
+                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                      {faq.answer}  
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">How long will it take to see results from using this product?</div>
-            <div >
-              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+              How long will it take to see results from using this product?
             </div>
+            <button className="cursor-pointer" >
+              <GrFormAdd
+                onClick={() => setProductFAQ('How long will it take to see results from using this product?')} 
+                className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+              />
+            </button>
           </div>
+          { matchedFAQ.map((faq) => (
+                <div className={`${productFAQ === 'How long will it take to see results from using this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
+                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                      {productFAQ}
+                    </div>
+                    <div className="cursor-pointer" >
+                      <GrFormSubtract 
+                        onClick={() => setProductFAQ('')} 
+                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
+                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                      {faq.answer}  
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">Can this product be used in conjunction with other skincare products?</div>
-            <div >
-              <GrFormAdd className="w-4 tablet:w-6 h-4 tablet:h-6 relative"/>
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+              Can this product be used in conjunction with other skincare products?
             </div>
+            <button className="cursor-pointer" >
+              <GrFormAdd
+                onClick={() => setProductFAQ('Can this product be used in conjunction with other skincare products?')} 
+                className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+              />
+            </button>
           </div>
+          { matchedFAQ.map((faq) => (
+                <div className={`${productFAQ === 'Can this product be used in conjunction with other skincare products?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
+                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                      {productFAQ}
+                    </div>
+                    <div className="cursor-pointer" >
+                      <GrFormSubtract 
+                        onClick={() => setProductFAQ('')} 
+                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
+                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                      {faq.answer}  
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
         </div>
       </div>
       {/* Frequently Asked Questions end */}
@@ -543,23 +741,29 @@ const ProductDetails = () => {
             </svg>
           </div>
 
-          { products.slice(0,4).map((item) => (
-              <div className="grow shrink basis-0 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
+
+            
+          { products.slice(0,6).map((item) => (
+            <div
+                key={item.id} 
+                className="grow shrink basis-0 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex"
+              >
                 <Image
                   src={item.thumbnail}
                   alt={item.title}
                   width={288}
                   height={384}
                   className="self-stretch w-[288px] h-[384px]"
-                />
+                  />
                 <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-                  <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">Beautya Capture Total Dreamskin Care & Perfect</div>
-                  <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">Plumping Gloss - Instant and Long-Term Volume Effect - 24h Hydration</div>
-                  <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$76.00</div>
+                  <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">{item.title}</div>
+                  <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">{item.smallDescription}</div>
+                  <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">${item.price}</div>
                 </div>
               </div>
             ))
           }
+          
           <div className="w-10 h-10 p-1 bg-white border border-stone-300 justify-center items-center flex">
             {/* Arrow Right */}
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -573,9 +777,17 @@ const ProductDetails = () => {
       {/* recommended skincare routine MOBILE end */}
 
       <div className="tablet:hidden w-80 mx-auto h-[55px] text-center text-neutral-950 text-xl font-bold font-['Open Sans'] leading-7 mb-[16px] mt-[32px] mx-auto">Recommended Skincare Routine</div>
-        <div className="w-80 mx-auto h-[345px] justify-start items-start gap-4 inline-flex tablet:hidden">
-          { products.slice(0,2).map((item) => (
-            <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
+        {/* <div className="w-80 mx-auto h-[345px] justify-start items-start gap-4 inline-flex tablet:hidden"> */}
+        <Carousel
+              responsive={responsive}
+              containerClass=""
+              itemClass="px-[20px]"
+        >
+          { products.map((item) => (
+            <div
+            key={item.id} 
+              className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex"
+            >
               <Image 
                 src={item.thumbnail}
                 width={152}
@@ -590,9 +802,10 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-            ))
+          ))
           }
-        </div>
+        </Carousel>
+        {/* </div> */}
         {/* recommended skincare routine MOBILE end */}
 
       {/* video of product start */}
@@ -685,6 +898,8 @@ const ProductDetails = () => {
         </div>
         {/* you may also like MOBILE end*/}
       </div>
+
+      
 
     </Wrapper>
   )
