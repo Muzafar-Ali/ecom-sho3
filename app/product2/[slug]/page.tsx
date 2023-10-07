@@ -1,5 +1,7 @@
 "use client"
 import Wrapper from "components/Wrapper"
+import SkinCareRecommended from "components/product2/SkinCareRecommended"
+import YouMayLike from "components/product2/YouMayLike"
 import BranchStock from "components/products/BranchStock"
 import { details } from "lib/productData/detailsData"
 import { faq } from "lib/productData/faq"
@@ -8,8 +10,8 @@ import Image from "next/image"
 import { useState } from "react"
 import { GrFormAdd, GrFormSubtract } from 'react-icons/gr'
 
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import Carousel from "react-multi-carousel"
+import "react-multi-carousel/lib/styles.css"
 
 const ProductDetails = () => {
   
@@ -28,39 +30,14 @@ const ProductDetails = () => {
       breakpoint: { max: 767, min: 0 },
       items: 2,
     },
-    tablet: {
-      breakpoint: { max: 1023, min: 464 },
-      items: 2,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
+
   };
   
   return (
     <Wrapper className="h-[3855px] overflow-y-auto pb-[52px] max-mobile-l:max-w-[360px] max-laptop:h-[5109px] overflow-hidden">
 
-      <div className="justify-start items-center inline-flex px-[20px] laptop:px-[108px] py-5">
-        <div className="w-[46px] py-2 justify-start items-center gap-2 flex">
-          <div className="text-zinc-600 text-xs tablet:text-base font-normal capitalize tablet:leading-none leading-7">Home</div>
-        </div>
-        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4.07617 13.9866L5.25617 15.1666L11.9228 8.49992L5.25617 1.83325L4.07617 3.01325L9.56284 8.49992L4.07617 13.9866Z" fill="#868686"/>
-        </svg>
-        <div className="w-[134px] py-2 justify-start items-center gap-2 flex flex-row">
-          <div className="text-neutral-950 text-xs laptop:text-base font-bold capitalize tablet:leading-snug">women skincare</div>
-        </div>
-        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4.07617 13.9866L5.25617 15.1666L11.9228 8.49992L5.25617 1.83325L4.07617 3.01325L9.56284 8.49992L4.07617 13.9866Z" fill="#868686"/>
-        </svg>
-        <div className="w-[234px] py-2 justify-start items-center gap-2 flex">
-          <div className="text-neutral-950 text-xs tablet:text-base font-semibold tablet:font-bold capitalize max-tablet:tracking-tight leading-snug">De Rose Advanced Serum</div>
-        </div>
-      </div>
-
       {/* product images and detail page start*/}
-      <div className='mt-[8px] flex gap-[24px] px-[20px] laptop:px-[108px] relative max-laptop:flex-col'>
+      <div className='mt-[58px] flex gap-[24px] px-[20px] laptop:px-[108px] relative max-laptop:flex-col'>
         {/* product small images  */}
         <div className='flex flex-col gap-[12px] tablet:gap-[24px] max-laptop:flex-row max-laptop:absolute max-tablet:top-[330px] tablet:top-[620px] cursor-pointer'>
           { products[0]?.images.map((image, index) => (
@@ -270,7 +247,7 @@ const ProductDetails = () => {
       {/* product details and information Mobile start*/}
       <div className="w-80 h-[450px] flex-col justify-start items-start inline-flex mt-[250px] px-[20px] mb-[32px] tablet:hidden">
         <div className="w-80 px-2 py-4 bg-white border-t border-b border-stone-300 justify-start items-center gap-1 inline-flex ">
-          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Product Details</div>
+          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold leading-tight">Product Details</div>
             <div >
               <GrFormAdd 
                 className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
@@ -281,7 +258,7 @@ const ProductDetails = () => {
         { matchedDetails.map((item) => (
             <div className={`${detailsLabel === 'Product Details' ? 'visible':'hidden'} w-80  h-full px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex`}>
               <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{item.label}</div>
+                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold leading-tight">{item.label}</div>
                 <div >
                   <GrFormSubtract 
                     className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
@@ -292,11 +269,11 @@ const ProductDetails = () => {
               
               <div className={`self-stretch px-2 justify-start items-start gap-2 inline-flex`}>
                 <div className="grow shrink basis-0">
-                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 1:</span>
-                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
-                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
-                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 3:</span>
-                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                  <span className="text-neutral-950 text-sm font-semibold leading-tight">step 1:</span>
+                  <span className="text-neutral-950 text-xs font-normal leading-none"> 
+                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
+                  <span className="text-neutral-950 text-sm font-semibold leading-tight">step 3:</span>
+                  <span className="text-neutral-950 text-xs font-normal leading-none"> 
                     Finally, to enhance contours, hold the chin between the index and middle fingers and move up the jawline.
                   </span>
                 </div>
@@ -307,7 +284,7 @@ const ProductDetails = () => {
         }
         
         <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
-          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Ingredient</div>
+          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold leading-tight">Ingredient</div>
           <div >
               <GrFormAdd 
                 className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
@@ -318,7 +295,7 @@ const ProductDetails = () => {
         { matchedDetails.map((item) => (
             <div className={`${detailsLabel === 'Ingredient' ? 'visible':'hidden'} w-80  h-full px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex`}>
               <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{item.label}</div>
+                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold leading-tight">{item.label}</div>
                 <div >
                   <GrFormSubtract 
                     className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
@@ -329,11 +306,11 @@ const ProductDetails = () => {
               
               <div className={`self-stretch px-2 justify-start items-start gap-2 inline-flex`}>
                 <div className="grow shrink basis-0">
-                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 1:</span>
-                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
-                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
-                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 3:</span>
-                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                  <span className="text-neutral-950 text-sm font-semibold leading-tight">step 1:</span>
+                  <span className="text-neutral-950 text-xs font-normal leading-none"> 
+                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
+                  <span className="text-neutral-950 text-sm font-semibold leading-tight">step 3:</span>
+                  <span className="text-neutral-950 text-xs font-normal leading-none"> 
                     Finally, to enhance contours, hold the chin between the index and middle fingers and move up the jawline.
                   </span>
                 </div>
@@ -344,10 +321,8 @@ const ProductDetails = () => {
           ))
         }
 
-
-
         <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
-          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">What Makes It Advance</div>
+          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold leading-tight">What Makes It Advance</div>
           <div >
             <GrFormAdd 
               className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
@@ -358,7 +333,7 @@ const ProductDetails = () => {
         { matchedDetails.map((item) => (
             <div className={`${detailsLabel === 'What Makes It Advance' ? 'visible':'hidden'} w-80  h-full px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex`}>
               <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{item.label}</div>
+                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold leading-tight">{item.label}</div>
                 <div >
                   <GrFormSubtract 
                     className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
@@ -369,23 +344,22 @@ const ProductDetails = () => {
               
               <div className={`self-stretch px-2 justify-start items-start gap-2 inline-flex`}>
                 <div className="grow shrink basis-0">
-                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 1:</span>
-                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
-                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
-                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 3:</span>
-                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                  <span className="text-neutral-950 text-sm font-semibold leading-tight">step 1:</span>
+                  <span className="text-neutral-950 text-xs font-normal leading-none"> 
+                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
+                  <span className="text-neutral-950 text-sm font-semibold leading-tight">step 3:</span>
+                  <span className="text-neutral-950 text-xs font-normal leading-none"> 
                     Finally, to enhance contours, hold the chin between the index and middle fingers and move up the jawline.
                   </span>
                 </div>
               </div>
               
             </div>  
-
           ))
         }
 
         <div className="w-80 px-2 py-4 bg-white border-b border-stone-300 justify-start items-center gap-1 inline-flex">
-          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">Product Specification</div>
+          <div className="grow shrink basis-0 text-neutral-950 text-sm font-semibold leading-tight">Product Specification</div>
           <div >
             <GrFormAdd 
               className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
@@ -396,7 +370,7 @@ const ProductDetails = () => {
         { matchedDetails.map((item) => (
             <div className={`${detailsLabel === 'Product Specification' ? 'visible':'hidden'} w-80  h-full px-2 py-4 bg-white border-t border-b border-stone-300 flex-col justify-start items-start gap-2 flex`}>
               <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{item.label}</div>
+                <div className="grow shrink basis-0 text-pink-800 text-sm font-semibold leading-tight">{item.label}</div>
                 <div >
                   <GrFormSubtract 
                     className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
@@ -407,11 +381,11 @@ const ProductDetails = () => {
               
               <div className={`self-stretch px-2 justify-start items-start gap-2 inline-flex`}>
                 <div className="grow shrink basis-0">
-                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 1:</span>
-                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
-                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
-                  <span className="text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">step 3:</span>
-                  <span className="text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none"> 
+                  <span className="text-neutral-950 text-sm font-semibold leading-tight">step 1:</span>
+                  <span className="text-neutral-950 text-xs font-normal leading-none"> 
+                    Dispense two to three pumps into the palm of your hand. Then, using the pads of the fingers, apply the serum to the entire face from the centre outwards.<br/></span><span className="text-neutral-950 text-sm font-semibold leading-tight">step 2:</span><span className="text-neutral-950 text-xs font-normal leading-none"> Use gentle pressure to make the serum penetrate deeply.<br/></span>
+                  <span className="text-neutral-950 text-sm font-semibold leading-tight">step 3:</span>
+                  <span className="text-neutral-950 text-xs font-normal leading-none"> 
                     Finally, to enhance contours, hold the chin between the index and middle fingers and move up the jawline.
                   </span>
                 </div>
@@ -456,16 +430,25 @@ const ProductDetails = () => {
       {/* promo 4 images of 288 x 288  Desktop end*/}
 
       {/* promo 4 images of 288 x 288  Mobile start*/}
-      <div className="w-[360px] h-[487px] relative bg-pink-950 mt-[32px] tablet:hidden">
-        <img className="w-80 h-80 left-[20px] top-[24px] absolute" src="https://via.placeholder.com/320x320" />
+      <div className="w-[360px] h-[500px] relative bg-pink-950 mt-[32px] tablet:hidden">
+          { promo.slice(0,1).map((image, index) => (
+            <Image
+              key={index}
+              src={image}
+              width={320}
+              height={320}
+              alt=""
+              className="w-80 h-80 relative"
+            />
+          ))}
         <div className="w-[321px] left-[19px] top-[376px] absolute">
-          <span className="text-white text-xs font-semibold font-['Open Sans'] tracking-tight">In just 1 week:</span>
-          <span className="text-white text-[10.84px] font-normal font-['Open Sans'] capitalize leading-tight"> </span>
-          <span className="text-white text-xs font-normal font-['Open Sans'] leading-none">it appears firmer, stronger and smoother.<br/></span>
-          <span className="text-white text-xs font-semibold font-['Open Sans'] tracking-tight">In 3 weeks:</span>
-          <span className="text-white text-xs font-normal font-['Open Sans'] leading-none"> 2x improvement in the look or feel of skin elasticity<br/></span>
-          <span className="text-white text-xs font-semibold font-['Open Sans'] tracking-tight">After 1 month: </span>
-          <span className="text-white text-xs font-normal font-['Open Sans'] leading-none">The skin looks firmer+60% | The skin looks denser +56% </span>
+          <span className="text-white text-xs font-semibold tracking-tight">In just 1 week:</span>
+          <span className="text-white text-[10.84px] font-normal capitalize leading-tight"> </span>
+          <span className="text-white text-xs font-normal leading-none">it appears firmer, stronger and smoother.<br/></span>
+          <span className="text-white text-xs font-semibold tracking-tight">In 3 weeks:</span>
+          <span className="text-white text-xs font-normal leading-none"> 2x improvement in the look or feel of skin elasticity<br/></span>
+          <span className="text-white text-xs font-semibold tracking-tight">After 1 month: </span>
+          <span className="text-white text-xs font-normal leading-none">The skin looks firmer+60% | The skin looks denser +56% </span>
         </div>
         <div className="left-[126px] top-[356px] absolute justify-center items-center gap-1 inline-flex">
           <div className="w-6 h-1 relative">
@@ -485,13 +468,13 @@ const ProductDetails = () => {
       {/* promo 4 images of 288 x 288  Mobile end*/}
       
       {/* Frequently Asked Questions FAQ start */}
-      <div className="px-[20px] tablet:px-[108px] mt-[56px]">
-        <div className="text-neutral-950 text-xl tablet:text-2xl font-bold font-['Open Sans'] capitalize leading-7 tablet:leading-[33.60px] text-center max-tablet:w-80 py-[32px]">
+      <div className="px-[20px] tablet:px-[108px] mt-[32px] tablet:mt-[56px]">
+        <div className="text-neutral-950 text-xl tablet:text-2xl font-bold capitalize leading-7 tablet:leading-[33.60px] text-center max-tablet:w-80 py-[32px]">
           <span>{products[0]?.title}</span> frequently asked questions
         </div>
         <div className="w-80 tablet:w-[1224px] h-[778px] tablet:h-[812px] flex-col justify-start items-start inline-flex">
         <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
               What is the best way to use this product?
             </div>
             <button className="cursor-pointer" >
@@ -504,7 +487,7 @@ const ProductDetails = () => {
           { matchedFAQ.map((faq) => (
               <div className={`${productFAQ === 'What is the best way to use this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
                 <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                  <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                  <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
                     {productFAQ}
                   </div>
                   <div className="cursor-pointer" >
@@ -516,7 +499,7 @@ const ProductDetails = () => {
                 </div>
                 
                 <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                  <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                  <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
                     {faq.answer}  
                   </div>
                 </div>
@@ -525,7 +508,7 @@ const ProductDetails = () => {
           }
 
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
               Can this product be used on all skin types?
             </div>
             <button className="cursor-pointer" >
@@ -538,7 +521,7 @@ const ProductDetails = () => {
           { matchedFAQ.map((faq) => (
               <div className={`${productFAQ === 'Can this product be used on all skin types?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
                 <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                  <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                  <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
                     {productFAQ}
                   </div>
                   <div className="cursor-pointer" >
@@ -550,7 +533,7 @@ const ProductDetails = () => {
                 </div>
                 
                 <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                  <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                  <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
                     {faq.answer}  
                   </div>
                 </div>
@@ -558,7 +541,7 @@ const ProductDetails = () => {
             ))
           }
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
               How often should I use this product?
             </div>
             <button className="cursor-pointer" >
@@ -571,7 +554,7 @@ const ProductDetails = () => {
           { matchedFAQ.map((faq) => (
                 <div className={`${productFAQ === 'How often should I use this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
                   <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
                       {productFAQ}
                     </div>
                     <div className="cursor-pointer" >
@@ -583,7 +566,7 @@ const ProductDetails = () => {
                   </div>
                   
                   <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
                       {faq.answer}  
                     </div>
                   </div>
@@ -592,7 +575,7 @@ const ProductDetails = () => {
             }
 
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
               Can this product be used during pregnancy?
             </div>
             <button className="cursor-pointer" >
@@ -605,7 +588,7 @@ const ProductDetails = () => {
           { matchedFAQ.map((faq) => (
                 <div className={`${productFAQ === 'Can this product be used during pregnancy?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
                   <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
                       {productFAQ}
                     </div>
                     <div className="cursor-pointer" >
@@ -617,7 +600,7 @@ const ProductDetails = () => {
                   </div>
                   
                   <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
                       {faq.answer}  
                     </div>
                   </div>
@@ -626,7 +609,7 @@ const ProductDetails = () => {
             }
 
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
             How should I store this product?
             </div>
             <button className="cursor-pointer" >
@@ -639,7 +622,7 @@ const ProductDetails = () => {
           { matchedFAQ.map((faq) => (
                 <div className={`${productFAQ === 'How should I store this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
                   <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
                       {productFAQ}
                     </div>
                     <div className="cursor-pointer" >
@@ -651,7 +634,7 @@ const ProductDetails = () => {
                   </div>
                   
                   <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
                       {faq.answer}  
                     </div>
                   </div>
@@ -660,7 +643,7 @@ const ProductDetails = () => {
             }
 
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
               How long will it take to see results from using this product?
             </div>
             <button className="cursor-pointer" >
@@ -673,7 +656,7 @@ const ProductDetails = () => {
           { matchedFAQ.map((faq) => (
                 <div className={`${productFAQ === 'How long will it take to see results from using this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
                   <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
                       {productFAQ}
                     </div>
                     <div className="cursor-pointer" >
@@ -685,7 +668,7 @@ const ProductDetails = () => {
                   </div>
                   
                   <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
                       {faq.answer}  
                     </div>
                   </div>
@@ -694,7 +677,7 @@ const ProductDetails = () => {
             }
 
           <div className="self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
               Can this product be used in conjunction with other skincare products?
             </div>
             <button className="cursor-pointer" >
@@ -707,7 +690,7 @@ const ProductDetails = () => {
           { matchedFAQ.map((faq) => (
                 <div className={`${productFAQ === 'Can this product be used in conjunction with other skincare products?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
                   <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold font-['Open Sans'] leading-tight tablet:leading-7">
+                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
                       {productFAQ}
                     </div>
                     <div className="cursor-pointer" >
@@ -719,7 +702,7 @@ const ProductDetails = () => {
                   </div>
                   
                   <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal font-['Open Sans'] capitalize leading-4 tablet:leading-loose"> 
+                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
                       {faq.answer}  
                     </div>
                   </div>
@@ -731,58 +714,19 @@ const ProductDetails = () => {
       {/* Frequently Asked Questions end */}
 
       {/* Recommended skincare routine DESKTOP start */}
-      <div className="px-[108px] pt-[56px] max-tablet:hidden">
-        <h2 className="text-neutral-950 text-2xl font-bold capitalize leading-[33.60px] mb-[32px] text-center">recommended skincare routine</h2>
-        <div className="w-[1224px] h-[560px] justify-center items-center gap-6 inline-flex">
-          <div className="w-10 h-10 p-1 bg-white border border-stone-300 justify-center items-center flex">
-            {/* Arrow Left */}
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19.333 9.33329L12.6663 16L19.333 22.6666L19.333 9.33329Z" fill="#0C0C0C"/>
-            </svg>
-          </div>
-
-
-            
-          { products.slice(0,6).map((item) => (
-            <div
-                key={item.id} 
-                className="grow shrink basis-0 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex"
-              >
-                <Image
-                  src={item.thumbnail}
-                  alt={item.title}
-                  width={288}
-                  height={384}
-                  className="self-stretch w-[288px] h-[384px]"
-                  />
-                <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-                  <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">{item.title}</div>
-                  <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">{item.smallDescription}</div>
-                  <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">${item.price}</div>
-                </div>
-              </div>
-            ))
-          }
-          
-          <div className="w-10 h-10 p-1 bg-white border border-stone-300 justify-center items-center flex">
-            {/* Arrow Right */}
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.6663 22.6667L19.333 16.0001L12.6663 9.33342L12.6663 22.6667Z" fill="#0C0C0C"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-        {/* recommended skincare routine DESKTOP end */}
+      <SkinCareRecommended/>
+      {/* recommended skincare routine DESKTOP end */}
 
       {/* recommended skincare routine MOBILE end */}
-
-      <div className="tablet:hidden w-80 mx-auto h-[55px] text-center text-neutral-950 text-xl font-bold font-['Open Sans'] leading-7 mb-[16px] mt-[32px] mx-auto">Recommended Skincare Routine</div>
+      <div className="tablet:hidden w-80 mx-auto h-[55px] text-center text-neutral-950 text-xl font-bold leading-7">Recommended Skincare Routine</div>
         {/* <div className="w-80 mx-auto h-[345px] justify-start items-start gap-4 inline-flex tablet:hidden"> */}
         <Carousel
-              responsive={responsive}
-              containerClass=""
-              itemClass="px-[20px]"
+          responsive={responsive}
+          containerClass=""
+          itemClass="px-[10px]"
+          arrows={false}
         >
+
           { products.map((item) => (
             <div
             key={item.id} 
@@ -796,9 +740,9 @@ const ProductDetails = () => {
                 className="self-stretch h-[202px]" 
               />
               <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
-                <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{ item.title }</div>
-                  <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">{ item.smallDescription }</div>
-                  <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$<span>{ item.price }</span></div>
+                <div className="self-stretch h-10 text-pink-800 text-sm font-semibold leading-tight">{ item.title }</div>
+                  <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal leading-none">{ item.smallDescription }</div>
+                  <div className="self-stretch text-neutral-950 text-sm font-semibold leading-tight">$<span>{ item.price }</span></div>
                 </div>
               </div>
 
@@ -807,7 +751,7 @@ const ProductDetails = () => {
         </Carousel>
         {/* </div> */}
         {/* recommended skincare routine MOBILE end */}
-
+          
       {/* video of product start */}
 
         <div className="w-[320px] mx-auto tablet:w-[1223.11px] h-[202px] tablet:h-[688px] relative mt-[32px]">
@@ -823,83 +767,45 @@ const ProductDetails = () => {
       {/* video of product end */}
       
       {/* you may also like DESKTOP start*/}
-      <div className="w-[1440px] h-[704px] pt-[38px] pb-14 mt-[32px] bg-red-50 flex-col justify-start items-center gap-4 inline-flex max-tablet:hidden">
-        <div className="px-[108px]">
-          <h2 className="text-neutral-950 text-2xl font-bold font-['Open Sans'] capitalize leading-[33.60px] text-center mb-[16px]">you may also like</h2>
-          <div className="self-stretch justify-center items-center gap-6 inline-flex">
-            <div className="w-10 h-10 p-1 bg-white border border-stone-300 justify-center items-center flex">
-              {/* Arrow Left */}
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.333 9.33329L12.6663 16L19.333 22.6666L19.333 9.33329Z" fill="#0C0C0C"/>
-              </svg>
-            </div>
-            { products.slice(4,8).map((item) => (
-                <div className="w-72 pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-4 inline-flex">
-                  <Image
-                    src={item.thumbnail}
-                    alt={item.title}
-                    width={288}
-                    height={384}
-                    className="self-stretch w-[288px] h-[384px]"
-                  />
-                  <div className="self-stretch h-[136px] px-4 flex-col justify-center items-start gap-2 flex">
-                    <div className="self-stretch h-11 text-pink-800 text-base font-bold font-['Open Sans'] capitalize leading-snug">{item.title}</div>
-                    <div className="self-stretch h-11 text-neutral-950 text-xs font-normal font-['Open Sans'] capitalize leading-snug">{item.smallDescription}</div>
-                    <div className="self-stretch text-neutral-950 text-lg font-normal font-['Open Sans'] capitalize leading-loose">$<span>{item.price}</span></div>
-                  </div>
-                </div>
-              ))
-            }
-  
-            <div className="w-10 h-10 p-1 bg-white border border-stone-300 justify-center items-center flex">
-              {/* Arrow Right */}
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.6663 22.6667L19.333 16.0001L12.6663 9.33342L12.6663 22.6667Z" fill="#0C0C0C"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
+      <YouMayLike/>
       {/* you may also like DESKTOP end*/}
 
       {/* you may also like MOBILE start*/}
       <div className="w-[360px] h-[445px] relative bg-red-50 mt-[32px] tablet:hidden">
-        <div className="left-[94px] top-[16px] absolute text-neutral-950 text-xl font-bold font-['Open Sans'] leading-7">You May Also Like</div>
-        <div className="left-[20px] top-[60px] absolute justify-start items-start gap-4 inline-flex">
-          { products.slice(2,4).map((item) => (
-            <div className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex">
-              <Image
+      <div className="tablet:hidden w-80 mx-auto h-[55px] text-center text-neutral-950 text-xl font-bold leading-7 mb-[16px] mt-[32px]">You May Also Like</div>
+        {/* <div className="w-80 mx-auto h-[345px] justify-start items-start gap-4 inline-flex tablet:hidden"> */}
+        <Carousel
+          responsive={responsive}
+          containerClass=""
+          itemClass="px-[20px]"
+          arrows={false}
+        >
+
+          { products.map((item) => (
+            <div
+            key={item.id} 
+              className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex"
+            >
+              <Image 
                 src={item.thumbnail}
-                alt={item.title}
                 width={152}
                 height={202}
-                className="self-stretch w-[152px] h-[202px]" 
+                alt={item.title} 
+                className="self-stretch h-[202px]" 
               />
               <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
-                <div className="self-stretch h-10 text-pink-800 text-sm font-semibold font-['Open Sans'] leading-tight">{item.title}</div>
-                <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal font-['Open Sans'] leading-none">{item.smallDescription}</div>
-                <div className="self-stretch text-neutral-950 text-sm font-semibold font-['Open Sans'] leading-tight">$<span>{item.price}</span></div>
+                <div className="self-stretch h-10 text-pink-800 text-sm font-semibold leading-tight">{ item.title }</div>
+                  <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal leading-none">{ item.smallDescription }</div>
+                  <div className="self-stretch text-neutral-950 text-sm font-semibold leading-tight">$<span>{ item.price }</span></div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-        {/* Background pink color */}
-        <div className="left-[126px] top-[417px] absolute justify-center items-center gap-1 inline-flex">
-          <div className="w-6 h-1 relative">
-            <div className="w-6 h-1 left-0 top-0 absolute bg-pink-800 border border-pink-500"></div>
-          </div>
-          <div className="w-6 h-1 relative">
-            <div className="w-6 h-1 left-0 top-0 absolute bg-stone-300"></div>
-          </div>
-          <div className="w-6 h-1 relative">
-            <div className="w-6 h-1 left-0 top-0 absolute bg-stone-300"></div>
-          </div>
-          <div className="w-6 h-1 bg-stone-300"></div>
-        </div>
-        {/* you may also like MOBILE end*/}
-      </div>
 
-      
+          ))
+          }
+        </Carousel>
+      </div>
+        {/* you may also like MOBILE end*/}
+
 
     </Wrapper>
   )
