@@ -24,8 +24,7 @@ const ProductCard: FC<ProductCardProps> = ({ id, title, smallDescription, image,
         <div className="self-stretch w-[136px] md:w-64 h-10 md:h-11 text-pink-800 text-sm md:text-base font-semibold md:font-bold capitalize leading-tight md:leading-snug">{ title }</div>
         <div className="self-stretch w-[136px] md:w-64 md:h-11 text-neutral-950 text-xs font-normal capitalize leading-none md:leading-snug">{ smallDescription }</div>
         <div className="self-stretch w-[136px] md:w-64  text-neutral-950 text-sm md:text-lg font-semibold md:font-normal capitalize leading-tight md:leading-loose"> <span>$</span>{ price }</div>
-        <div className="self-stretch w-[136px] md:w-64  text-neutral-950 text-sm md:text-lg font-semibold md:font-normal capitalize leading-tight md:leading-loose"> <span>ID #</span>{ id }</div>
-      </div>
+</div>
       {/* out of stock  */}
       { outofstock && 
         <div>
