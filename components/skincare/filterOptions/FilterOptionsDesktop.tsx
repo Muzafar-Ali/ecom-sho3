@@ -5,7 +5,7 @@ import FeaturedFilter from './FeaturedFilter'
 import PriceFilter from './PriceFilter'
 import SkinFilter from './SkinFilter'
 
-export interface FilterOptionsProps{
+export interface FilterOptionsDesktopProps{
   appliedFilters: string[];
   removeFilter: (filterToRemove: string) => void;
   setIsOutOfStock: Dispatch<SetStateAction<boolean>>;
@@ -17,7 +17,7 @@ export interface FilterOptionsProps{
   handleFiltersChange: (filterType: string, value: string | Boolean) => void
 }
 
-const FilterOptions:React.FC<FilterOptionsProps> = ({
+const FilterOptionsDesktop:React.FC<FilterOptionsDesktopProps> = ({
   appliedFilters,
   removeFilter,
   setIsOutOfStock,
@@ -95,4 +95,4 @@ const FilterOptions:React.FC<FilterOptionsProps> = ({
   )
 }
 
-export default FilterOptions
+export default FilterOptionsDesktop

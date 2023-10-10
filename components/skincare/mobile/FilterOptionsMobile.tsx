@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { GrFormClose } from "react-icons/gr";
+import { SortFilterDesktopProps } from "../SortFilterDesktop";
 import CategoryFilter from "../filterOptions/CategoryFilter";
 import FeaturedFilter from "../filterOptions/FeaturedFilter";
-import { FilterOptionsProps } from "../filterOptions/FilterOptions";
+import { FilterOptionsDesktopProps } from "../filterOptions/FilterOptionsDesktop";
 import PriceFilter from "../filterOptions/PriceFilter";
 import SkinFilter from "../filterOptions/SkinFilter";
+import SortFilterMobile from "./SortFilterMobile";
 
-interface FilterOptionsMobileProps extends FilterOptionsProps{}
+interface FilterOptionsMobileProps extends FilterOptionsDesktopProps, SortFilterDesktopProps {} 
 
 const FilterOptionsMobile:React.FC<FilterOptionsMobileProps> = ({
   appliedFilters,
@@ -17,28 +19,38 @@ const FilterOptionsMobile:React.FC<FilterOptionsMobileProps> = ({
   skinFilters,
   priceFilters,
   featuredFilters,
-  handleFiltersChange
+  handleFiltersChange,
+  setShowSortFilters,
+  setShowSortedValue,
+  showSortFilters,
+  showSortedValue,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   console.log("isOpen", isOpen);
   
   return (
     <div className="relative laptop:hidden">
-
+      
       {/* filter open section start  */}
-      <section className="w-80 h-10 justify-start items-start gap-4 inline-flex 
-        absolute top-[108px] left-[5px] mobile-m:left-[15px] mobile-l:left-[20px]"
+      <section className=" h-10 justify-center items-center gap-1 mobile-m:gap-3 mobile-l:gap-5 inline-flex mt-[108px]"
       > 
         <div 
-          className="w-[152px] h-10 px-4 py-2 bg-white border border-neutral-200 justify-center items-center gap-2 flex"
+          className="w-[152px] tablet:w-72 h-10 px-4 py-2 bg-white border border-neutral-200 justify-center items-center gap-2 tablet:gap-5 flex"
           onClick={() => setIsOpen(!isOpen)}
-          >
+        >
           <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.5 11.3333V12.6667H6.5V11.3333H2.5ZM2.5 3.33333V4.66667H9.16667V3.33333H2.5ZM9.16667 14V12.6667H14.5V11.3333H9.16667V10H7.83333V14H9.16667ZM5.16667 6V7.33333H2.5V8.66667H5.16667V10H6.5V6H5.16667ZM14.5 8.66667V7.33333H7.83333V8.66667H14.5ZM10.5 6H11.8333V4.66667H14.5V3.33333H11.8333V2H10.5V6Z" fill="#0C0C0C"/>
           </svg>
 
-          <div className="text-neutral-950 text-xs font-semibold font-['Open Sans'] tracking-tight">Filter </div>
+          <div className="text-xs tablet:text-base font-semibold max-tablet:tracking-tight tablet:font-bold leading-snug capitalize text-neutral-950">Filter </div>
         </div>
+
+        <SortFilterMobile
+          setShowSortFilters={setShowSortFilters}
+          setShowSortedValue={setShowSortedValue}
+          showSortFilters={showSortFilters}
+          showSortedValue={showSortedValue}
+        />
       </section>
       {/* filter open section end */}
 
