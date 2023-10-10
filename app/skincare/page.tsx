@@ -17,6 +17,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { BiCaretDown } from 'react-icons/bi'
 import { GrFormClose } from 'react-icons/gr'
+import AppliedFiltersMobile from 'components/skincare/mobile/AppliedFiltersMobile'
 
 
 const Products = () => {
@@ -28,6 +29,7 @@ const Products = () => {
   const [featuredFilters, setFeaturedFilters] = useState<string[]>([])
 
   const appliedFilters = [...categoryFilters, ...skinFilters, ...featuredFilters];
+  
   const originalCategoryFilters = categoryFilters;
   const originalSkinFilters = skinFilters;
   const originalPriceFilters = priceFilters;
@@ -111,97 +113,52 @@ const Products = () => {
 
   return (
     <Wrapper>
-
-
-
-
-   
+  
       {/* sort and filter desktop screen*/}
-      <section className='flex flex-col items-center h-[2874px] tablet:h-[3855px] overflow-y-auto laptop-lg:px-[108px] pb-5 relative'>
+      <section className='flex flex-col items-center h-auto tablet:h-auto overflow-y-auto laptop-lg:px-[108px] pb-5 relative'>
 
                 {/* page tage */}
         <section>
-          <div className="left-[5px] mobile-s:left-[20px] mobile-l:left-[40px] tablet:left-[70px] laptop:left-[50px] laptop-lg:left-[108px] top-[53px] absolute justify-start items-baseline gap-1 md:gap-2 inline-flex w-[238px] md:w-[330px] h-[34px]">
+          <div className="left-[6px] mobile-m:left-[30px] mobile-l:left-[50px] tablet:left-[88px] laptop:left-[50px] laptop-lg:left-[108px] top-[53px] absolute justify-start items-baseline gap-1 tablet:gap-2 inline-flex w-[238px] tablet:w-[330px] h-[34px]">
             <div className="text-neutral-950 md:text-[32px] font-semibold md:font-bold capitalize leading-[33.60px] md:leading-[44.80px]">Women skincare </div>
             <div className="text-sm font-semibold leading-tight text-zinc-600 md:text-xl md:font-bold md:leading-7">({filteredProducts.length})</div>
           </div>
         </section>
-        {/* sort and filter small screen*/}
+          
 
-          <FilterOptionsMobile
-            appliedFilters={appliedFilters}
-            removeFilter={removeFilter}
-            setIsOutOfStock={setIsOutOfStock}
-            isOutOfStock={isOutOfStock}
-            categoryFilters={categoryFilters}
-            skinFilters={skinFilters}
-            featuredFilters={featuredFilters}
-            priceFilters={priceFilters}
-            handleFiltersChange={handleFiltersChange}
-            setShowSortFilters={setShowSortFilters}
-            setShowSortedValue={setShowSortedValue}
-            showSortFilters={showSortFilters}
-            showSortedValue={showSortedValue}
-          />  
+        {/* applied filters mobile */}
+        <AppliedFiltersMobile
+          appliedFilters={appliedFilters}
+          removeFilter={removeFilter} 
+        />
+
+        {/* sort and filter small screen*/} 
+        <FilterOptionsMobile
+          appliedFilters={appliedFilters}
+          removeFilter={removeFilter}
+          setIsOutOfStock={setIsOutOfStock}
+          isOutOfStock={isOutOfStock}
+          categoryFilters={categoryFilters}
+          skinFilters={skinFilters}
+          featuredFilters={featuredFilters}
+          priceFilters={priceFilters}
+          handleFiltersChange={handleFiltersChange}
+          setShowSortFilters={setShowSortFilters}
+          setShowSortedValue={setShowSortedValue}
+          showSortFilters={showSortFilters}
+          showSortedValue={showSortedValue}
+        />  
    
-
+        {/* sort filter on desktop */}
         <SortFilterDesktop
           setShowSortFilters={setShowSortFilters}
           setShowSortedValue={setShowSortedValue}
           showSortFilters={showSortFilters}
           showSortedValue={showSortedValue}
         />
-        {/* sort filter on right side end */}
       
 
-        {/* <div className="w-72 left-[1090px] top-[124px] absolute bg-white border border-neutral-200 justify-start items-start inline-flex laptop:hidden">
-          <div className="relative flex items-center justify-start h-10 gap-2 px-4 py-2 grow shrink basis-0">
-            <div className="w-56 h-[25px] justify-center items-center flex">
-              <div className="grow shrink basis-0">
-                <span className="text-base font-bold leading-snug capitalize text-neutral-950">sort</span>
-                <span className="text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">: </span>
-                <span className="text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">
-                  { 
-                    showSortedValue ? showSortedValue : 'recommended'
-                  }
-                </span>
-              </div>
-            </div>
-            <img
-              src='productpage/arrow_drop_down-balck.svg'  
-              className={`${showSortFilters ? '': 'rotate-180'} w-6 h-6 relative cursor-pointer`}
-              onClick={() => {
-                setShowSortFilters((prev) => !prev)  
-                
-              }}
-            />
-          </div>
 
-          <div className={`${showSortFilters ? 'visible':'hidden'} grow shrink basis-0 px-4 py-4 justify-start items-center gap-2 flex-col absolute top-10 bg-white z-10 h-auto w-full border-t`}>
-            <div 
-              className='cursor-pointer text-neutral-950 text-sm font-normal capitalize leading-[25.20px]' 
-              onClick={() => {
-                setShowSortedValue('price high to low')
-                setShowSortFilters(false)
-              }}
-            >
-              price high to low
-            </div>
-
-            <div 
-              className='cursor-pointer text-neutral-950 text-sm font-normal capitalize leading-[25.20px]' 
-              onClick={() => {
-                setShowSortedValue('price low to high')
-                setShowSortFilters(false)
-              }}
-            >
-              price low to high
-            </div>
-            
-          </div> 
-
-        </div> */}
-        {/* sort and filter small screen end */}
 
         {/* filter and product card section */}
         <div className='flex flex-row gap-6'>
@@ -417,7 +374,7 @@ const Products = () => {
                   </p>
                   <h3 className="hidden tablet:visible w-[136px] tablet:w-64 text-white text-xs tablet:text-sm font-semibold tablet:leading-[25.20px]">Available exclusively for mobile</h3>
                 </div>
-                <div className="w-[163px] text-neutral-950 text-base font-bold capitalize leading-snug absolute top-[507px] left-[16px]">
+                <div className="hidden tablet:visible w-[163px] text-neutral-950 text-base font-bold capitalize leading-snug absolute top-[507px] left-[16px]">
                   Scan To Get Started
                 </div>
                 <img className="w-[68px] h-[68px] absolute top-[484px] left-[207px]" src="productpage/scan.svg" />
@@ -428,7 +385,7 @@ const Products = () => {
               {/* <div className="inline-flex flex-wrap items-start justify-center gap-6 "> */}
               <section className="grid grid-cols-2 laptop-lg:grid-cols-3 gap-1 mobile-m:gap-3 mobile-l:gap-5 tablet:gap-6 bg-fuchsia-400">
                 { filteredProducts && filteredProducts.length > 0  ? (
-                      filteredProducts?.slice(11).map((product) => (
+                    filteredProducts?.slice(11).map((product) => (
                         <ProductCard
                           key={product.id}
                           id={product.id}
@@ -452,7 +409,6 @@ const Products = () => {
                         />
                     )))
                 }
-
               </section>
           </div>
           {/* RIGHT SIDE - PRODUCT CARDS START*/}

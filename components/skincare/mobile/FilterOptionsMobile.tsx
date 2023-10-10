@@ -32,8 +32,7 @@ const FilterOptionsMobile:React.FC<FilterOptionsMobileProps> = ({
     <div className="relative laptop:hidden">
       
       {/* filter open section start  */}
-      <section className=" h-10 justify-center items-center gap-1 mobile-m:gap-3 mobile-l:gap-5 inline-flex mt-[108px]"
-      > 
+      <section className={` h-10 justify-center items-center gap-1 mobile-m:gap-3 mobile-l:gap-5 inline-flex ${ appliedFilters.length > 0 ?'':'mt-[108px]'}`}> 
         <div 
           className="w-[152px] tablet:w-72 h-10 px-4 py-2 bg-white border border-neutral-200 justify-center items-center gap-2 tablet:gap-5 flex"
           onClick={() => setIsOpen(!isOpen)}
@@ -42,7 +41,9 @@ const FilterOptionsMobile:React.FC<FilterOptionsMobileProps> = ({
             <path d="M2.5 11.3333V12.6667H6.5V11.3333H2.5ZM2.5 3.33333V4.66667H9.16667V3.33333H2.5ZM9.16667 14V12.6667H14.5V11.3333H9.16667V10H7.83333V14H9.16667ZM5.16667 6V7.33333H2.5V8.66667H5.16667V10H6.5V6H5.16667ZM14.5 8.66667V7.33333H7.83333V8.66667H14.5ZM10.5 6H11.8333V4.66667H14.5V3.33333H11.8333V2H10.5V6Z" fill="#0C0C0C"/>
           </svg>
 
-          <div className="text-xs tablet:text-base font-semibold max-tablet:tracking-tight tablet:font-bold leading-snug capitalize text-neutral-950">Filter </div>
+          <div className="text-xs tablet:text-base font-semibold max-tablet:tracking-tight tablet:font-bold leading-snug capitalize text-neutral-950">
+            Filter 
+          </div>
         </div>
 
         <SortFilterMobile
@@ -55,10 +56,10 @@ const FilterOptionsMobile:React.FC<FilterOptionsMobileProps> = ({
       {/* filter open section end */}
 
       {/* filter selection section start */} 
-      <section className={`${isOpen ? 'visible' : 'hidden'} flex-col justify-start items-start  absolute top-0 z-10 bg-white w-full 
-        py-4 px-2 mobile-m:px-4 mobile-l:px-6 tablet:px-12 `}>
+      <section className={`${isOpen ? 'visible' : 'hidden'} flex-col justify-start items-start absolute top-0 z-10 w-full 
+        py-4  `}>
 
-        <div className="flex justify-between items-center py-4 px-4">
+        <div className="flex justify-between items-center py-4 px-4 bg-white">
           <div className="text-neutral-950 text-xl font-bold capitalize leading-7">filter</div>
           <GrFormClose 
             size={24} 
@@ -66,43 +67,13 @@ const FilterOptionsMobile:React.FC<FilterOptionsMobileProps> = ({
           />
         </div>
         
-        
-        {/* applied filters div start */}
-        {/* <div className="inline-flex flex-col items-start justify-center h-auto gap-4 px-4 pt-4 pb-2 bg-white border-t w-72 border-neutral-200">
-          <div className="w-[161px] text-neutral-950 text-base font-bold capitalize leading-snug"></div>
-          <div className="flex flex-col items-start justify-start gap-2">
-
-            { appliedFilters?.map((value,index) => (
-                <div
-                  key={index} 
-                  className="inline-flex items-center justify-start h-8 gap-2 py-1 pl-3 pr-2 border border-neutral-200"
-                >
-                  <div className="text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">{value}</div>
-                  <div className="w-[18px] h-[18px] relative cursor-pointer">
-                    <GrFormClose size={18}
-                      onClick={() => removeFilter(value)}
-                    />
-                  </div>
-                </div>
-              ))
-            }
-
-            <button 
-              onClick={() => removeFilter('all')}
-              className="inline-flex items-center justify-center h-12 gap-2 py-2">
-              <div className="text-base font-normal leading-7 text-pink-800 capitalize">clear all filters</div>
-            </button>
-            
-          </div>
-        </div> */}
-        {/* applied filters div end */}
 
         {/* left side filter selection div start */}
         {/* NOTE :->  W-Full here has no effect  */}
         <div className="flex flex-col items-center tablet:items-start justify-center tablet:justify-start w-full">
         
           {/* out of stock button start */}
-          <div className="inline-flex items-center justify-start gap-2 p-4 bg-white border-t w-72 mobile-m:w-80 mobile-l:w-[352px] tablet:w-[654px] h-14 border-neutral-200">
+          <div className="inline-flex items-center justify-start gap-2 p-4 bg-white border-t w-full laptop:w-72  h-14 border-neutral-200">
             <div className="w-[232px] tablet:w-[654px] text-neutral-950 text-base font-bold font-['Open Sans'] leading-snug">out of stock items</div>
             <div 
               className="relative w-12 h-6 cursor-pointer"

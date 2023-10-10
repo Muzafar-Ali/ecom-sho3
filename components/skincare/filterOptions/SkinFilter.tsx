@@ -12,10 +12,10 @@ const SkinFilter:React.FC<SkinFilterProps> = ({skinFilters, handleFiltersChange}
   const [isDropDown, setIsDropDown] = useState(true)
   
   return (
-    <section className="inline-flex flex-col items-start justify-start h-auto gap-4 px-4 pt-4 pb-2 bg-white border-t mobile-m:w-80 mobile-l:w-[352px] tablet:w-[654px] laptop:w-72 border-neutral-200">
+    <section className="inline-flex flex-col items-start justify-start h-auto gap-4 px-4 pt-4 pb-2 bg-white border-t w-full laptop:w-72 border-neutral-200">
 
       <div 
-        className="inline-flex items-center justify-start w-64 mobile-m:w-[286px] mobile-l:w-[316px] tablet:w-[622px] laptop:w-64 gap-2 cursor-pointer" 
+        className="inline-flex items-center justify-start w-64 mobile-m:w-[280px] mobile-l:w-[290px] tablet:w-[550px] laptop:w-64 gap-2 cursor-pointer" 
         onClick={() => setIsDropDown((prev) => !prev)}
       >
         <h2 className="text-base font-bold leading-snug text-pink-800 capitalize grow shrink basis-0">
