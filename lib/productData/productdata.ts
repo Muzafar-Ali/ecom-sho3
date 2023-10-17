@@ -487,3 +487,14 @@ export const promo = [
     '/productpage/promo3.png',
     '/productpage/promo4.png',
 ]
+
+export interface productsType {
+    id: number;
+    title: string;
+    category: string;
+    smallDescription: string;
+    thumbnail: string;
+    images: string[];
+    price: number;
+    outofstock: boolean;
+}

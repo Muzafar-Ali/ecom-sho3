@@ -27,7 +27,6 @@ const YouMayLike = () => {
         return prevIndex;
       }
     });
-    console.log("startIndex", startIndex);
     
   };
 
