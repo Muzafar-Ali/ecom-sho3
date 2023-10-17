@@ -1,449 +1,420 @@
+'use client'
 import Wrapper from 'components/Wrapper'
 import ProductCard from 'components/products/ProductCard'
+import SortFilterDesktop from 'components/skincare/SortFilterDesktop'
+import SortFilter from 'components/skincare/SortFilterDesktop'
+import CategoryFilter from 'components/skincare/filterOptions/CategoryFilter'
+import FeaturedFilter from 'components/skincare/filterOptions/FeaturedFilter'
+import PriceFilter from 'components/skincare/filterOptions/PriceFilter'
+import SkinFilter from 'components/skincare/filterOptions/SkinFilter'
+import FilterOptionsDesktop from 'components/skincare/filterOptions/FilterOptionsDesktop'
+import FilterOptionsMobile from 'components/skincare/mobile/FilterOptionsMobile'
+import FilterAndSortSmallScreen from 'components/skincare/mobile/FilterOptionsMobile'
+
+import { filterProducts } from 'lib/filterProducts'
 import { products } from 'lib/productData/productdata'
 import Image from 'next/image'
+import { useState } from 'react'
+import { BiCaretDown } from 'react-icons/bi'
+import { GrFormClose } from 'react-icons/gr'
+import AppliedFiltersMobile from 'components/skincare/mobile/AppliedFiltersMobile'
 
 
 const Products = () => {
-  return (
-    <Wrapper className='h-[3855px] overflow-y-auto'>
+
+  // state used for filters
+  const [categoryFilters, setCategoryFilters] = useState<string[]>([])
+  const [skinFilters, setSkinFilters] = useState<string[]>([])
+  const [priceFilters, setPriceFilters] = useState<string[]>([])
+  const [featuredFilters, setFeaturedFilters] = useState<string[]>([])
+
+  const appliedFilters = [...categoryFilters, ...skinFilters, ...featuredFilters];
   
-     {/* header tags start */}
-      <div>
-        <div className="left-[20px] md:left-[108px] top-0 absolute justify-start items-center inline-flex w-[249px] h-[33px]">
-          <div className="md:w-[46px] py-2 justify-start items-start md:items-center gap-2 flex">
-            <div className="text-zinc-600 text-xs md:text-base font-normal capitalize leading-none md:leading-7">Home</div>
+  const originalCategoryFilters = categoryFilters;
+  const originalSkinFilters = skinFilters;
+  const originalPriceFilters = priceFilters;
+  const originalFeaturedFilters = featuredFilters;
+  
+  const [isOutOfStock, setIsOutOfStock] = useState<boolean>(false)
+
+  // state used for Sort filter
+  const [showSortFilters, setShowSortFilters] = useState<boolean>(false)
+  const [showSortedValue, setShowSortedValue] = useState<string>('recommended')
+  console.log('showSortedValue', showSortedValue);
+
+  // Function to remove a filter from appliedFilters and its respective variable
+  const removeFilter = (filterToRemove: string) => {
+
+    if (filterToRemove === 'all') {
+      setCategoryFilters([]);   
+      setSkinFilters([]);       
+      setPriceFilters([]);      
+      setFeaturedFilters([]);   
+    }
+
+    if (originalCategoryFilters.includes(filterToRemove)) {
+      setCategoryFilters(categoryFilters.filter(filter => filter !== filterToRemove));
+    }
+    if (originalSkinFilters.includes(filterToRemove)) {
+      setSkinFilters(skinFilters.filter(filter => filter !== filterToRemove));
+    }
+    if (originalPriceFilters.includes(filterToRemove)) {
+      setPriceFilters(priceFilters.filter(filter => filter !== filterToRemove));
+    }
+    if (originalFeaturedFilters.includes(filterToRemove)) {
+      setFeaturedFilters(featuredFilters.filter(filter => filter !== filterToRemove));
+    }
+  };
+  
+    
+  const handleFiltersChange = (filterType: string, value: string | Boolean) => {
+
+    if(filterType === 'category'){
+      if(typeof value === 'string')
+      if(categoryFilters?.includes(value)){
+        setCategoryFilters(categoryFilters?.filter((item) => item !== value));
+      }else{
+        setCategoryFilters([...categoryFilters, value]);
+      }
+    }
+
+    if(filterType === 'featured'){
+      if(typeof value === 'string')
+      if(featuredFilters?.includes(value)){
+        setFeaturedFilters(featuredFilters?.filter((item) => item !== value));
+      }else{
+        setFeaturedFilters([...featuredFilters, value]);
+      }
+    }
+
+    if(filterType === 'price'){
+      if(typeof value === 'string')
+      if(priceFilters?.includes(value)){
+        setPriceFilters(priceFilters?.filter((item) => item !== value));
+      }else{
+        setPriceFilters([...priceFilters, value]);
+      }
+    }
+
+    if(filterType === 'skin'){
+      if(typeof value === 'string')
+      if(skinFilters.includes(value)){
+        setSkinFilters(skinFilters.filter((item) => item !== value));
+      }else{
+        setSkinFilters([...skinFilters, value]);
+      }
+    }
+    
+
+  }
+
+  // function to show products based on filter Selection
+  const filteredProducts = filterProducts(appliedFilters, products, isOutOfStock, showSortedValue)
+
+  return (
+    <Wrapper>
+  
+      {/* sort and filter desktop screen*/}
+      <section className='flex flex-col items-center h-auto tablet:h-auto overflow-y-auto laptop-lg:px-[108px] pb-5 relative'>
+
+                {/* page tage */}
+        <section>
+          <div className="left-[6px] mobile-m:left-[30px] mobile-l:left-[50px] tablet:left-[88px] laptop:left-[50px] laptop-lg:left-[108px] top-[53px] absolute justify-start items-baseline gap-1 tablet:gap-2 inline-flex w-[238px] tablet:w-[330px] h-[34px]">
+            <div className="text-neutral-950 md:text-[32px] font-semibold md:font-bold capitalize leading-[33.60px] md:leading-[44.80px]">Women skincare </div>
+            <div className="text-sm font-semibold leading-tight text-zinc-600 md:text-xl md:font-bold md:leading-7">({filteredProducts.length})</div>
           </div>
-          <svg width="14" height="14" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.07617 13.9866L5.25617 15.1666L11.9228 8.49992L5.25617 1.83325L4.07617 3.01325L9.56284 8.49992L4.07617 13.9866Z" fill="#868686"/>
-          </svg>
-          <div className="md:w-[134px] py-2 justify-start items-start md:items-center gap-2 flex">
-            <div className="text-neutral-950 text-xs md:text-base font-semibold md:font-bold capitalize tracking-tight leading-snug">women skincare</div>
-          </div>
-        </div>
-        {/* header tags end*/}
+        </section>
+          
 
-        {/* sort filter on right side start */}
-        <div className="w-72 left-[1094px] top-[124px] absolute bg-white border border-neutral-200 justify-start items-start inline-flex">
-          <div className="grow shrink basis-0 h-10 px-4 py-2 justify-start items-center gap-2 flex">
-            <div className="w-56 h-[25px] justify-center items-center flex">
-              <div className="grow shrink basis-0">
-                <span className="text-neutral-950 text-base font-bold capitalize leading-snug">sort</span>
-                <span className="text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">: </span>
-                <span className="text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">recommended</span></div>
-            </div>
-            <img
-              src='productpage/arrow_drop_down-balck.svg'  
-              className="w-6 h-6 relative" 
-              />
-          </div>
-        </div>
-        {/* sort filter on right side end */}
-        
-        <div className="left-[20px] md:left-[108px] top-[53px] absolute justify-start items-baseline gap-1 md:gap-2 inline-flex w-[238px] md:w-[330px] h-[34px]">
-          <div className="text-neutral-950 md:text-[32px] font-semibold md:font-bold capitalize leading-[33.60px] md:leading-[44.80px]">Women skincare </div>
-          <div className="text-zinc-600 text-sm md:text-xl font-semibold md:font-bold leading-tight md:leading-7">(216)</div>
-        </div>
-      </div>
+        {/* applied filters mobile */}
+        <AppliedFiltersMobile
+          appliedFilters={appliedFilters}
+          removeFilter={removeFilter} 
+        />
 
-      {/* left side filter options starts */}
-      <div className="left-[108px] top-[122px] absolute flex-col justify-start items-start gap-4 inline-flex">
-        <div className="text-neutral-950 text-2xl font-bold capitalize leading-[33.60px]">filter</div>
-        {/* applied filters div start */}
-        <div className="w-72 h-[190px] px-4 pt-4 pb-2 bg-white border-t border-neutral-200 flex-col justify-center items-start gap-4 inline-flex">
-          <div className="w-[161px] text-neutral-950 text-base font-bold capitalize leading-snug">Applied filters</div>
-          <div className="flex-col justify-start items-start gap-2 flex">
-            <div className="h-8 pl-3 pr-2 py-1 border border-neutral-200 justify-start items-center gap-2 inline-flex">
-              <div className="text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">cleansers</div>
-              <div className="w-[18px] h-[18px] relative"></div>
-            </div>
-            <div className="h-8 pl-3 pr-2 py-1 border border-neutral-200 justify-start items-center gap-2 inline-flex">
-              <div className="text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">peels and masques</div>
-              <div className="w-[18px] h-[18px] relative"></div>
-            </div>
-            <div className="h-12 py-2 justify-center items-center gap-2 inline-flex">
-              <div className="text-pink-800 text-base font-normal capitalize leading-7">clear all filters</div>
-            </div>
-          </div>
-        </div>
-        {/* applied filters div end */}
-
-        {/* left side filter selection div start */}
-        <div className="flex-col justify-start items-start flex">
-          {/* out of stock button start */}
-          <div className="w-72 h-14 p-4 bg-white border-t border-neutral-200 justify-start items-center gap-2 inline-flex">
-            <div className="grow shrink basis-0 text-neutral-950 text-base font-bold capitalize leading-snug">out of stock items</div>
-            <div className="w-12 h-6 relative">
-              <div className="w-12 h-6 left-0 top-0 absolute bg-pink-800"></div>
-              <div className="w-4 h-4 left-[28px] top-[4px] absolute bg-white shadow"></div>
-            </div>
-          </div>
-          {/* out of stock button end */}
-
-          {/* filter category selection start */}
-          <div className="w-72 h-[394px] p-4 bg-white border-b border-neutral-200 flex-col justify-start items-start gap-4 inline-flex">
-            <div className="w-64 justify-start items-center gap-2 inline-flex">
-              <div className="grow shrink basis-0 text-pink-800 text-base font-bold capitalize leading-snug">
-                category
-              </div>
-              <img src='productpage/arrow_drop_up.svg' />
-            </div>
-            <div className="flex-col justify-start items-start gap-2 flex">
-              <div className="w-64 justify-start items-center gap-2 inline-flex">
-                <div className="w-4 h-4 relative">
-                  <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  <div className="w-[10.67px] h-[10.67px] left-[2.67px] top-[2.67px] absolute bg-neutral-950"></div>
-                </div>
-                <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">cleansers</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">exfoliators</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">toners</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">retinols</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                    <div className="w-[10.67px] h-[10.67px] left-[2.67px] top-[2.67px] absolute bg-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">peels and masques</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">moisturiser</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">night cream</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">facial oil</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">sunscreen</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">eye care</div>
-                </div>
-              </div>
-            </div>
-            {/* filter category selection end */}
-
-            {/* filter Skin Condition selection start */}
-            <div className="w-72 h-[295px] p-4 bg-white border-b border-neutral-200 flex-col justify-start items-start gap-4 inline-flex">
-              <div className="w-64 justify-start items-center gap-2 inline-flex">
-                <div className="grow shrink basis-0 text-pink-800 text-base font-bold capitalize leading-snug">
-                  skin condition
-                </div>
-                <img src='productpage/arrow_drop_up.svg' />
-              </div>
-              <div className="flex-col justify-start items-start gap-2 flex">
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">brightening</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">hydration</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">acne</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">anti-ageing</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">redness</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">sensitive skin</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">sun protection</div>
-                </div>
-              </div>
-            </div>
-            {/* filter Skin Condition selection end */}
-
-            {/* filter Featured selection start */}
-            <div className="w-72 h-[229px] p-4 bg-white border-b border-neutral-200 flex-col justify-start items-start gap-4 inline-flex">
-              <div className="w-64 justify-start items-center gap-2 inline-flex">
-                <div className="grow shrink basis-0 text-pink-800 text-base font-bold capitalize leading-snug">
-                  featured
-                </div>
-                <img src='productpage/arrow_drop_up.svg' />
-              </div>
-              <div className="flex-col justify-start items-start gap-2 flex">
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                      <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">new</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">best sellers</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">travel size</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">professional treatments</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">daily defense</div>
-                </div>
-              </div>
-            </div>
-            {/* filter Featured selection end */}
-            
-            {/* filter Price selection start */}
-            <div className="w-72 h-[229px] p-4 bg-white border-b border-neutral-200 flex-col justify-start items-start gap-4 inline-flex">
-              <div className="w-64 justify-start items-center gap-2 inline-flex">
-                <div className="grow shrink basis-0 text-pink-800 text-base font-bold capitalize leading-snug">
-                  price
-                </div>
-                <img src='productpage/arrow_drop_up.svg' />
-              </div>
-
-              <div className="flex-col justify-start items-start gap-2 flex">
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">$50.00 - $150.00</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">$150.00 - $250.00</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">$250.00 - $350.00</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">$350.00 - $450.00</div>
-                </div>
-                <div className="w-64 justify-start items-center gap-2 inline-flex">
-                  <div className="w-4 h-4 relative">
-                    <div className="w-4 h-4 left-0 top-0 absolute rounded-sm border-2 border-neutral-950"></div>
-                  </div>
-                  <div className="grow shrink basis-0 text-neutral-950 text-sm font-normal capitalize leading-[25.20px]">$450.00 - $550.00</div>
-                </div>
-              </div>
-          </div>
-          {/* filter Price selection end */}
-        </div>
-      </div>
-      {/* left side filter options end */}
+        {/* sort and filter small screen*/} 
+        <FilterOptionsMobile
+          appliedFilters={appliedFilters}
+          removeFilter={removeFilter}
+          setIsOutOfStock={setIsOutOfStock}
+          isOutOfStock={isOutOfStock}
+          categoryFilters={categoryFilters}
+          skinFilters={skinFilters}
+          featuredFilters={featuredFilters}
+          priceFilters={priceFilters}
+          handleFiltersChange={handleFiltersChange}
+          setShowSortFilters={setShowSortFilters}
+          setShowSortedValue={setShowSortedValue}
+          showSortFilters={showSortFilters}
+          showSortedValue={showSortedValue}
+        />  
+   
+        {/* sort filter on desktop */}
+        <SortFilterDesktop
+          setShowSortFilters={setShowSortFilters}
+          setShowSortedValue={setShowSortedValue}
+          showSortFilters={showSortFilters}
+          showSortedValue={showSortedValue}
+        />
       
-      {/* Right side product dispaly start */}
-      <div className="left-[420px] top-[172px] absolute flex-col justify-center items-center gap-6 inline-flex flex-wrap">
-        <div className="justify-center items-center gap-6 inline-flex">
 
-          {/* fisrt div two product and promotion display start */}
-          { products.slice(0, 2).map((product) => (
-            <ProductCard
-            key={product.id}
-            id={product.id}
-            title={product.title}
-            smallDescription={product.smallDescription}
-            image={product.image}
-            price={product.price}
-            />
-            ))
-          }
-          {/* promotion help expert advise end */}
-            <div className="w-72 h-[560px] relative bg-rose-950">
-              <div className="w-[255px] h-[254px] left-[32px] top-[187px] absolute border border-white  bg-rose-900 rounded-full blur-[50px] "></div>
-              <Image 
-                src="productpage/expertadvice.svg"
-                width={353}
-                height={311}
-                alt='' 
-                className="w-[353.28px] h-[311px] top-[249px] absolute" 
-              />
-              <h2 className="left-[16px] top-[24px] absolute text-white text-xl font-bold leading-7">1-2-1 expert advice</h2>
-              <p className="w-64 left-[16px] top-[60px] absolute text-white text-sm font-normal capitalize leading-[25.20px]">take some time to feel uplifted with a complimentary, bespoke beauty service. our team of experts are here to help in person.</p>
-            </div>
-          </div>
-          {/* promotion help expert advise start */}
-          {/* fisrt div two product and promotion display start */}
 
-          {/* second div to display 3 products start */}
-          <div className="justify-start items-start gap-6 inline-flex">
-          { products.slice(2, 5) .map((product) => (
-            <ProductCard
-            id={product.id}
-            title={product.title}
-            smallDescription={product.smallDescription}
-            image={product.image}
-            price={product.price}
-            />
-            ))
-          }
-          </div>
 
-          {/* third div promotion and one product display start */}
-          <div className="justify-center items-start gap-6 inline-flex">
-            <div className="justify-center items-center gap-6 flex">
-              <div className="w-[600px] h-[560px] relative">
-                <img className="w-[600px] h-[560px] left-0 top-0 absolute" src="productpage/award.svg" />
-                <div className="left-[16px] top-[24px] absolute flex-col justify-start items-start gap-3 inline-flex">
-                  <div className="self-stretch text-white text-xl font-bold leading-7">#AWARDED</div>
-                  <div className="h-[105px] flex-col justify-start items-start gap-2 flex">
-                    <div className="self-stretch text-white text-base font-bold capitalize leading-snug">capture totale super potent rich cream</div>
-                    <div className="self-stretch text-white text-sm font-normal capitalize leading-[25.20px]">Global age-defying rich cream - intense nourishment & revitalisation<br/>Formulated with 88% natural-origin ingredients</div>
+        {/* filter and product card section */}
+        <div className='flex flex-row gap-6'>
+          {/* LEFT SIDE - FILTER OPTIONS START*/}
+          <FilterOptionsDesktop
+            appliedFilters={appliedFilters}
+            removeFilter={removeFilter}
+            setIsOutOfStock={setIsOutOfStock}
+            isOutOfStock={isOutOfStock}
+            categoryFilters={categoryFilters}
+            skinFilters={skinFilters}
+            featuredFilters={featuredFilters}
+            priceFilters={priceFilters}
+            handleFiltersChange={handleFiltersChange}
+          />
+          {/* LEFT SIDE - FILTER OPTIONS END*/}
+          
+          {/* RIGHT SIDE - PRODUCT CARDS START*/}
+          <div className="mt-4 laptop:mt-[172px] flex-col justify-center tablet:justify-end items-center gap-6 inline-flex flex-wrap">
+            
+            <section className="grid grid-cols-2 laptop-lg:grid-cols-3 items-center gap-1 mobile-m:gap-3 mobile-l:gap-5 tablet:gap-6">
+
+              {/* fisrt section to show two product and promotion start */}
+              { filteredProducts && filteredProducts.length > 0  ? (
+                filteredProducts?.slice(0, 2).map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    title={product.title}
+                    smallDescription={product.smallDescription}
+                    image={product.thumbnail}
+                    price={product.price}
+                    outofstock={product.outofstock}
+                  />
+                ))
+                ):(
+                products?.slice(0, 2).map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    title={product.title}
+                    smallDescription={product.smallDescription}
+                    image={product.thumbnail}
+                    price={product.price}
+                    outofstock={product.outofstock}
+                  />
+                )))
+              }
+
+              {/* promotion help expert advise end */}
+                <div className="w-[152px] tablet:w-72 h-[345px] tablet:h-[560px] relative bg-rose-950">
+                  <div className="w-[119px] tablet:w-[255px] h-[118.53px] tablet:h-[254px] left-[32px] top-[187px] absolute border border-white  bg-rose-900 rounded-full blur-[50px] "></div>
+                  <Image 
+                    src="productpage/expertadvice.svg"
+                    width={353}
+                    height={311}
+                    alt='' 
+                    className="w-[184px] h-[162px] tablet:w-[353.28px] tablet:h-[311px] top-[184px] tablet:top-[249px] absolute" 
+                  />
+                  <h2 className="w-[136px] left-[8px] tablet:left-[16px] top-[16px] tablet:top-[24px] absolute text-white text-base tablet:text-xl font-bold leading-snug tablet:leading-7">1-2-1 expert advice</h2>
+                  <p className="w-[135px] tablet:w-64 left-[9px] tablet:left-[16px] top-[68px]  tablet:top-[90px] absolute text-white text-xs tablet:text-sm font-normal capitalize tablet:leading-[25.20px]">take some time to feel uplifted with a complimentary, bespoke beauty service. our team of experts are here to help in person.</p>
+                </div>
+            </section>
+            {/* promotion help expert advise start */}
+              
+            {/* fisrt div two product and promotion display end */}
+
+            {/* second section to display 3 products start */}
+            <section className="grid grid-cols-2 laptop-lg:grid-cols-3 gap-1 mobile-m:gap-3 mobile-l:gap-5 tablet:gap-6">
+              { filteredProducts && filteredProducts.length > 0  ? (
+                filteredProducts?.slice(2, 5).map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    title={product.title}
+                    smallDescription={product.smallDescription}
+                    image={product.thumbnail}
+                    price={product.price}
+                    outofstock={product.outofstock}
+                  />
+                ))
+              ):(
+                products?.slice(2, 5).map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    title={product.title}
+                    smallDescription={product.smallDescription}
+                    image={product.thumbnail}
+                    price={product.price}
+                    outofstock={product.outofstock}
+                  />
+                )))
+              }
+            </section>
+
+            {/* third section to show one products and one promotion start */}
+            <section className="grid grid-cols-2 laptop-lg:grid-cols-3 gap-1 mobile-m:gap-3 mobile-l:gap-5 tablet:gap-6">
+
+              <div className="hidden tablet:flex items-center justify-center gap-6 col-span-2">
+                <div className="w-[600px] h-[560px] relative">
+                  <img className="w-[600px] h-[560px] left-0 top-0 absolute" src="productpage/award.svg" />
+                  <div className="left-[16px] top-[24px] absolute flex-col justify-start items-start gap-3 inline-flex">
+                    <div className="self-stretch text-xl font-bold leading-7 text-white">#AWARDED</div>
+                    <div className="h-[105px] flex-col justify-start items-start gap-2 flex">
+                      <div className="self-stretch text-base font-bold leading-snug text-white capitalize">capture totale super potent rich cream</div>
+                      <div className="self-stretch text-white text-sm font-normal capitalize leading-[25.20px]">Global age-defying rich cream - intense nourishment & revitalisation<br/>Formulated with 88% natural-origin ingredients</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            { products.slice(5, 6) .map((product) => (
-                <ProductCard
-                  id={product.id}
-                  title={product.title}
-                  smallDescription={product.smallDescription}
-                  image={product.image}
-                  price={product.price}
-                />
-              ))
-           }
-          </div>
-          {/* third div promotion and one product display start */}
-
-          {/* fourth div displays three products start */}
-          <div className="justify-start items-start gap-6 inline-flex">
-            { products.slice(6, 9) .map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                title={product.title}
-                smallDescription={product.smallDescription}
-                image={product.image}
-                price={product.price}
-              />
-              ))
-            }
-          </div>
-          {/* fourth div displays three products end */}
-
-          {/* fifth div promotion and two product display start */}
-          <div className="justify-start items-start gap-6 inline-flex">
-            { products.slice(6, 8) .map((product) => (
-                <ProductCard
-                  key={product.id}
-                  id={product.id}
-                  title={product.title}
-                  smallDescription={product.smallDescription}
-                  image={product.image}
-                  price={product.price}
-                />
-              ))
-            }
-            <div className="w-72 h-[560px] relative bg-rose-950">
-              <div className="w-[255px] h-[254px] left-[32px] top-[187px] absolute z-[1] border border-white  bg-rose-900 rounded-full blur-[50px] "></div>
-              <Image 
-                src="/productpage/facial.png"
-                width={353}
-                height={311}
-                alt='' 
-                className="w-[353.28px] h-[311px] top-[249px] absolute object-cover" 
-              />
-              <div className='px-[16px] py-[24px] flex flex-col gap-2 absolute '>
-                <h2 className="w-64 text-white text-xl font-bold leading-7">NEW Virtual Skincare Analysis</h2>
-                <p className="w-64 text-white text-sm font-normal capitalize leading-[25.20px]">
-                  Looking for a full skincare routine? Our NEW Virtual Skincare Analysis Tool evaluates your skin and provides the most personalized recommendations. 
-                </p>
-                <h3 className="w-64 text-white text-sm font-semibold leading-[25.20px]">Available exclusively for mobile</h3>
-              </div>
-              <div className="w-[163px] text-neutral-950 text-base font-bold capitalize leading-snug absolute top-[507px] left-[16px]">
-                Scan To Get Started
-              </div>
-              <img className="w-[68px] h-[68px] absolute top-[484px] left-[207px]" src="productpage/scan.svg" />
-            </div>
-          </div>
-          {/* <div className="justify-center items-start gap-6 inline-flex flex-wrap "> */}
-          <div className="flex flex-wrap justify-center items-start gap-6">
-            { products.slice(8) .map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                title={product.title}
-                smallDescription={product.smallDescription}
-                image={product.image}
-                price={product.price}
-              />
-              ))
-            }
-
-          </div>
-      </div>
               
-    </Wrapper>
+              { filteredProducts && filteredProducts.length > 0  ? (
+                  filteredProducts?.slice(5, 6).map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      id={product.id}
+                      title={product.title}
+                      smallDescription={product.smallDescription}
+                      image={product.thumbnail}
+                      price={product.price}
+                      outofstock={product.outofstock}
+                    />
+                  ))
+                ):(
+                  products?.slice(5, 6).map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      id={product.id}
+                      title={product.title}
+                      smallDescription={product.smallDescription}
+                      image={product.thumbnail}
+                      price={product.price}
+                      outofstock={product.outofstock}
+                    />
+                  )))
+              }
+            </section>
+            {/* third section to show oneproducts and one promotion start */}
 
+            {/* fourth section to display three products start */}
+            <section className="grid grid-cols-2 laptop-lg:grid-cols-3 gap-1 mobile-m:gap-3 mobile-l:gap-5 tablet:gap-6">
+              { filteredProducts && filteredProducts.length > 0  ? (
+                  filteredProducts?.slice(6, 9).map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      id={product.id}
+                      title={product.title}
+                      smallDescription={product.smallDescription}
+                      image={product.thumbnail}
+                      price={product.price}
+                      outofstock={product.outofstock}
+                    />
+                  ))
+                ):(
+                  products?.slice(6, 9).map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      id={product.id}
+                      title={product.title}
+                      smallDescription={product.smallDescription}
+                      image={product.thumbnail}
+                      price={product.price}
+                      outofstock={product.outofstock}
+                    />
+                )))
+              }
+            </section>
+            {/* fourth section to display three products start */}
+
+            {/* fifth section to display two products and one promotion */}
+            <section className="grid grid-cols-2 laptop-lg:grid-cols-3 gap-1 mobile-m:gap-3 mobile-l:gap-5 tablet:gap-6">
+              { filteredProducts && filteredProducts.length > 0  ? (
+                  filteredProducts?.slice(9, 11).map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      id={product.id}
+                      title={product.title}
+                      smallDescription={product.smallDescription}
+                      image={product.thumbnail}
+                      price={product.price}
+                      outofstock={product.outofstock}
+                    />
+                  ))
+                ):(
+                  products?.slice(9, 11).map((product) => (
+                    <ProductCard
+                      key={product.id}
+                      id={product.id}
+                      title={product.title}
+                      smallDescription={product.smallDescription}
+                      image={product.thumbnail}
+                      price={product.price}
+                      outofstock={product.outofstock}
+                    />
+                  )))
+              }
+              {/* promotion image */}
+              <div className="w-[152px] h-[345px] tablet:w-72 tablet:h-[560px] relative bg-rose-950">
+              <div className="w-[119px] tablet:w-[255px] h-[118.53px] tablet:h-[254px] left-[32px] top-[187px] absolute border border-white  bg-rose-900 rounded-full blur-[50px] "></div>
+                <Image 
+                  src="/productpage/facial.png"
+                  width={353}
+                  height={311}
+                  alt='' 
+                  className="w-[139px] tablet:w-[353.28px] h-[139px] tablet:h-[311px] top-[206px] tablet:top-[249px] absolute object-cover" 
+                />
+                <div className='px-[16px] py-[24px] flex flex-col gap-2 absolute '>
+                  <h2 className="w-[136px] tablet:w-64 text-base tablet:text-xl font-bold tablet:leading-7 text-white">NEW Virtual Skincare Analysis</h2>
+                  <p className="w-[136px] tablet:w-64 text-white text-xs tablet:text-sm font-normal capitalize tablet:leading-[25.20px]">
+                    Looking for a full skincare routine? Our NEW Virtual Skincare Analysis Tool evaluates your skin and provides the most 
+                    personalized recommendations. 
+                  </p>
+                  <h3 className="hidden tablet:visible w-[136px] tablet:w-64 text-white text-xs tablet:text-sm font-semibold tablet:leading-[25.20px]">Available exclusively for mobile</h3>
+                </div>
+                <div className="hidden tablet:visible w-[163px] text-neutral-950 text-base font-bold capitalize leading-snug absolute top-[507px] left-[16px]">
+                  Scan To Get Started
+                </div>
+                <img className="w-[68px] h-[68px] absolute top-[484px] left-[207px]" src="productpage/scan.svg" />
+              </div>
+            </section>
+              
+              {/* section to display all products */}
+              {/* <div className="inline-flex flex-wrap items-start justify-center gap-6 "> */}
+              <section className="grid grid-cols-2 laptop-lg:grid-cols-3 gap-1 mobile-m:gap-3 mobile-l:gap-5 tablet:gap-6 bg-fuchsia-400">
+                { filteredProducts && filteredProducts.length > 0  ? (
+                    filteredProducts?.slice(11).map((product) => (
+                        <ProductCard
+                          key={product.id}
+                          id={product.id}
+                          title={product.title}
+                          smallDescription={product.smallDescription}
+                          image={product.thumbnail}
+                          price={product.price}
+                          outofstock={product.outofstock}
+                        />
+                      ))
+                    ):(
+                      products?.slice(11).map((product) => (
+                        <ProductCard
+                          key={product.id}
+                          id={product.id}
+                          title={product.title}
+                          smallDescription={product.smallDescription}
+                          image={product.thumbnail}
+                          price={product.price}
+                          outofstock={product.outofstock}
+                        />
+                    )))
+                }
+              </section>
+          </div>
+          {/* RIGHT SIDE - PRODUCT CARDS START*/}
+        </div>    
+      </section> 
+    </Wrapper>
   )
 }
 

@@ -25,10 +25,12 @@
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "clsx": "^2.0.0",
+    "heroicons": "^2.0.18",
     "next": "13.4.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "react-multi-carousel": "^2.8.4"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
