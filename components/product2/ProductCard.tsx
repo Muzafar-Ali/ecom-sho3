@@ -5,16 +5,17 @@ interface ProductCardProps {
   id: number,
   title: string,
   smallDescription: string,
-  image: string,
+  thumbnail: string,
+  images?: string[],
   price: number 
   outofstock: boolean
 }
 
-const ProductCard: FC<ProductCardProps> = ({ id, title, smallDescription, image, price, outofstock}) => {
+const ProductCard: FC<ProductCardProps> = ({ id, title, smallDescription, thumbnail, price, outofstock,images}) => {
   return (
     <div className="w-[152px] tablet:w-[288px] pb-2 tablet:pb-6 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 tablet:gap-4 inline-flex relative">
       <Image 
-        src={ image }
+        src={ thumbnail }
         width={288}
         height={384}
         alt="" 
@@ -27,10 +28,8 @@ const ProductCard: FC<ProductCardProps> = ({ id, title, smallDescription, image,
       </div>
       {/* out of stock  */}
       { outofstock && 
-        <div>
           <h2 className='border border-red-500 py-2 px-4 capitalize texred absolute top-2 left-2'>out of stock</h2>
-        </div> 
-       }
+      }
       
     </div>
   )

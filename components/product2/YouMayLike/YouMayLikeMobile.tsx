@@ -38,18 +38,19 @@ const YouMayLikeMobile:React.FC<SkinCareProduct> = ({products}) => {
                 width={152}
                 height={202}
                 alt={item.title} 
-                className="w-[135px] mobile-m:w-[160px] mobile-l:w-[180px] h-[202px] object-cover" 
+                className="w-[135px] mobile-m:w-[160px] mobile-l:w-[180px] h-[180px] mobile-m:h-[202px] object-cover" 
               />
 
             </div>
 
-            <div className="self-stretch h-auto px-2 mt-[8px] flex-col justify-start items-start gap-3 mobile-m:gap-2 flex">
+            <div className="self-stretch h-auto px-2 mt-[8px] flex-col justify-start items-start gap-4 mobile-m:gap-2 flex">
               <div className="self-stretch h-10 text-pink-800 text-sm font-semibold leading-tight">{ item.title }</div>
                 <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal leading-none">{ item.smallDescription }</div>
                 <div className="self-stretch text-neutral-950 text-sm font-semibold leading-tight">$<span>{ item.price }</span></div>
               </div>
             </div>
-          ))
+
+        ))
         }
       </Carousel>
     </section>

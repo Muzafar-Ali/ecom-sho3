@@ -22,7 +22,7 @@ export const products = [
     },
     {
         id: 2,
-        title: 'Beautya  La Mousse Off/On Foaming Cleaner',
+        title: 'Beautya La Mousse Off/On Foaming Cleaner',
         category:'exfoliators',
         smallDescription: 'Anti-Pollution Foaming Cleanser with Purifying French Water Lily',
         thumbnail: '/productpage/p2.png',

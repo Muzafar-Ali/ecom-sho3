@@ -107,7 +107,7 @@ const Products = () => {
     <Wrapper>
   
       {/* sort and filter desktop screen*/}
-      <section className='flex flex-col items-center h-auto tablet:h-auto overflow-y-auto laptop-lg:px-[108px] pb-5 relative'>
+      <section className='flex flex-col items-center h-auto tablet:h-auto overflow-y-auto -px-[20px] laptop-lg:px-[108px] pb-5 relative'>
 
                 {/* page tage */}
         <section>
@@ -181,7 +181,7 @@ const Products = () => {
                     id={product.id}
                     title={product.title}
                     smallDescription={product.smallDescription}
-                    image={product.thumbnail}
+                    thumbnail={product.thumbnail}
                     price={product.price}
                     outofstock={product.outofstock}
                   />
@@ -193,7 +193,7 @@ const Products = () => {
                     id={product.id}
                     title={product.title}
                     smallDescription={product.smallDescription}
-                    image={product.thumbnail}
+                    thumbnail={product.thumbnail}
                     price={product.price}
                     outofstock={product.outofstock}
                   />
@@ -227,7 +227,7 @@ const Products = () => {
                     id={product.id}
                     title={product.title}
                     smallDescription={product.smallDescription}
-                    image={product.thumbnail}
+                    thumbnail={product.thumbnail}
                     price={product.price}
                     outofstock={product.outofstock}
                   />
@@ -239,7 +239,7 @@ const Products = () => {
                     id={product.id}
                     title={product.title}
                     smallDescription={product.smallDescription}
-                    image={product.thumbnail}
+                    thumbnail={product.thumbnail}
                     price={product.price}
                     outofstock={product.outofstock}
                   />
@@ -270,7 +270,7 @@ const Products = () => {
                       id={product.id}
                       title={product.title}
                       smallDescription={product.smallDescription}
-                      image={product.thumbnail}
+                      thumbnail={product.thumbnail}
                       price={product.price}
                       outofstock={product.outofstock}
                     />
@@ -282,7 +282,7 @@ const Products = () => {
                       id={product.id}
                       title={product.title}
                       smallDescription={product.smallDescription}
-                      image={product.thumbnail}
+                      thumbnail={product.thumbnail}
                       price={product.price}
                       outofstock={product.outofstock}
                     />
@@ -300,7 +300,7 @@ const Products = () => {
                       id={product.id}
                       title={product.title}
                       smallDescription={product.smallDescription}
-                      image={product.thumbnail}
+                      thumbnail={product.thumbnail}
                       price={product.price}
                       outofstock={product.outofstock}
                     />
@@ -312,7 +312,7 @@ const Products = () => {
                       id={product.id}
                       title={product.title}
                       smallDescription={product.smallDescription}
-                      image={product.thumbnail}
+                      thumbnail={product.thumbnail}
                       price={product.price}
                       outofstock={product.outofstock}
                     />
@@ -330,7 +330,7 @@ const Products = () => {
                       id={product.id}
                       title={product.title}
                       smallDescription={product.smallDescription}
-                      image={product.thumbnail}
+                      thumbnail={product.thumbnail}
                       price={product.price}
                       outofstock={product.outofstock}
                     />
@@ -342,7 +342,7 @@ const Products = () => {
                       id={product.id}
                       title={product.title}
                       smallDescription={product.smallDescription}
-                      image={product.thumbnail}
+                      thumbnail={product.thumbnail}
                       price={product.price}
                       outofstock={product.outofstock}
                     />
@@ -383,7 +383,7 @@ const Products = () => {
                           id={product.id}
                           title={product.title}
                           smallDescription={product.smallDescription}
-                          image={product.thumbnail}
+                          thumbnail={product.thumbnail}
                           price={product.price}
                           outofstock={product.outofstock}
                         />
@@ -395,7 +395,7 @@ const Products = () => {
                           id={product.id}
                           title={product.title}
                           smallDescription={product.smallDescription}
-                          image={product.thumbnail}
+                          thumbnail={product.thumbnail}
                           price={product.price}
                           outofstock={product.outofstock}
                         />

@@ -43,7 +43,7 @@ const ProductDetails = () => {
   };
   
   return (
-    <Wrapper className="h-[3855px] max-laptop:h-[5109px] pb-[52px] overflow-y-auto ">
+    <Wrapper className="h-auto pb-[52px] overflow-y-auto ">
 
       {/* product images and detail page start*/}
       <section className='mt-[58px] flex flex-row max-laptop:flex-col gap-[24px] px-[20px] tablet:px-[54px] laptop-lg:px-[108px] relative w-full'>
