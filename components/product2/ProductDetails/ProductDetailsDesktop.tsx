@@ -17,7 +17,7 @@ const ProductDetailsDesktop:React.FC<ProductDetailsDesktopProps> = ({
   setShowLess
 }) => {
   return (
-    <div className='flex flex-col mt-[32px] mb-[56px] px-[108px] max-tablet:hidden'>
+    <div className='flex flex-col mt-[32px] mb-[56px] px-[108px] max-laptop:hidden'>
       <div className="w-[1224px] h-11 border-b border-zinc-600 justify-between items-start inline-flex mt-[32px]">
         
         <div className={`${detailsLabel === 'Product Details' ? 'border-b-2 border-pink-800' : '' } w-[154px] py-2 justify-start items-center gap-2 flex`}>

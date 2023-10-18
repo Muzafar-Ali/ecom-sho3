@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { GrFormClose } from "react-icons/gr";
+import CategoryFilter from "../FilterOptions/CategoryFilter";
+import FeaturedFilter from "../FilterOptions/FeaturedFilter";
+import { FilterOptionsDesktopProps } from "../FilterOptions/FilterOptionsDesktop";
+import PriceFilter from "../FilterOptions/PriceFilter";
+import SkinFilter from "../FilterOptions/SkinFilter";
 import { SortFilterDesktopProps } from "../SortFilterDesktop";
-import CategoryFilter from "../filterOptions/CategoryFilter";
-import FeaturedFilter from "../filterOptions/FeaturedFilter";
-import { FilterOptionsDesktopProps } from "../filterOptions/FilterOptionsDesktop";
-import PriceFilter from "../filterOptions/PriceFilter";
-import SkinFilter from "../filterOptions/SkinFilter";
 import SortFilterMobile from "./SortFilterMobile";
 
 interface FilterOptionsMobileProps extends FilterOptionsDesktopProps, SortFilterDesktopProps {} 

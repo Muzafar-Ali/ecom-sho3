@@ -1,13 +1,15 @@
 "use client"
 import Wrapper from "components/Wrapper"
+import BranchStock from "components/product2/BranchStock"
 import ProductDetailsDesktop from "components/product2/ProductDetails/ProductDetailsDesktop"
 import ProductDetailsMobile from "components/product2/ProductDetails/ProductDetailsMobile"
 import PromoDesktop from "components/product2/Promo/PromoDesktop"
 import PromoMobile from "components/product2/Promo/PromoMobile"
 import SkinCareRecommended from "components/product2/SkinCareRecommended"
 import SkinCareRecommendedMobile from "components/product2/SkinCareRecommendedMobile"
-import YouMayLike from "components/product2/YouMayLike"
-import BranchStock from "components/products/BranchStock"
+import YouMayLikeDesktop from "components/product2/YouMayLike/YouMayLikeDesktop"
+import YouMayLike from "components/product2/YouMayLike/YouMayLikeDesktop"
+import YouMayLikeMobile from "components/product2/YouMayLike/YouMayLikeMobile"
 import { detailsData } from "lib/productData/detailsData"
 import { faq } from "lib/productData/faq"
 import { products } from "lib/productData/productdata"
@@ -44,7 +46,7 @@ const ProductDetails = () => {
     <Wrapper className="h-[3855px] max-laptop:h-[5109px] pb-[52px] overflow-y-auto ">
 
       {/* product images and detail page start*/}
-      <section className='mt-[58px] flex flex-row max-laptop:flex-col gap-[24px] px-[20px] tablet:px-[54px] laptop-lg:px-[108px] relative w-ful'>
+      <section className='mt-[58px] flex flex-row max-laptop:flex-col gap-[24px] px-[20px] tablet:px-[54px] laptop-lg:px-[108px] relative w-full'>
 
         {/* product small images  */}
         <section className="flex flex-col laptop:flex-row gap-2 tablet:gap-3 laptop:gap-6">
@@ -136,7 +138,7 @@ const ProductDetails = () => {
             </button>
 
             {/* value proposition start */}
-            <div className="h-[178px] w-full p-4 mt-[16px] bg-red-50 flex-col justify-start items-start gap-4 inline-flex">
+            <div className="h-autow w-full p-4 mt-[16px] bg-red-50 flex-col justify-start items-start gap-4 inline-flex">
 
               <div className="self-stretch justify-start items-center gap-4 flex">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -174,15 +176,16 @@ const ProductDetails = () => {
       {/* product images and detail page end*/}
 
       {/* product details and information Desktop */}
-        <ProductDetailsDesktop
-          detailsLabel={detailsLabel}
-          setDetailsLabel={setDetailsLabel}
-          matchedDetails={matchedDetails}
-          showLess={showLess}
-          setShowLess={setShowLess}
-        />
+      <ProductDetailsDesktop
+        detailsLabel={detailsLabel}
+        setDetailsLabel={setDetailsLabel}
+        matchedDetails={matchedDetails}
+        showLess={showLess}
+        setShowLess={setShowLess}
+      />
 
       {/* product details and information Mobile */}
+      <div className="w-full">
         <ProductDetailsMobile
           detailsLabel={detailsLabel}
           setDetailsLabel={setDetailsLabel}
@@ -190,364 +193,89 @@ const ProductDetails = () => {
           showLess={showLess}
           setShowLess={setShowLess}
         />
+      </div>
 
       {/* promo 4 images of 288 x 288  Desktop */}
-        <PromoDesktop/>
+      <PromoDesktop/>
 
       {/* promo 4 images of 288 x 288  Mobile */}
-        <PromoMobile/>
+      <PromoMobile/>
 
       {/* Frequently Asked Questions FAQ start */}
-      <section className="px-[20px] tablet:px-[108px] mt-[32px] tablet:mt-[56px] inline-flex flex-col">
+      <section className="w-full px-[20px] tablet:px-[54px] laptop:px-[108px] mt-[32px] inline-flex flex-col">
         
-        <div className="text-neutral-950 text-xl tablet:text-2xl font-bold capitalize leading-7 tablet:leading-[33.60px] text-center max-tablet:w-80 py-[32px]">
+        <div className="text-neutral-950 text-xl tablet:text-2xl font-bold capitalize leading-7 tablet:leading-[33.60px] text-center w-full pb-[16px]">
           <span>{products[0]?.title}</span> frequently asked questions
         </div>
+        
+        { faq.map((item, index) => (
+          <div className="w-full h-auto flex-col justify-start items-start inline-flex"> 
 
-        <div className="w-80 tablet:w-[1224px] h-auto flex-col justify-start items-start inline-flex bg-blue-400"> 
-
-          <div className={`${productFAQ === 'What is the best way to use this product?' ? 'hidden':'visible' }  self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex`}>
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-              What is the best way to use this product?
+            <div className={`${productFAQ === item.question ? 'hidden':'visible' } w-full self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex`}>
+              <div className="w-full grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
+                {item.question}
+              </div>
+              <button className="cursor-pointer" >
+                <GrFormAdd
+                onClick={() => setProductFAQ(item.question)} 
+                className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                />
+              </button>
             </div>
-            <button className="cursor-pointer" >
-              <GrFormAdd
-              onClick={() => setProductFAQ('What is the best way to use this product?')} 
-              className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-              />
-            </button>
-          </div>
 
-          <div className="w-full">
-            { matchedFAQ.map((faq) => (
-                <div className={`${productFAQ === 'What is the best way to use this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
-                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-                      {productFAQ}
-                    </div>
-                    <div className="cursor-pointer" >
-                      <GrFormSubtract 
-                        onClick={() => setProductFAQ('')} 
-                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-                      />
-                    </div>
+            <div className="w-full">
+              <div className={`${productFAQ === item.question ? 'visible':'hidden' } w-full self-stretch h-auto tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
+                <div className="self-stretch justify-start items-center gap-2 inline-flex">
+                  <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
+                    {productFAQ}
                   </div>
-                  
-                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
-                      {faq.answer}  
-                    </div>
+                  <div className="cursor-pointer" >
+                    <GrFormSubtract 
+                      onClick={() => setProductFAQ('')} 
+                      className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
+                    />
                   </div>
                 </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <div className="w-80 tablet:w-[1224px] h-auto flex-col justify-start items-start inline-flex"> 
-
-          <div className={`${productFAQ === 'Can this product be used on all skin types?' ? 'hidden':'visible' }  self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex`}>
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-              Can this product be used on all skin types?
-            </div>
-            <button className="cursor-pointer" >
-              <GrFormAdd
-              onClick={() => setProductFAQ('Can this product be used on all skin types?')} 
-              className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-              />
-            </button>
-          </div>
-
-          <div className="w-full">
-            { matchedFAQ.map((faq) => (
-                <div className={`${productFAQ === 'Can this product be used on all skin types?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
-                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-                      {productFAQ}
-                    </div>
-                    <div className="cursor-pointer" >
-                      <GrFormSubtract 
-                        onClick={() => setProductFAQ('')} 
-                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
-                      {faq.answer}  
-                    </div>
+                
+                <div className="self-stretch px-2 tablet:px-4 py-2 h-auto justify-start items-start gap-2 inline-flex">
+                  <div className=" text-neutral-950 text-xs tablet:text-base font-normal capitalize leading-4 tablet:leading-7 "> 
+                    {item.answer}  
                   </div>
                 </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <div className="w-80 tablet:w-[1224px] h-auto flex-col justify-start items-start inline-flex"> 
-
-          <div className={`${productFAQ === 'How often should I use this product?' ? 'hidden':'visible' }  self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex`}>
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-              How often should I use this product?
+              </div>
             </div>
-            <button className="cursor-pointer" >
-              <GrFormAdd
-              onClick={() => setProductFAQ('How often should I use this product?')} 
-              className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-              />
-            </button>
           </div>
-
-          <div className="w-full">
-            { matchedFAQ.map((faq) => (
-                <div className={`${productFAQ === 'How often should I use this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
-                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-                      {productFAQ}
-                    </div>
-                    <div className="cursor-pointer" >
-                      <GrFormSubtract 
-                        onClick={() => setProductFAQ('')} 
-                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
-                      {faq.answer}  
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <div className="w-80 tablet:w-[1224px] h-auto flex-col justify-start items-start inline-flex"> 
-
-          <div className={`${productFAQ === 'Can this product be used during pregnancy?' ? 'hidden':'visible' }  self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex`}>
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-              Can this product be used during pregnancy?
-            </div>
-            <button className="cursor-pointer" >
-              <GrFormAdd
-              onClick={() => setProductFAQ('Can this product be used during pregnancy?')} 
-              className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-              />
-            </button>
-          </div>
-
-          <div className="w-full">
-            { matchedFAQ.map((faq) => (
-                <div className={`${productFAQ === 'Can this product be used during pregnancy?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
-                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-                      {productFAQ}
-                    </div>
-                    <div className="cursor-pointer" >
-                      <GrFormSubtract 
-                        onClick={() => setProductFAQ('')} 
-                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
-                      {faq.answer}  
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <div className="w-80 tablet:w-[1224px] h-auto flex-col justify-start items-start inline-flex"> 
-
-          <div className={`${productFAQ === 'How should I store this product?' ? 'hidden':'visible' }  self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex`}>
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-              How should I store this product?
-            </div>
-            <button className="cursor-pointer" >
-              <GrFormAdd
-              onClick={() => setProductFAQ('How should I store this product?')} 
-              className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-              />
-            </button>
-          </div>
-
-          <div className="w-full">
-            { matchedFAQ.map((faq) => (
-                <div className={`${productFAQ === 'How should I store this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
-                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-                      {productFAQ}
-                    </div>
-                    <div className="cursor-pointer" >
-                      <GrFormSubtract 
-                        onClick={() => setProductFAQ('')} 
-                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
-                      {faq.answer}  
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <div className="w-80 tablet:w-[1224px] h-auto flex-col justify-start items-start inline-flex"> 
-
-          <div className={`${productFAQ === 'How long will it take to see results from using this product?' ? 'hidden':'visible' }  self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex`}>
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-              How long will it take to see results from using this product?
-            </div>
-            <button className="cursor-pointer" >
-              <GrFormAdd
-              onClick={() => setProductFAQ('How long will it take to see results from using this product?')} 
-              className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-              />
-            </button>
-          </div>
-
-          <div className="w-full">
-            { matchedFAQ.map((faq) => (
-                <div className={`${productFAQ === 'How long will it take to see results from using this product?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
-                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-                      {productFAQ}
-                    </div>
-                    <div className="cursor-pointer" >
-                      <GrFormSubtract 
-                        onClick={() => setProductFAQ('')} 
-                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
-                      {faq.answer}  
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <div className="w-80 tablet:w-[1224px] h-auto flex-col justify-start items-start inline-flex"> 
-
-          <div className={`${productFAQ === 'Can this product be used in conjunction with other skincare products?' ? 'hidden':'visible' }  self-stretch px-2 tablet:px-4 py-4 tablet:py-[22px] bg-white border-t border-b border-stone-300 justify-start items-center gap-1 tablet:gap-2 inline-flex`}>
-            <div className="grow shrink basis-0 text-neutral-950 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-              Can this product be used in conjunction with other skincare products?
-            </div>
-            <button className="cursor-pointer" >
-              <GrFormAdd
-              onClick={() => setProductFAQ('Can this product be used in conjunction with other skincare products?')} 
-              className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-              />
-            </button>
-          </div>
-
-          <div className="w-full">
-            { matchedFAQ.map((faq) => (
-                <div className={`${productFAQ === 'Can this product be used in conjunction with other skincare products?' ? 'visible':'hidden' } self-stretch h-[250px] tablet:h-[236px] px-2 tablet:px-4 py-4 tablet:py-6 bg-white border-t border-b border-stone-300 flex-col justify-start tablet:justify-center items-start gap-2 tablet:gap-4 flex`}>
-                  <div className="self-stretch justify-start items-center gap-2 inline-flex">
-                    <div className="grow shrink basis-0 text-pink-800 text-sm tablet:text-xl font-semibold tablet:font-bold leading-tight tablet:leading-7">
-                      {productFAQ}
-                    </div>
-                    <div className="cursor-pointer" >
-                      <GrFormSubtract 
-                        onClick={() => setProductFAQ('')} 
-                        className="w-4 tablet:w-6 h-4 tablet:h-6 relative"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="self-stretch px-2 tablet:px-4 py-2 h-[500px] justify-start items-start gap-2 inline-flex">
-                    <div className="w-72 tablet:w-[1160px] text-neutral-950 text-xs tablet:text-lg font-normal capitalize leading-4 tablet:leading-loose"> 
-                      {faq.answer}  
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
+        ))}
       </section>
       {/* Frequently Asked Questions end */}
 
-      {/* Recommended skincare routine DESKTOP start */}
+      {/* Recommended skincare routine DESKTOP */}
       <SkinCareRecommended/>
-      {/* recommended skincare routine DESKTOP end */}
 
-      {/* recommended skincare routine MOBILE end */}
+      {/* recommended skincare routine MOBILE */}
       <SkinCareRecommendedMobile
         products={products}
       />
-      {/* recommended skincare routine MOBILE end */}
           
       {/* video of product start */}
-      <div className="w-[1223.11px] mx-auto h-[688px] relative mt-[32px]">
+      <div className="w-screen laptop:w-[1223.11px] mx-auto h-auto tablet:h-[688px] relative mt-[32px]">
         <img
           src="/productpage/video.png" 
-          className="[1223.11px] h-[688px] left-0 top-0 absolute bg-black bg-opacity-25 backdrop-blur-[60px]"
+          className=" w-screen laptop:w-[1223.11px] h-auto tablet:h-[688px] bg-black bg-opacity-25 backdrop-blur-[60px] object-cover"
         />
-        <div className="w-[120px] h-[120px] left-[552px] top-[284px] absolute">
-            <div className="w-[120px] h-[120px] left-0 top-0 absolute rounded-full border-8 border-neutral-200"></div>
-        </div>
+        {/* this tag will be removed  */}
+        <div className="absolute top-20 left-20 tablet:top-[200px] tablet:left-[200px] text-green-500 z-10 text-2xl tablet:text-9xl">This is video</div>
+      
       </div>
       {/* video of product end */}
         
-        {/* you may also like DESKTOP start*/}
-        <YouMayLike/>
-        {/* you may also like DESKTOP end*/}
+      {/* you may also like DESKTOP */}
+      <YouMayLikeDesktop/>
 
-        {/* you may also like MOBILE start*/}
-        <div className="w-[360px] h-[445px] relative bg-red-50 mt-[32px] tablet:hidden">
-          <div className="tablet:hidden w-80 mx-auto h-[55px] text-center text-neutral-950 text-xl font-bold leading-7 mb-[16px] mt-[32px]">You May Also Like</div>
-          {/* <div className="w-80 mx-auto h-[345px] justify-start items-start gap-4 inline-flex tablet:hidden"> */}
-          <Carousel
-            responsive={responsive}
-            containerClass=""
-            itemClass="px-[20px]"
-            arrows={false}
-          >
-
-            { products.map((item) => (
-              <div
-              key={item.id} 
-                className="w-[152px] pb-2 bg-white border border-neutral-200 flex-col justify-start items-center gap-2 inline-flex"
-              >
-                <Image 
-                  src={item.thumbnail}
-                  width={152}
-                  height={202}
-                  alt={item.title} 
-                  className="self-stretch h-[202px]" 
-                />
-                <div className="self-stretch h-[127px] px-2 flex-col justify-start items-start gap-2 flex">
-                  <div className="self-stretch h-10 text-pink-800 text-sm font-semibold leading-tight">{ item.title }</div>
-                    <div className="self-stretch h-[51px] text-neutral-950 text-xs font-normal leading-none">{ item.smallDescription }</div>
-                    <div className="self-stretch text-neutral-950 text-sm font-semibold leading-tight">$<span>{ item.price }</span></div>
-                  </div>
-                </div>
-
-            ))
-            }
-          </Carousel>
-        </div>
-        {/* you may also like MOBILE end*/}
-
+      {/* you may also like MOBILE start*/}
+      < YouMayLikeMobile
+        products={products}
+      />
 
     </Wrapper>
   )

@@ -3,7 +3,7 @@ import { products } from 'lib/productData/productdata'
 import Image from 'next/image'
 import React, { useState } from 'react'
 
-const YouMayLike = () => {
+const YouMayLikeDesktop = () => {
   const numVisibleProducts = 4;
   const [startIndex, setStartIndex] = useState(0);
 
@@ -107,7 +107,7 @@ const YouMayLike = () => {
   );
 }
 
-export default YouMayLike
+export default YouMayLikeDesktop
 
 
 

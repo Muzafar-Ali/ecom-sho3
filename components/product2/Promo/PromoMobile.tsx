@@ -4,7 +4,7 @@ import React from 'react'
 
 const PromoMobile = () => {
   return (
-    <div className="w-[360px] h-[500px] relative bg-pink-950 mt-[32px] tablet:hidden">
+    <div className="w-screen h-[500px] relative bg-pink-950 mt-[32px] px-[20px] pt-[20px] tablet:hidden">
       
       { promo.slice(0,1).map((image, index) => (
         <Image
@@ -13,7 +13,7 @@ const PromoMobile = () => {
           width={320}
           height={320}
           alt=""
-          className="w-80 h-80 relative"
+          className="w-screen h-80 relative"
         />
       ))}
 

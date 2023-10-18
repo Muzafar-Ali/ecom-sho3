@@ -4,9 +4,9 @@ import React from 'react'
 
 const PromoDesktop = () => {
   return (
-    <section className="w-[1440px] h-[488px] px-[108px] py-10 bg-pink-950 flex-col justify-center items-center gap-6 tablet:inline-flex hidden">
+    <section className="w-full h-[488px] py-10 mt-[32px] bg-pink-950 flex-col justify-center items-center gap-6 hidden tablet:inline-flex overflow-hidden ">
         
-      <div className="self-stretch justify-start items-start gap-6 inline-flex">
+      <div className="self-stretch justify-center items-center gap-6 inline-flex">
         { promo.map((image, index) => (
             <Image
               src={image}

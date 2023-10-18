@@ -1,23 +1,15 @@
 'use client'
 import Wrapper from 'components/Wrapper'
-import ProductCard from 'components/products/ProductCard'
+import ProductCard from 'components/product2/ProductCard'
+import FilterOptionsDesktop from 'components/skincare/FilterOptions/FilterOptionsDesktop'
 import SortFilterDesktop from 'components/skincare/SortFilterDesktop'
-import SortFilter from 'components/skincare/SortFilterDesktop'
-import CategoryFilter from 'components/skincare/filterOptions/CategoryFilter'
-import FeaturedFilter from 'components/skincare/filterOptions/FeaturedFilter'
-import PriceFilter from 'components/skincare/filterOptions/PriceFilter'
-import SkinFilter from 'components/skincare/filterOptions/SkinFilter'
-import FilterOptionsDesktop from 'components/skincare/filterOptions/FilterOptionsDesktop'
-import FilterOptionsMobile from 'components/skincare/mobile/FilterOptionsMobile'
-import FilterAndSortSmallScreen from 'components/skincare/mobile/FilterOptionsMobile'
+import FilterOptionsMobile from 'components/skincare/Mobile/FilterOptionsMobile'
 
+import AppliedFiltersMobile from 'components/skincare/Mobile/AppliedFiltersMobile'
 import { filterProducts } from 'lib/filterProducts'
 import { products } from 'lib/productData/productdata'
 import Image from 'next/image'
 import { useState } from 'react'
-import { BiCaretDown } from 'react-icons/bi'
-import { GrFormClose } from 'react-icons/gr'
-import AppliedFiltersMobile from 'components/skincare/mobile/AppliedFiltersMobile'
 
 
 const Products = () => {
@@ -383,7 +375,7 @@ const Products = () => {
               
               {/* section to display all products */}
               {/* <div className="inline-flex flex-wrap items-start justify-center gap-6 "> */}
-              <section className="grid grid-cols-2 laptop-lg:grid-cols-3 gap-1 mobile-m:gap-3 mobile-l:gap-5 tablet:gap-6 bg-fuchsia-400">
+              <section className="grid grid-cols-2 laptop-lg:grid-cols-3 gap-1 mobile-m:gap-3 mobile-l:gap-5 tablet:gap-6">
                 { filteredProducts && filteredProducts.length > 0  ? (
                     filteredProducts?.slice(11).map((product) => (
                         <ProductCard
