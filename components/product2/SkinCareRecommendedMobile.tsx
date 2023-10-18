@@ -20,8 +20,7 @@ const SkinCareRecommendedMobile:React.FC<SkinCareProduct> = ({products}) => {
   return (
     <section className='px-[20px] mt-[32px] w-ful'>
       <div className=" text-center text-neutral-950 text-xl font-bold leading-7 pb-[16px]">Recommended Skincare Routine</div>
-      {/* <div className="w-80 mx-auto h-[345px] justify-start items-start gap-4 inline-flex tablet:hidden"> */}
-      <div></div>
+      
       <Carousel
         responsive={responsive}
         containerClass=""
