@@ -47,8 +47,8 @@ const ProductDetails = () => {
       <section className='mt-[58px] flex flex-row max-laptop:flex-col gap-[24px] px-[20px] tablet:px-[54px] laptop-lg:px-[108px] relative w-full'>
 
         {/* product small images  */}
-        <section className="flex flex-col laptop:flex-row gap-2 tablet:gap-3 laptop:gap-6">
-          <div className='inline-flex flex-row laptop:flex-col justify-start items-start gap-2 tablet:gap-6 w-full laptop:w-[120px] laptop-lg:w-[80px] h-auto cursor-pointer max-laptop:flex-nowrap'>
+        <section className="flex flex-col laptop:flex-row gap-2 tablet:gap-3 laptop:gap-6 relative">
+          <div className='inline-flex flex-row laptop:flex-col justify-start items-start gap-2 tablet:gap-6 w-full laptop:w-[120px] pt-[182px] mobile-m:pt-[172px] tablet:pt-[182px] laptop:pt-0 laptop-lg:w-[80px] h-auto cursor-pointer max-laptop:flex-nowrap'>
             { products[0]?.images.map((image, index) => (
                 <div
                   key={index} 
@@ -87,15 +87,15 @@ const ProductDetails = () => {
           {/* product title, product description, price start  */}
           <div className="inline-flex flex-col gap-[16px]">
             {/* product title */}
-            <div className="self-stretch text-pink-800 text-2xl tablet:text-[32px] font-bold capitalize leading-[33.60px]">
+            <div className="max-laptop:absolute top-0 self-stretch text-pink-800 text-2xl tablet:text-[32px] font-bold capitalize leading-[33.60px]">
               { products[0]?.title }
             </div>
             {/* description */}
             
-            <div className="inline-flex flex-col gap-2">
+            <div className="inline-flex flex-col gap-2 max-laptop:absolute top-[80px]">
               <div className="self-stretch text-neutral-950 text-sm tablet:text-base font-semibold tablet:font-bold capitalize leading-tight tablet:leading-snug">Anti-aging face serum</div>
 
-              <div className="self-stretch pr-2 text-xs font-normal tablet:text-sm capitalize justify-start items-center gap-2 inline-flex relative">
+              <div className="self-stretch pr-2 text-xs font-normal tablet:text-sm capitalize justify-start items-center gap-2 inline-flex">
                 <div className="text-zinc-600 leading-[25.20px]">all types of skin</div>
                 <div className="opacity-[0.6]">|</div>
                 <div className="text-zinc-600 leading-[25.20px]">am or pm</div>

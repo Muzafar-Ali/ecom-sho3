@@ -19,7 +19,7 @@ const ProductDetailsDesktop:React.FC<ProductDetailsDesktopProps> = ({
   setShowLess
 }) => {
   return (
-    <div className='hidden laptop:flex flex-col mt-[32px] mb-[56px] tablet:px-[54px] laptop-lg:px-[108px] w-screen'>
+    <div className='hidden laptop:flex flex-col mt-[32px] mb-[56px] tablet:px-[54px] laptop-lg:px-[108px] '>
       <div className="w-full h-11 border-b border-zinc-600 justify-between items-start inline-flex mt-[32px]">
 
         
