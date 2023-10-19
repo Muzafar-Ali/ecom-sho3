@@ -1,11 +1,10 @@
-// SkinCareRecommended.js
 import React, { useState } from 'react';
 import Wrapper from 'components/Wrapper';
 import { products } from 'lib/productData/productdata';
 import Image from 'next/image';
 
 
-const SkinCareRecommended = () => {
+const CustomCarousel = () => {
   const numVisibleProducts = 4;
   const [startIndex, setStartIndex] = useState(0);
 
@@ -108,4 +107,4 @@ const SkinCareRecommended = () => {
   );
 };
 
-export default SkinCareRecommended;
+export default CustomCarousel;

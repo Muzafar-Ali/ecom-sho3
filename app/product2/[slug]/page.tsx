@@ -5,10 +5,9 @@ import ProductDetailsDesktop from "components/product2/ProductDetails/ProductDet
 import ProductDetailsMobile from "components/product2/ProductDetails/ProductDetailsMobile"
 import PromoDesktop from "components/product2/Promo/PromoDesktop"
 import PromoMobile from "components/product2/Promo/PromoMobile"
-import SkinCareRecommended from "components/product2/SkinCareRecommended"
-import SkinCareRecommendedMobile from "components/product2/SkinCareRecommendedMobile"
+import SkinCareRecommended from "components/product2/SkinCareRecommended/SkinCareRecommendedDesktop"
+import SkinCareRecommendedMobile from "components/product2/SkinCareRecommended/SkinCareRecommendedMobile"
 import YouMayLikeDesktop from "components/product2/YouMayLike/YouMayLikeDesktop"
-import YouMayLike from "components/product2/YouMayLike/YouMayLikeDesktop"
 import YouMayLikeMobile from "components/product2/YouMayLike/YouMayLikeMobile"
 import { detailsData } from "lib/productData/detailsData"
 import { faq } from "lib/productData/faq"
@@ -18,7 +17,6 @@ import { useState } from "react"
 import { GrFormAdd, GrFormSubtract } from 'react-icons/gr'
 import { MdOutlineLocationOn } from 'react-icons/md'
 
-import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
 
 const ProductDetails = () => {
@@ -264,7 +262,7 @@ const ProductDetails = () => {
           className=" w-screen laptop:w-[1223.11px] h-auto tablet:h-[688px] bg-black bg-opacity-25 backdrop-blur-[60px] object-cover"
         />
         {/* this tag will be removed  */}
-        <div className="absolute top-20 left-20 tablet:top-[200px] tablet:left-[200px] text-green-500 z-10 text-2xl tablet:text-9xl">This is video</div>
+        <div className="absolute top-20 left-20 tablet:top-[200px] tablet:left-[200px] text-green-500 z-10 text-2xl tablet:text-6xl">This is video</div>
       
       </div>
       {/* video of product end */}

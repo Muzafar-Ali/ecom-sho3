@@ -1,10 +1,9 @@
-import { products } from 'lib/productData/productdata'
 import React from 'react'
 
+import Image from 'next/image'
 import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
-import { SkinCareProduct } from '../SkinCareRecommendedMobile'
-import Image from 'next/image'
+import { SkinCareProduct } from '../SkinCareRecommended/SkinCareRecommendedMobile'
 
 
 
@@ -17,7 +16,7 @@ const YouMayLikeMobile:React.FC<SkinCareProduct> = ({products}) => {
   };
 
   return (
-    <section className='px-[20px] mt-[32px] w-full h-[445px]  bg-red-50'>
+    <section className='px-[20px] mt-[32px] w-full h-[445px] bg-red-50 tablet:hidden'>
       <div className=" text-center text-neutral-950 text-xl font-bold leading-7 pb-[16px]">You May Also Like</div>
 
       <Carousel

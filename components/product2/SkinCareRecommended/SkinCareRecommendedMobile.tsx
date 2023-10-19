@@ -18,7 +18,7 @@ const SkinCareRecommendedMobile:React.FC<SkinCareProduct> = ({products}) => {
   };
 
   return (
-    <section className='px-[20px] mt-[32px] w-ful'>
+    <section className='px-[20px] mt-[32px] w-ful tablet:hidden'>
       <div className=" text-center text-neutral-950 text-xl font-bold leading-7 pb-[16px]">Recommended Skincare Routine</div>
       
       <Carousel
