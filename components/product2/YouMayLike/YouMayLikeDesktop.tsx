@@ -33,7 +33,7 @@ const YouMayLikeDesktop = () => {
 
   return (
     <Wrapper>
-      <div className="w-full px-[108px] pt-[56px] hidden tablet:inline-flex flex-col bg-red-50">
+      <div className="w-full  tablet:px-[108px] laptop-lg:px-[108px] pt-[56px] hidden tablet:inline-flex flex-col bg-red-50">
         <h2 className="text-neutral-950 text-2xl font-bold capitalize leading-[33.60px] mb-[32px] text-center">
           recommended skincare routine
         </h2>

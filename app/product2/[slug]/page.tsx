@@ -197,10 +197,10 @@ const ProductDetails = () => {
       <PromoDesktop/>
 
       {/* promo 4 images of 288 x 288  Mobile */}
-      <PromoMobile/>
+      {/* <PromoMobile/> */}
 
       {/* Frequently Asked Questions FAQ start */}
-      <section className="w-full px-[20px] tablet:px-[54px] laptop:px-[108px] mt-[32px] inline-flex flex-col">
+      <section className="w-full px-[20px] tablet:px-[54px] laptop-lg:px-[108px] mt-[56px] inline-flex flex-col">
         
         <div className="text-neutral-950 text-xl tablet:text-2xl font-bold capitalize leading-7 tablet:leading-[33.60px] text-center w-full pb-[16px]">
           <span>{products[0]?.title}</span> frequently asked questions

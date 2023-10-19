@@ -33,7 +33,7 @@ const SkinCareRecommendedDesktop = () => {
 
   return (
     <Wrapper>
-      <div className="px-[108px] pt-[56px] hidden tablet:inline-flex flex-col w-full">
+      <div className="tablet:px-[54px] laptop-lg:px-[108px] pt-[56px] hidden tablet:inline-flex flex-col items-center w-full">
         <h2 className="text-neutral-950 text-2xl font-bold capitalize leading-[33.60px] mb-[32px] text-center">
           recommended skincare routine
         </h2>

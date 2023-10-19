@@ -23,7 +23,7 @@ const YouMayLikeMobile:React.FC<SkinCareProduct> = ({products}) => {
         responsive={responsive}
         containerClass=""
         itemClass="px-[5px]"
-        arrows={false}
+        arrows={true}
       >
 
         { products.map((item) => (
